@@ -25,8 +25,9 @@ for i in range(5):
     display._set_rotate(rotate_list[i])
     display_image_8bpp(display, '/home/pi/NewSlowMovie/Sadhguru.png')
 
-    # Wait for 10 seconds
-    time.sleep(2)
+    # Wait for n seconds
+    n=2
+    time.sleep(n)
 
 exit()
 
