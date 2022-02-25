@@ -19,7 +19,7 @@ display = AutoEPDDisplay(vcom=-1.17, rotate=None, spi_hz=24000000)
 
 print('VCOM set to', display.epd.get_vcom())
 
-rotate_list=[Rotate.NONE,Rotate.CW, Rotate.CCW,Rotate.FLIP,Rotate.NONE, ]
+rotate_list = [None, 'CW', 'CCW', 'flip', None, ]
 
 for i in range(5):
     display._set_rotate(rotate_list[i])
@@ -28,5 +28,5 @@ for i in range(5):
     # Wait for 10 seconds
     time.sleep(2)
 
-    
 exit()
+
