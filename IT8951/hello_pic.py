@@ -19,7 +19,7 @@ def generate_frame(in_filename, out_filename, time, width, height):
     )
 
 
-viddir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '/home/pi/Videos/')
+viddir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '/home/pi/NewSlowMovieVideos/')
 
 from IT8951.display import AutoEPDDisplay
 
@@ -36,7 +36,7 @@ display = AutoEPDDisplay(vcom=-1.17, rotate=None, spi_hz=24000000)
 print('VCOM set to', display.epd.get_vcom())
 
 
-display_image_8bpp(display, 'grab.jpg')
+display_image_8bpp(display, '/home/pi/NewSlowMovie/IT8951/grab.jpg')
 print('Diplaying frame %d of %s' %(frame,currentVideo))
 
 # Wait for 10 seconds 
