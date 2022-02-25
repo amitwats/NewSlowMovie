@@ -2,14 +2,9 @@
 # -*- coding:utf-8 -*-
 
 import time
-from PIL import Image
-from PIL import ImageEnhance
-import ffmpeg
-from working_test_functions import *
-
-
 
 from IT8951.display import AutoEPDDisplay
+from working_test_functions import *
 
 print('Initializing EPD...')
 
@@ -24,8 +19,7 @@ display = AutoEPDDisplay(vcom=-1.17, rotate=None, spi_hz=24000000)
 print('VCOM set to', display.epd.get_vcom())
 
 
-display_image_8bpp(display, '/home/pi/NewSlowMovie/IT8951/grab.jpg')
-print('Diplaying frame %d of %s' %(frame,currentVideo))
+display_image_8bpp(display, '/home/pi/NewSlowMovie/Sadhguru.png')
 
 # Wait for 10 seconds 
 time.sleep(10)
