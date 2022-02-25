@@ -23,8 +23,8 @@ rotate_list = [None, 'CW', 'CCW', 'flip', None, ]
 
 for i in range(5):
     display._set_rotate(rotate_list[i])
-    display_image_8bpp(display, '/home/pi/NewSlowMovie/Sadhguru.png')
-    display_image_8bpp(display, '/home/pi/NewSlowMovie/indrajal/001.webp')
+    # display_image_8bpp(display, '/home/pi/NewSlowMovie/Sadhguru.png')
+    display_image_8bpp(display, '/home/pi/NewSlowMovie/indrajal/001.jpg')
 
     # Wait for n seconds
     n=2
