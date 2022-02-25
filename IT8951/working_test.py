@@ -2,6 +2,8 @@
 from time import sleep
 import argparse
 import os
+
+from IT8951.constants import DEFAULT_VCOM
 from working_test_functions import *
 
 def parse_args():
@@ -31,7 +33,7 @@ def main():
     # value means faster display refreshes. the documentation for the IT8951 device
     # says the max is 24 MHz (24000000), but my device seems to still work as high as
     # 80 MHz (80000000)
-    display = AutoEPDDisplay(vcom=-1.55, rotate=None, spi_hz=24000000)
+    display = AutoEPDDisplay(vcom=DEFAULT_VCOM, rotate=None, spi_hz=24000000)
 
     print('VCOM set to', display.epd.get_vcom())
 

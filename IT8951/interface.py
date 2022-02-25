@@ -1,6 +1,6 @@
 
 from . import constants
-from .constants import Commands, Registers, PixelModes
+from .constants import Commands, Registers, PixelModes, DEFAULT_VCOM
 from .spi import SPI
 
 from time import sleep
@@ -21,7 +21,7 @@ class EPD:
          See spi.pyx for details.
     '''
 
-    def __init__(self, vcom=-1.55, **spi_kwargs):
+    def __init__(self, vcom=DEFAULT_VCOM, **spi_kwargs):
 
         self.spi = SPI(**spi_kwargs)
 

@@ -13,6 +13,8 @@
 import os, sys, random, time, argparse, ffmpeg
 from PIL import Image
 from PIL import ImageEnhance
+
+from IT8951.constants import DEFAULT_VCOM
 from working_test_functions import *
 from IT8951.display import AutoEPDDisplay
 
@@ -133,7 +135,7 @@ print("The current video is %s" %currentVideo)
 # epd.init()
 # epd.Clear()
 
-display = AutoEPDDisplay(vcom=-1.55, rotate=None, spi_hz=24000000)
+display = AutoEPDDisplay(vcom=DEFAULT_VCOM, rotate=None, spi_hz=24000000)
 print('VCOM set to', display.epd.get_vcom())
 
 currentPosition = 0

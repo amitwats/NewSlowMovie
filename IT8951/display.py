@@ -2,7 +2,7 @@
 import warnings
 from PIL import Image, ImageChops
 
-from .constants import DisplayModes, PixelModes, low_bpp_modes
+from .constants import DisplayModes, PixelModes, low_bpp_modes, DEFAULT_VCOM
 from . import img_manip
 
 try:
@@ -208,7 +208,7 @@ class AutoEPDDisplay(AutoDisplay):
     This class initializes the EPD, and uses it to display the updates
     '''
 
-    def __init__(self, epd=None, vcom=-1.55,
+    def __init__(self, epd=None, vcom=DEFAULT_VCOM,
                  bus=0, device=0, spi_hz=24000000,
                  **kwargs):
 

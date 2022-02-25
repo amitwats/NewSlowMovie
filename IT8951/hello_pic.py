@@ -3,7 +3,7 @@
 
 import time
 
-from IT8951.constants import Rotate
+from IT8951.constants import Rotate, DEFAULT_VCOM
 from IT8951.display import AutoEPDDisplay
 from working_test_functions import *
 
@@ -13,7 +13,7 @@ print('Initializing EPD...')
 # value means faster display refreshes. the documentation for the IT8951 device
 # says the max is 24 MHz (24000000), but my device seems to still work as high as
 # 80 MHz (80000000)
-display = AutoEPDDisplay(vcom=-1.17, rotate=None, spi_hz=24000000)
+display = AutoEPDDisplay(vcom=DEFAULT_VCOM, rotate=None, spi_hz=24000000)
 # display the image 
 
 

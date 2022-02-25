@@ -5,6 +5,8 @@ import os, sys, random, time
 from PIL import Image
 from PIL import ImageEnhance
 import ffmpeg
+
+from IT8951.constants import DEFAULT_VCOM
 from working_test_functions import *
 
 def generate_frame(in_filename, out_filename, time, width, height):    
@@ -29,7 +31,7 @@ print('Initializing EPD...')
 # value means faster display refreshes. the documentation for the IT8951 device
 # says the max is 24 MHz (24000000), but my device seems to still work as high as
 # 80 MHz (80000000)
-display = AutoEPDDisplay(vcom=-1.17, rotate=None, spi_hz=24000000)
+display = AutoEPDDisplay(vcom=DEFAULT_VCOM, rotate=None, spi_hz=24000000)
 
 print('VCOM set to', display.epd.get_vcom())
 
