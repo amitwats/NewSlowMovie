@@ -222,6 +222,8 @@ class AutoEPDDisplay(AutoDisplay):
             epd = EPD(vcom=vcom, bus=bus, device=device, data_hz=spi_hz)
 
         self.epd = epd
+        print(f"The width is  {self.epd.width} and the height is {self.epd.height}")
+
         AutoDisplay.__init__(self, self.epd.width, self.epd.height, **kwargs)
 
     def update(self, data, xy, dims, mode, pixel_format=PixelModes.M_4BPP):

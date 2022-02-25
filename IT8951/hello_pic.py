@@ -5,7 +5,10 @@ import time
 
 from IT8951.constants import Rotate, DEFAULT_VCOM
 from IT8951.display import AutoEPDDisplay
-from working_test_functions import *
+# from working_test_functions import *
+from IT8951 import constants
+from PIL import Image
+
 
 print('Initializing EPD...')
 
@@ -14,6 +17,26 @@ print('Initializing EPD...')
 # says the max is 24 MHz (24000000), but my device seems to still work as high as
 # 80 MHz (80000000)
 display = AutoEPDDisplay(vcom=DEFAULT_VCOM, rotate=None, spi_hz=24000000)
+
+
+
+def display_image_8bpp(display, img_path):
+    print('Displaying "{}"...'.format(img_path))
+
+    # clearing image to white
+    display.frame_buf.paste(0xFF, box=(0, 0, display.width, display.height))
+
+    img = Image.open(img_path)
+
+    # TODO: this should be built-in
+    dims = (display.width, display.height)
+    print(f"Setting image dimensions to {dims}")
+    img.thumbnail(dims)
+    paste_coords = [dims[i] - img.size[i] for i in (0,1)]  # align image with bottom of display
+    display.frame_buf.paste(img, paste_coords)
+
+    display.draw_full(constants.DisplayModes.GC16)
+    #display.draw_partial(constants.DisplayModes.DU)
 # display the image 
 
 
