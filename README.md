@@ -50,6 +50,7 @@ https://github.com/dankarlin/NewSlowMovie
 ## Configure new Pi
 Configure New RPi
 1) install Raspbian lite
+
 2) Create a file wpa_supplicant.conf  with the following config and put it in the location /boot to enable wifi. When in  this folder it will automatically be copied to /etc/wpa_supplicant/wpa_supplicant.conf on first boot.
 ```
 country=US
@@ -63,7 +64,11 @@ network={
 }
 ```
 ref: https://raspberrytips.com/raspberry-pi-wifi-setup/
+
 3) Create an empty file called ssh in the  boot partition(root directory) to enable SSH
+
 4) In /boot/config.txt uncomment the line or add the line 
+```
 dtparam=spi=on
+```
 5) using https://www.waveshare.com/wiki/10.3inch_e-Paper_HAT
