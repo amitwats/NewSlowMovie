@@ -2,7 +2,7 @@
 import warnings
 from PIL import Image, ImageChops
 
-from .constants import DisplayModes, PixelModes, low_bpp_modes, DEFAULT_VCOM
+from constants import DisplayModes, PixelModes, low_bpp_modes, DEFAULT_VCOM
 from . import img_manip
 
 try:
