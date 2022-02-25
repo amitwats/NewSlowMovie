@@ -10,6 +10,8 @@ other (related) hardware too.
 To install, clone the repository, enter the directory and run
 ```
 pip install -r requirements.txt
+export USE_CYTHON="True"
+pip install --upgrade cython
 pip install ./
 ```
 Make sure that SPI is enabled in `raspi-config`. For some examples of usage, take a look at the integration tests.
