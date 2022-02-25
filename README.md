@@ -44,8 +44,10 @@ https://medium.com/s/story/very-slow-movie-player-499f76c48b62
 
 ## Important references
 https://www.waveshare.com/wiki/10.3inch_e-Paper_HAT
+
 https://github.com/dankarlin/NewSlowMovie
 
+https://github.com/waveshare/IT8951-ePaper
 
 ## Configure new Pi
 Configure New RPi
