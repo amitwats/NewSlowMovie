@@ -201,6 +201,8 @@ class AutoDisplay:
         raise NotImplementedError
 
 
+
+
 class AutoEPDDisplay(AutoDisplay):
     '''
     This class initializes the EPD, and uses it to display the updates

@@ -3,6 +3,7 @@
 
 import time
 
+from IT8951.constants import Rotate
 from IT8951.display import AutoEPDDisplay
 from working_test_functions import *
 
@@ -18,11 +19,14 @@ display = AutoEPDDisplay(vcom=-1.17, rotate=None, spi_hz=24000000)
 
 print('VCOM set to', display.epd.get_vcom())
 
+rotate_list=[Rotate.NONE,Rotate.CW, Rotate.CCW,Rotate.FLIP,Rotate.NONE, ]
 
-display_image_8bpp(display, '/home/pi/NewSlowMovie/Sadhguru.png')
+for i in range(5):
+    display._set_rotate(rotate_list[i])
+    display_image_8bpp(display, '/home/pi/NewSlowMovie/Sadhguru.png')
 
-# Wait for 10 seconds 
-time.sleep(10)
+    # Wait for 10 seconds
+    time.sleep(2)
 
     
 exit()
