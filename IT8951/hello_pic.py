@@ -3,8 +3,8 @@
 
 import time
 
-from constants import Rotate, DEFAULT_VCOM
-from display import AutoEPDDisplay
+from IT8951.constants import Rotate, DEFAULT_VCOM
+from IT8951.display import AutoEPDDisplay
 from working_test_functions import *
 
 print('Initializing EPD...')
