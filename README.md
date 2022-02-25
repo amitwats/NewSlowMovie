@@ -41,3 +41,36 @@ https://medium.com/@tomwhitwell/how-to-build-a-very-slow-movie-player-in-2020-c5
 
 Bryan's original post here:  
 https://medium.com/s/story/very-slow-movie-player-499f76c48b62 
+
+## Important references
+https://www.waveshare.com/wiki/10.3inch_e-Paper_HAT
+
+https://github.com/dankarlin/NewSlowMovie
+
+https://github.com/waveshare/IT8951-ePaper
+
+## Configure new Pi
+Configure New RPi
+1) install Raspbian lite
+
+2) Create a file wpa_supplicant.conf  with the following config and put it in the location /boot to enable wifi. When in  this folder it will automatically be copied to /etc/wpa_supplicant/wpa_supplicant.conf on first boot.
+```
+country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+  ssid="YOURSSID"
+  scan_ssid=1
+  psk="YOURPASSWORD"
+  key_mgmt=WPA-PSK
+}
+```
+ref: https://raspberrytips.com/raspberry-pi-wifi-setup/
+
+3) Create an empty file called ssh in the  boot partition(root directory) to enable SSH
+
+4) In /boot/config.txt uncomment the line or add the line 
+```
+dtparam=spi=on
+```
+5) using https://www.waveshare.com/wiki/10.3inch_e-Paper_HAT
