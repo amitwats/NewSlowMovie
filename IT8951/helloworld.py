@@ -29,7 +29,7 @@ print('Initializing EPD...')
 # value means faster display refreshes. the documentation for the IT8951 device
 # says the max is 24 MHz (24000000), but my device seems to still work as high as
 # 80 MHz (80000000)
-display = AutoEPDDisplay(vcom=-1.55, rotate=None, spi_hz=24000000)
+display = AutoEPDDisplay(vcom=-1.17, rotate=None, spi_hz=24000000)
 
 print('VCOM set to', display.epd.get_vcom())
 
