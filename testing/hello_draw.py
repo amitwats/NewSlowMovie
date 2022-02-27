@@ -33,7 +33,7 @@ def display_custom_text():
     img_draw = ImageDraw.Draw(blank_image)
     img_draw.rectangle((70, 50, 270, 200), outline='red', fill='blue')
     # font = ImageFont.truetype("sans-serif.ttf", 16)
-    font=ImageFont.FreeTypeFont(size=30)
+    font=ImageFont.truetype(size=30)
     
     img_draw.text((70, 250), 'Hello World', fill='green', font=font)
     # blank_image.save('drawn_image.jpg')
