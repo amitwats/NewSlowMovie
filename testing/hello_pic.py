@@ -50,18 +50,28 @@ rotate_list = [None, 'CW', 'CCW', 'flip', None, ]
 import sys
 
 if __name__ == '__main__':
-    for i in range(5):
-        # display._set_rotate(rotate_list[i])
-        # display_image_8bpp(display, '/home/pi/NewSlowMovie/Sadhguru.png')
-        if not sys.argv[1]:
-            image_loc = "/home/pi/NewSlowMovie/indrajal/001.jpg"
-        else:
-            image_loc = sys.argv[1]
 
-        display_image_8bpp(display, image_loc)
+    #number of args passed
+    if len(sys.argv) > 1:
+        for i in range(1, len(sys.argv)):
+            print("Argument: {}".format(sys.argv[i]))
+            display_image_8bpp(display, sys.argv[i])
+            n = 2
+            time.sleep(n)
 
-        # Wait for n seconds
-        n = 2
-        time.sleep(n)
+
+    # for i in range(5):
+    #     # display._set_rotate(rotate_list[i])
+    #     # display_image_8bpp(display, '/home/pi/NewSlowMovie/Sadhguru.png')
+    #     if not sys.argv[1]:
+    #         image_loc = "/home/pi/NewSlowMovie/indrajal/001.jpg"
+    #     else:
+    #         image_loc = sys.argv[1]
+    #
+    #     display_image_8bpp(display, image_loc)
+    #
+    #     # Wait for n seconds
+    #     n = 2
+    #     time.sleep(n)
 
     exit()
