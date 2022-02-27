@@ -1,4 +1,3 @@
-
 import warnings
 from PIL import Image, ImageChops
 
@@ -10,6 +9,7 @@ try:
     from .interface import EPD
 except ModuleNotFoundError:
     EPD = None
+
 
 class AutoDisplay:
     '''
@@ -68,14 +68,20 @@ class AutoDisplay:
     def _set_rotate(self, rotate):
 
         methods = {
-            None   : None,
-            'CW'   : Image.ROTATE_270,
-            'CCW'  : Image.ROTATE_90,
-            'flip' : Image.ROTATE_180,
+            None: None,
+            'CW': Image.ROTATE_270,
+            'CCW': Image.ROTATE_90,
+            'flip': Image.ROTATE_180,
         }
 
         if rotate not in methods:
             raise ValueError("invalid value for 'rotate'---options are None, 'CW', 'CCW', and 'flip'")
+
+        width, height = self.display_dims
+        if rotate in ('CW', 'CCW'):
+            self.frame_buf = Image.new('L', (height, width), 0xFF)
+        else:
+            self.frame_buf = Image.new('L', (width, height), 0xFF)
 
         self._rotate_method = methods[rotate]
 
@@ -85,7 +91,7 @@ class AutoDisplay:
         '''
         frame = self._get_frame_buf()
 
-        self.update(frame.tobytes(), (0,0), self.display_dims, mode)
+        self.update(frame.tobytes(), (0, 0), self.display_dims, mode)
 
         if self.track_gray:
             if mode == DisplayModes.DU:
@@ -132,7 +138,7 @@ class AutoDisplay:
                 img_manip.make_changes_bw(frame.crop(diff_box), buf)
 
             xy = (diff_box[0], diff_box[1])
-            dims = (diff_box[2]-diff_box[0], diff_box[3]-diff_box[1])
+            dims = (diff_box[2] - diff_box[0], diff_box[3] - diff_box[1])
 
             self.update(buf.tobytes(), xy, dims, mode)
 
@@ -175,10 +181,10 @@ class AutoDisplay:
         Round a bounding box so the edges are divisible by round_to
         '''
         minx, miny, maxx, maxy = box
-        minx -= minx%round_to
-        maxx += round_to-1 - (maxx-1)%round_to
-        miny -= miny%round_to
-        maxy += round_to-1 - (maxy-1)%round_to
+        minx -= minx % round_to
+        maxx += round_to - 1 - (maxx - 1) % round_to
+        miny -= miny % round_to
+        maxy += round_to - 1 - (maxy - 1) % round_to
         return (minx, miny, maxx, maxy)
 
     @staticmethod
@@ -200,8 +206,6 @@ class AutoDisplay:
 
     def update(self, data, xy, dims, mode):
         raise NotImplementedError
-
-
 
 
 class AutoEPDDisplay(AutoDisplay):
@@ -258,7 +262,7 @@ class VirtualEPDDisplay(AutoDisplay):
     EPD, to allow testing without a physical e-paper device
     '''
 
-    def __init__(self, dims=(800,600), **kwargs):
+    def __init__(self, dims=(800, 600), **kwargs):
         AutoDisplay.__init__(self, dims[0], dims[1], **kwargs)
 
         import tkinter as tk
@@ -279,7 +283,7 @@ class VirtualEPDDisplay(AutoDisplay):
         data_img = Image.frombytes(self._get_frame_buf().mode, dims, bytes(data))
         self.pil_img.paste(data_img, box=xy)
         self.tk_img = self.photoimage(self.pil_img)
-        self.panel.configure(image=self.tk_img) # not sure if this is actually necessary
+        self.panel.configure(image=self.tk_img)  # not sure if this is actually necessary
 
         # allow Tk to do whatever it needs to do
         self.root.update()

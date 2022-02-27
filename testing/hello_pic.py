@@ -59,6 +59,12 @@ if __name__ == '__main__':
             n = 2
             time.sleep(n)
 
+        display._set_rotate("CW")
+        for i in range(1, len(sys.argv)):
+            print("Argument: {}".format(sys.argv[i]))
+            display_image_8bpp(display, sys.argv[i])
+            n = 2
+            time.sleep(n)
 
     # for i in range(5):
     #     # display._set_rotate(rotate_list[i])
