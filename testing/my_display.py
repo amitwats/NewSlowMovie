@@ -9,7 +9,7 @@ class MyDisplay(AutoDisplay):
     '''
 
     def __init__(self, epd=None, vcom=DEFAULT_VCOM,
-                 bus=0, device=0, spi_hz=24000000, rotate=None, flip=False
+                 bus=0, device=0, spi_hz=24000000, rotate=None, flip=False,
                  **kwargs):
 
         if epd is None:
