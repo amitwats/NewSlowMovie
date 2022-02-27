@@ -34,7 +34,7 @@ def display_custom_text():
     img_draw.rectangle((70, 50, 270, 200), outline='red', fill='blue')
     img_draw.text((70, 250), 'Hello World', fill='green')
     # blank_image.save('drawn_image.jpg')
-    img_draw=ImageOps.mirror(img_draw)
+    blank_image=ImageOps.mirror(blank_image)
 
     # TODO: this should be built-in
     dims = (display.width, display.height)
@@ -43,8 +43,8 @@ def display_custom_text():
     # paste_coords = [dims[i] - img.size[i] for i in (0, 1)]  # align image with bottom of display
     paste_coords= [0, 0]
     # display.frame_buf.paste(img, paste_coords)
-    # display.frame_buf.paste(blank_image, paste_coords)
-    display.frame_buf.paste(img_draw, paste_coords)
+    display.frame_buf.paste(blank_image, paste_coords)
+    # display.frame_buf.paste(img_draw, paste_coords)
 
     display.draw_full(constants.DisplayModes.GC16)
     # display.draw_partial(constants.DisplayModes.DU)
