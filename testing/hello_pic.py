@@ -35,8 +35,8 @@ def display_image_8bpp(display, img_path):
     paste_coords = [dims[i] - img.size[i] for i in (0, 1)]  # align image with bottom of display
     display.frame_buf.paste(img, paste_coords)
 
-    display.draw_full(constants.DisplayModes.GC16)
-    # display.draw_partial(constants.DisplayModes.DU)
+    # display.draw_full(constants.DisplayModes.GC16)
+    display.draw_partial(constants.DisplayModes.DU)
 
 
 # display the image
