@@ -7,7 +7,7 @@ from IT8951.constants import Rotate, DEFAULT_VCOM
 from IT8951.display import AutoEPDDisplay
 # from working_test_functions import *
 from IT8951 import constants
-from PIL import Image
+from PIL import Image, ImageOps
 
 from my_display import MyDisplay
 
@@ -27,6 +27,7 @@ def display_image_8bpp(display, img_path):
     display.frame_buf.paste(0xFF, box=(0, 0, display.width, display.height))
 
     img = Image.open(img_path)
+    img=ImageOps.mirror(img)
 
     # TODO: this should be built-in
     dims = (display.width, display.height)
