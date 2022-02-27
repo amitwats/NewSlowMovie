@@ -17,7 +17,7 @@ print('Initializing EPD...')
 # value means faster display refreshes. the documentation for the IT8951 device
 # says the max is 24 MHz (24000000), but my device seems to still work as high as
 # 80 MHz (80000000)
-display = MyDisplay(vcom=DEFAULT_VCOM, rotate="CW", spi_hz=24000000, flip=False)
+display = MyDisplay(vcom=DEFAULT_VCOM, rotate="CCW", spi_hz=24000000, flip=False)
 
 
 def display_image_8bpp(display, img_path):
@@ -35,8 +35,8 @@ def display_image_8bpp(display, img_path):
     paste_coords = [dims[i] - img.size[i] for i in (0, 1)]  # align image with bottom of display
     display.frame_buf.paste(img, paste_coords)
 
-    # display.draw_full(constants.DisplayModes.GC16)
-    display.draw_partial(constants.DisplayModes.DU)
+    display.draw_full(constants.DisplayModes.GC16)
+    # display.draw_partial(constants.DisplayModes.DU)
 
 
 # display the image
