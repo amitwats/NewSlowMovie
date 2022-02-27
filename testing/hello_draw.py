@@ -32,7 +32,9 @@ def display_custom_text():
     blank_image = Image.new('RGBA', (display.width, display.height), 'white')
     img_draw = ImageDraw.Draw(blank_image)
     img_draw.rectangle((70, 50, 270, 200), outline='red', fill='blue')
-    font = ImageFont.truetype("sans-serif.ttf", 16)
+    # font = ImageFont.truetype("sans-serif.ttf", 16)
+    font=ImageFont.FreeTypeFont(size=30)
+    
     img_draw.text((70, 250), 'Hello World', fill='green', font=font)
     # blank_image.save('drawn_image.jpg')
     blank_image=ImageOps.mirror(blank_image)
