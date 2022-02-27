@@ -9,7 +9,7 @@ class MyDisplay(AutoDisplay):
     '''
 
     def __init__(self, epd=None, vcom=DEFAULT_VCOM,
-                 bus=0, device=0, spi_hz=24000000, rotate=None,
+                 bus=0, device=0, spi_hz=24000000, rotate=None, flip=False
                  **kwargs):
 
         if epd is None:
@@ -23,7 +23,7 @@ class MyDisplay(AutoDisplay):
         self.epd = epd
         print(f"The width is  {self.epd.width} and the height is {self.epd.height}")
 
-        AutoDisplay.__init__(self, self.epd.width, self.epd.height, rotate=rotate, **kwargs)
+        AutoDisplay.__init__(self, self.epd.width, self.epd.height, rotate=rotate, flip=flip, **kwargs)
 
     def update(self, data, xy, dims, mode, pixel_format=PixelModes.M_4BPP):
 
