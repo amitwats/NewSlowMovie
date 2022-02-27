@@ -77,12 +77,12 @@ class AutoDisplay:
         if rotate not in methods:
             raise ValueError("invalid value for 'rotate'---options are None, 'CW', 'CCW', and 'flip'")
 
-        width, height = self.display_dims
-        if rotate in ('CW', 'CCW'):
-            self.frame_buf = Image.new('L', (height, width), 0xFF)
-        else:
-            self.frame_buf = Image.new('L', (width, height), 0xFF)
-
+        # width, height = self.display_dims
+        # if rotate in ('CW', 'CCW'):
+        #     self.frame_buf = Image.new('L', (height, width), 0xFF)
+        # else:
+        #     self.frame_buf = Image.new('L', (width, height), 0xFF)
+        #
         self._rotate_method = methods[rotate]
 
     def draw_full(self, mode):
