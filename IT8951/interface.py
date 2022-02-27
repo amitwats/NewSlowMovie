@@ -98,7 +98,7 @@ class EPD:
         '''
         self.spi.write_cmd(Commands.GET_DEV_INFO)
         data = self.spi.read_data(20)
-
+        print(data)
         if all(x == 0 for x in data):
             raise RuntimeError("communication with device failed")
 
