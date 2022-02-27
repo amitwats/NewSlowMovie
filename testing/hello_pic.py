@@ -67,7 +67,7 @@ if __name__ == '__main__':
     #         time.sleep(n)
 
     for mode in rotate_list:
-        display._set_rotate("CW")
+        display._set_rotate(mode)
         display_image_8bpp(display, sys.argv[1])
 
     # for i in range(5):
