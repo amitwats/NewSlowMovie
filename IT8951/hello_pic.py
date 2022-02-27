@@ -9,7 +9,6 @@ from IT8951.display import AutoEPDDisplay
 from IT8951 import constants
 from PIL import Image
 
-
 print('Initializing EPD...')
 
 # here, spi_hz controls the rate of data transfer to the device, so a higher
@@ -17,7 +16,6 @@ print('Initializing EPD...')
 # says the max is 24 MHz (24000000), but my device seems to still work as high as
 # 80 MHz (80000000)
 display = AutoEPDDisplay(vcom=DEFAULT_VCOM, rotate=None, spi_hz=24000000)
-
 
 
 def display_image_8bpp(display, img_path):
@@ -32,26 +30,35 @@ def display_image_8bpp(display, img_path):
     dims = (display.width, display.height)
     print(f"Setting image dimensions to {dims}")
     img.thumbnail(dims)
-    paste_coords = [dims[i] - img.size[i] for i in (0,1)]  # align image with bottom of display
+    paste_coords = [dims[i] - img.size[i] for i in (0, 1)]  # align image with bottom of display
     display.frame_buf.paste(img, paste_coords)
 
     display.draw_full(constants.DisplayModes.GC16)
-    #display.draw_partial(constants.DisplayModes.DU)
-# display the image 
+    # display.draw_partial(constants.DisplayModes.DU)
+
+
+# display the image
 
 
 print('VCOM set to', display.epd.get_vcom())
 
 rotate_list = [None, 'CW', 'CCW', 'flip', None, ]
 
-for i in range(5):
-    display._set_rotate(rotate_list[i])
-    # display_image_8bpp(display, '/home/pi/NewSlowMovie/Sadhguru.png')
-    display_image_8bpp(display, '/home/pi/NewSlowMovie/indrajal/001.jpg')
+import sys
 
-    # Wait for n seconds
-    n=2
-    time.sleep(n)
+if __name__ == '__main__':
+    for i in range(5):
+        # display._set_rotate(rotate_list[i])
+        # display_image_8bpp(display, '/home/pi/NewSlowMovie/Sadhguru.png')
+        if not sys.argv[1]:
+            image_loc = "/home/pi/NewSlowMovie/indrajal/001.jpg"
+        else:
+            image_loc = sys.argv[1]
 
-exit()
+        display_image_8bpp(display, image_loc)
 
+        # Wait for n seconds
+        n = 2
+        time.sleep(n)
+
+    exit()
