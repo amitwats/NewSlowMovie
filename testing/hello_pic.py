@@ -26,7 +26,7 @@ def display_image_8bpp(display, img_path):
     # clearing image to white
     display.frame_buf.paste(0xFF, box=(0, 0, display.width, display.height))
 
-    img = ImageOps.mirror(Image.open(img_path))
+    img = ImageOps.mirror(Image.open(img_path))#not sure why my image is mirrored so I'm mirroring it here
     # img=ImageOps.mirror(img)
 
     # TODO: this should be built-in
@@ -52,19 +52,23 @@ import sys
 if __name__ == '__main__':
 
     #number of args passed
-    if len(sys.argv) > 1:
-        for i in range(1, len(sys.argv)):
-            print("Argument: {}".format(sys.argv[i]))
-            display_image_8bpp(display, sys.argv[i])
-            n = 2
-            time.sleep(n)
+    # if len(sys.argv) > 1:
+    #     for i in range(1, len(sys.argv)):
+    #         print("Argument: {}".format(sys.argv[i]))
+    #         display_image_8bpp(display, sys.argv[i])
+    #         n = 2
+    #         time.sleep(n)
+    #
+    #     display._set_rotate("CW")
+    #     for i in range(1, len(sys.argv)):
+    #         print("Argument: {}".format(sys.argv[i]))
+    #         display_image_8bpp(display, sys.argv[i])
+    #         n = 2
+    #         time.sleep(n)
 
+    for mode in rotate_list:
         display._set_rotate("CW")
-        for i in range(1, len(sys.argv)):
-            print("Argument: {}".format(sys.argv[i]))
-            display_image_8bpp(display, sys.argv[i])
-            n = 2
-            time.sleep(n)
+        display_image_8bpp(display, sys.argv[1])
 
     # for i in range(5):
     #     # display._set_rotate(rotate_list[i])
