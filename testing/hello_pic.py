@@ -9,7 +9,7 @@ from IT8951.display import AutoEPDDisplay
 from IT8951 import constants
 from PIL import Image
 
-from testing.my_display import MyDisplay
+from my_display import MyDisplay
 
 print('Initializing EPD...')
 
