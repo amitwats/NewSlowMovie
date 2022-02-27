@@ -34,7 +34,7 @@ def display_custom_text():
     img_draw.rectangle((70, 50, 270, 200), outline='red', fill='blue')
     img_draw.text((70, 250), 'Hello World', fill='green')
     # blank_image.save('drawn_image.jpg')
-    # img=ImageOps.mirror(img)
+    img_draw=ImageOps.mirror(img_draw)
 
     # TODO: this should be built-in
     dims = (display.width, display.height)
