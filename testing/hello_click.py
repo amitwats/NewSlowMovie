@@ -21,7 +21,7 @@ print('Initializing EPD...')
 display = MyDisplay(vcom=DEFAULT_VCOM, rotate="CCW", spi_hz=24000000, flip=False)
 
 # Setting GPIO Pins
-button_no = 40
+button_no = 21
 # GPIO.setmode(GPIO.BOARD)
 GPIO.setup(button_no, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
@@ -60,8 +60,9 @@ image_2 = "./indrajal/page0.jpg"
 
 if __name__ == '__main__':
 
-    for _ in range(20):
+    for _ in range(9):
         state = GPIO.input(button_no)
+        print(f"State is {state}")
         if state == 1:
             display_image_8bpp(display, image_1)
         else:
