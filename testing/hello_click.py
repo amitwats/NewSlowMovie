@@ -22,7 +22,7 @@ display = MyDisplay(vcom=DEFAULT_VCOM, rotate="CCW", spi_hz=24000000, flip=False
 
 # Setting GPIO Pins
 button_no = 40
-GPIO.setmode(GPIO.BOARD)
+# GPIO.setmode(GPIO.BOARD)
 GPIO.setup(button_no, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
