@@ -61,13 +61,14 @@ image_2 = "./indrajal/page0.jpg"
 
 if __name__ == '__main__':
 
-    for _ in range(9):
+    for _ in range(90):
         state = GPIO.input(button_no)
         print(f"State is {state}")
         if state == 1:
             display_image_8bpp(display, image_1)
         else:
             display_image_8bpp(display, image_2)
-        time.sleep(1)
+        # time.sleep(1)
+        time.sleep(0.1)
 
     exit()
