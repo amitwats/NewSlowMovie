@@ -33,6 +33,7 @@ for _ in range(9):
     print(f"State of 40 is is {state_40}")
     time.sleep(1)
 
+GPIO.cleanup()
 
 # def display_image_8bpp(display, img_path):
 #     print('Displaying "{}"...'.format(img_path))
