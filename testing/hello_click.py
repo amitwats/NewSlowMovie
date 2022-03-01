@@ -61,6 +61,24 @@ import sys
 image_1 = "./indrajal/002.jpg"
 image_2 = "./indrajal/page0.jpg"
 
+
+def loop():
+    last_state_21=0
+    run_state=True
+    while run_state:
+        state_21 = GPIO.input(button_no)
+        state_20=GPIO.input(run_butoon)
+        if state_20==1:
+            run_state=False
+        if state != last_state_21:
+            last_state_21=state_21
+            if state == 1:
+                display_image_8bpp(display, image_1)
+            else:
+                display_image_8bpp(display, image_2)
+
+
+
 if __name__ == '__main__':
 
     # for _ in range(90):
@@ -72,16 +90,18 @@ if __name__ == '__main__':
     #         display_image_8bpp(display, image_2)
     #     # time.sleep(1)
     #     time.sleep(0.1)
-    run_state=True
-    while run_state:
-        run_state = False if GPIO.input(run_butoon)==1 else True
-        state = GPIO.input(button_no)
-        print(f"State is {state}")
-        if state == 1:
-            display_image_8bpp(display, image_1)
-        else:
-            display_image_8bpp(display, image_2)
+
+
+    # run_state=True
+    # while run_state:
+    #     run_state = False if GPIO.input(run_butoon)==1 else True
+    #     state = GPIO.input(button_no)
+    #     print(f"State is {state}")
+    #     if state == 1:
+    #         display_image_8bpp(display, image_1)
+    #     else:
+    #         display_image_8bpp(display, image_2)
         # time.sleep(1)
         # time.sleep(0.1)
-
+    loop()
     exit()
