@@ -22,9 +22,11 @@ display = MyDisplay(vcom=DEFAULT_VCOM, rotate="CCW", spi_hz=24000000, flip=False
 
 # Setting GPIO Pins
 button_no = 21
+run_butoon = 20
 print(f"The Mode is {GPIO.getmode()}")
 # GPIO.setmode(GPIO.BOARD)
 GPIO.setup(button_no, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(run_butoon, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
 def display_image_8bpp(display, img_path):
@@ -61,7 +63,18 @@ image_2 = "./indrajal/page0.jpg"
 
 if __name__ == '__main__':
 
-    for _ in range(90):
+    # for _ in range(90):
+    #     state = GPIO.input(button_no)
+    #     print(f"State is {state}")
+    #     if state == 1:
+    #         display_image_8bpp(display, image_1)
+    #     else:
+    #         display_image_8bpp(display, image_2)
+    #     # time.sleep(1)
+    #     time.sleep(0.1)
+    run_state=True
+    while run_state:
+        run_state = False if GPIO.input(run_butoon)==1 else True
         state = GPIO.input(button_no)
         print(f"State is {state}")
         if state == 1:
@@ -69,6 +82,6 @@ if __name__ == '__main__':
         else:
             display_image_8bpp(display, image_2)
         # time.sleep(1)
-        time.sleep(0.1)
+        # time.sleep(0.1)
 
     exit()
