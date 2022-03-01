@@ -26,7 +26,8 @@ button_np_40 = 40
 GPIO.setmode(GPIO.BOARD)
 # GPIO.setup(button_no_21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 # GPIO.setup(button_np_40, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(button_np_40, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.setup(button_np_40, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(button_np_40, GPIO.IN)
 for _ in range(9):
     # state_21 = GPIO.input(button_no_21)
     state_40 = GPIO.input(button_np_40)
