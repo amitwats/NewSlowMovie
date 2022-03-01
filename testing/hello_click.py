@@ -70,9 +70,9 @@ def loop():
         state_20=GPIO.input(run_butoon)
         if state_20==1:
             run_state=False
-        if state != last_state_21:
+        if state_21 != last_state_21:
             last_state_21=state_21
-            if state == 1:
+            if state_21 == 1:
                 display_image_8bpp(display, image_1)
             else:
                 display_image_8bpp(display, image_2)
