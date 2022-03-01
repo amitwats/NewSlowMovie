@@ -21,12 +21,16 @@ from IT8951.display import AutoEPDDisplay
 # display = MyDisplay(vcom=DEFAULT_VCOM, rotate="CCW", spi_hz=24000000, flip=False)
 
 # Setting GPIO Pins
-button_no = 21
+button_no_21 = 21
+button_np_40 = 40
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(button_no, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(button_no_21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(button_np_40, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 for _ in range(9):
-    state = GPIO.input(button_no)
-    print(f"State is {state}")
+    state_21 = GPIO.input(button_no_21)
+    state_40 = GPIO.input(button_np_40)
+    print(f"State of 21 is is {state_21}")
+    print(f"State of 40 is is {state_40}")
     time.sleep(1)
 
 
