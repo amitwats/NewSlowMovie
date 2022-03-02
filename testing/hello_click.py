@@ -69,6 +69,9 @@ def loop():
     while run_state:
         state_21 = GPIO.input(button_no)
         state_20=GPIO.input(run_butoon)
+        print(f"State of 21 is {state_21}")
+        print(f"State of 20 is {state_21}")
+
         if state_20==1:
             run_state=False
             print("Exiting")
