@@ -26,8 +26,8 @@ run_butoon = 20
 print(f"The Mode is {GPIO.getmode()}")
 # GPIO.setmode(GPIO.BOARD)
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(button_no, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(run_butoon, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(button_no, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(run_butoon, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
 def display_image_8bpp(display, img_path):
