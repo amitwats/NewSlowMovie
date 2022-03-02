@@ -64,7 +64,7 @@ image_2 = "./indrajal/page0.jpg"
 
 
 def loop():
-    last_state_21=0
+    last_state_21=1
     run_state=True
     while run_state:
         state_21 = GPIO.input(button_no)
@@ -72,12 +72,12 @@ def loop():
         print(f"State of 21 is {state_21}")
         print(f"State of 20 is {state_21}")
 
-        if state_20==1:
+        if state_20==0:
             run_state=False
             print("Exiting")
         if state_21 != last_state_21:
             last_state_21=state_21
-            if state_21 == 1:
+            if state_21 == 0:
                 display_image_8bpp(display, image_1)
             else:
                 display_image_8bpp(display, image_2)
