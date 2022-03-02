@@ -26,8 +26,8 @@ run_butoon = 20
 print(f"The Mode is {GPIO.getmode()}")
 # GPIO.setmode(GPIO.BOARD)
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(button_no, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(run_butoon, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(button_no, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(run_butoon, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
 def display_image_8bpp(display, img_path):
@@ -64,30 +64,30 @@ image_2 = "./indrajal/page0.jpg"
 
 
 def loop():
-    # last_state_21=0
-    # run_state=True
-    # while run_state:
-    #     state_21 = GPIO.input(button_no)
-    #     state_20=GPIO.input(run_butoon)
-    #     if state_20==1:
-    #         run_state=False
-    #         print("Exiting")
-    #     if state_21 != last_state_21:
-    #         last_state_21=state_21
-    #         if state_21 == 1:
-    #             display_image_8bpp(display, image_1)
-    #         else:
-    #             display_image_8bpp(display, image_2)
-    #     else:
-    #         print("Same STate")
-    #
-
-    while True:
+    last_state_21=0
+    run_state=True
+    while run_state:
         state_21 = GPIO.input(button_no)
         state_20=GPIO.input(run_butoon)
-        print(f"State of 21 is {state_21}")
-        print(f"State of 20 is {state_21}")
-        time.sleep(0.1)
+        if state_20==1:
+            run_state=False
+            print("Exiting")
+        if state_21 != last_state_21:
+            last_state_21=state_21
+            if state_21 == 1:
+                display_image_8bpp(display, image_1)
+            else:
+                display_image_8bpp(display, image_2)
+        else:
+            print("Same STate")
+
+
+    # while True:
+    #     state_21 = GPIO.input(button_no)
+    #     state_20=GPIO.input(run_butoon)
+    #     print(f"State of 21 is {state_21}")
+    #     print(f"State of 20 is {state_21}")
+    #     time.sleep(0.1)
 
 if __name__ == '__main__':
 
