@@ -25,7 +25,7 @@ button_no_21 = 21
 button_np_20 = 20
 GPIO.setmode(GPIO.BCM)
 # GPIO.setup(button_no_21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-# GPIO.setup(button_np_40, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(button_no_21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(button_np_20, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 # GPIO.setup(button_np_40, GPIO.IN)
 for _ in range(9):
