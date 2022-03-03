@@ -32,9 +32,10 @@ for btn in gpio_buttons:
 
 
 while True:
-    for btn in gpio_buttons:
-        if GPIO.input(btn) == GPIO.LOW:
-            print(f"Button {gpio_buttons.index(btn)} pressed")
+    states= [GPIO.input(btn) for btn in gpio_buttons]
+    # for btn in gpio_buttons:
+    #     if GPIO.input(btn) == GPIO.LOW:
+    print(states)
     # else:
     #     print("No button pressed")
     time.sleep(0.1)
