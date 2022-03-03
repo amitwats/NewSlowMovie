@@ -5,7 +5,8 @@ import time
 
 from IT8951.constants import Rotate, DEFAULT_VCOM
 from IT8951 import constants
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, features
+
 
 from my_display import MyDisplay
 
