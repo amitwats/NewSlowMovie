@@ -1,6 +1,8 @@
+
 RPi.GPIO
 pillow~=9.0.1
 ffmpeg
+wheel
 setuptools~=57.0.0
 pdf2image~=1.16.0
-webp
+webp==0.1.2
