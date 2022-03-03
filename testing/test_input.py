@@ -21,21 +21,46 @@ from IT8951.display import AutoEPDDisplay
 # display = MyDisplay(vcom=DEFAULT_VCOM, rotate="CCW", spi_hz=24000000, flip=False)
 
 # Setting GPIO Pins
-button_no_21 = 21
-button_np_20 = 20
-GPIO.setmode(GPIO.BCM)
-# GPIO.setup(button_no_21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(button_no_21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(button_np_20, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-# GPIO.setup(button_np_40, GPIO.IN)
-for _ in range(9):
-    state_21 = GPIO.input(button_no_21)
-    state_20 = GPIO.input(button_np_20)
-    print(f"State of 21 is is {state_21}")
-    print(f"State of 20 is is {state_20}")
-    time.sleep(1)
 
-GPIO.cleanup()
+gpio_buttons=[21,20,16,26, 19,13,6,12]
+GPIO.setmode(GPIO.BCM)
+
+# set GPIO buttons as pull down
+for btn in gpio_buttons:
+    GPIO.setup(btn, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+
+
+while True:
+    for btn in gpio_buttons:
+        if GPIO.input(btn) == GPIO.HIGH:
+            print(f"Button {gpio_buttons.index(btn)} pressed")
+    # else:
+    #     print("No button pressed")
+    time.sleep(0.1)
+
+    # state_21 = GPIO.input(button_no_21)
+    # state_20 = GPIO.input(button_np_20)
+    # print(f"State of 21 is is {state_21}")
+    # print(f"State of 20 is is {state_20}")
+    # time.sleep(1)
+
+
+# button_no_21 = 21
+# button_np_20 = 20
+# GPIO.setmode(GPIO.BCM)
+# # GPIO.setup(button_no_21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+# GPIO.setup(button_no_21, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+# GPIO.setup(button_np_20, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+# # GPIO.setup(button_np_40, GPIO.IN)
+# for _ in range(9):
+#     state_21 = GPIO.input(button_no_21)
+#     state_20 = GPIO.input(button_np_20)
+#     print(f"State of 21 is is {state_21}")
+#     print(f"State of 20 is is {state_20}")
+#     time.sleep(1)
+#
+# GPIO.cleanup()
 
 # def display_image_8bpp(display, img_path):
 #     print('Displaying "{}"...'.format(img_path))
