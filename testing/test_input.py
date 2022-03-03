@@ -33,7 +33,7 @@ for btn in gpio_buttons:
 
 while True:
     for btn in gpio_buttons:
-        if GPIO.input(btn) == GPIO.HIGH:
+        if GPIO.input(btn) == GPIO.LOW:
             print(f"Button {gpio_buttons.index(btn)} pressed")
     # else:
     #     print("No button pressed")
