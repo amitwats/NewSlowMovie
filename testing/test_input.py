@@ -22,7 +22,8 @@ from IT8951.display import AutoEPDDisplay
 
 # Setting GPIO Pins
 
-gpio_buttons=[21,20,16,26, 19,13,6,12]
+# gpio_buttons=[21,20,16,26, 19,13,6,12]
+gpio_buttons=[21,20,16,26, 5,13,6,4]
 GPIO.setmode(GPIO.BCM)
 
 # set GPIO buttons as pull down
