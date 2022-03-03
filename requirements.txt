@@ -1,4 +1,3 @@
-
 RPi.GPIO
 pillow~=9.0.1
 ffmpeg
