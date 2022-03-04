@@ -3,8 +3,8 @@ from PIL import Image, ImageChops
 
 from IT8951.constants import DisplayModes, PixelModes, low_bpp_modes, DEFAULT_VCOM
 # from . import img_manip
-# from . import img_manip
-from IT8951 import img_manip
+from . import img_manip
+# from IT8951 import img_manip
 
 try:
     from .interface import EPD
