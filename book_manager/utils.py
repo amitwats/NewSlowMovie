@@ -30,12 +30,13 @@ def get_extension_of_file(file_path):
 def rename_files_by_order(list_of_files, source_folder, prefix=""):
     import os
     sorted_list = sorted(list_of_files)
+    extension = ""
     for i, file in enumerate(sorted_list):
         extension = get_extension_of_file(file)
         new_name = prefix + str(i + 1).zfill(BOOK_NAME_LENGTH_LIMIT) + extension
         # new_name = prefix + str(i + 1) + extension
         shutil.move(os.path.join(source_folder, file), os.path.join(source_folder, new_name))
-
+    return extension
 
 if __name__ == '__main__':
     print(get_random_name(15))
