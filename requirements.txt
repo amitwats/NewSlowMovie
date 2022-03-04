@@ -7,4 +7,3 @@ conan
 wheel
 setuptools~=57.0.0
 pdf2image~=1.16.0
-webp==0.1.2
