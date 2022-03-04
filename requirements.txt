@@ -1,6 +1,8 @@
 RPi.GPIO
 pillow~=9.0.1
 ffmpeg
+cffi
+numpy
 conan
 wheel
 setuptools~=57.0.0

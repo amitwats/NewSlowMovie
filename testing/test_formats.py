@@ -7,6 +7,12 @@ from IT8951.constants import Rotate, DEFAULT_VCOM
 from IT8951 import constants
 from PIL import Image, ImageOps, features
 
+from IT8951.constants import Rotate, DEFAULT_VCOM
+from IT8951.display import AutoEPDDisplay
+from IT8951 import constants
+from PIL import Image, ImageOps
+
+from my_display import MyDisplay
 
 from my_display import MyDisplay
 
