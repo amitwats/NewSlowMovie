@@ -1,4 +1,4 @@
-from ...constants import BOOK_NAME_LENGTH_LIMIT
+from ..constants import BOOK_NAME_LENGTH_LIMIT
 
 
 class BookMetaData:
