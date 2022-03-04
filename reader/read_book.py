@@ -10,7 +10,7 @@ from IT8951 import constants
 from PIL import Image, ImageOps
 import sys
 
-from testing.my_display import MyDisplay
+from my_display import MyDisplay
 from book_manager.data.db_manager import get_book_data
 
 import time
