@@ -103,7 +103,7 @@ def read_book(book_id):
 
         if states[0] == 1:
             book_data = next_page(book_data)  # book_data.prev_page()
-            display_image_8bpp(display, book_data.get_page_path())
+            display_image_8bpp(display, book_data.get_last_page_path())
 
         if states[1] == 1:
             book_data = prev_page(book_data)  # book_data.next_page()
