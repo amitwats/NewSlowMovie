@@ -20,9 +20,13 @@ class BookMetaData:
                f"last read page: {self.last_read_page} and extension {self.extension}"
 
     def move_next_page(self):
+        print(f"NextPage: Current Last Page is {self.last_read_page}")
         if self.last_read_page < self.page_count:
             self.last_read_page += 1
+        print(f"NextPage: New Last Page is {self.last_read_page}")
 
     def move_prev_page(self):
+        print(f"PrevPage: Current Last Page is {self.last_read_page}")
         if self.last_read_page > 1:
             self.last_read_page -= 1
+        print(f"PrevPage: New Last Page is {self.last_read_page}")
