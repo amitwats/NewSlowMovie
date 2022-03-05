@@ -11,7 +11,7 @@ from PIL import Image, ImageOps
 import sys
 
 from my_display import MyDisplay
-from book_manager.data.db_manager import get_book_data
+from book_manager.data.book_manager_2_data_2_db_manager import get_book_data
 
 import time
 import RPi.GPIO as GPIO
