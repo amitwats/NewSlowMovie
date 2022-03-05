@@ -97,7 +97,7 @@ def read_book(book_id):
             display_image_8bpp(display, book_data.get_last_page_path())
 
         if states[1] == BTN_ON:
-            book_data.move_prev_page
+            book_data.move_prev_page()
             display_image_8bpp(display, book_data.get_last_page_path())
 
         if states[2] == BTN_ON:
