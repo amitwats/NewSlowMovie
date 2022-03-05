@@ -13,7 +13,7 @@ class BookMetaData:
         self.extension = extension
 
     def get_last_page_path(self):
-        return f"{self.folder}/{self.prefix}{str(self.page_count).zfill(BOOK_NAME_LENGTH_LIMIT)}{self.extension}"
+        return f"{self.folder}/{self.prefix}{str(self.last_read_page).zfill(BOOK_NAME_LENGTH_LIMIT)}{self.extension}"
 
     def __str__(self):
         return f"{self.prefix} ({self.folder}) - {self.page_count} pages - " \
