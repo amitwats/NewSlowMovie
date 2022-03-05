@@ -39,27 +39,27 @@ def prev_page(book_state):
     return book_state
 
 
-def handle_button_02():
+def handle_button_02(book_data):
     pass
 
 
-def handle_button_03():
+def handle_button_03(book_data):
     pass
 
 
-def handle_button_04():
+def handle_button_04(book_data):
     pass
 
 
-def handle_button_05():
+def handle_button_05(book_data):
     pass
 
 
-def handle_button_06():
+def handle_button_06(book_data):
     pass
 
 
-def handle_button_07():
+def handle_button_07(book_data):
     pass
 
 
@@ -101,29 +101,29 @@ def read_book(book_id):
     while True:
         states = [GPIO.input(btn) for btn in gpio_buttons]
 
-        if states[0] == 1:
+        if states[0] == BTN_ON:
             book_data = next_page(book_data)  # book_data.prev_page()
             display_image_8bpp(display, book_data.get_last_page_path())
 
-        if states[1] == 1:
+        if states[1] == BTN_ON:
             book_data = prev_page(book_data)  # book_data.next_page()
 
-        if states[2] == 1:
+        if states[2] == BTN_ON:
             handle_button_02(book_data)
 
-        if states[3] == 1:
+        if states[3] == BTN_ON:
             handle_button_03(book_data)
 
-        if states[4] == 1:
+        if states[4] == BTN_ON:
             handle_button_04(book_data)
 
-        if states[5] == 1:
+        if states[5] == BTN_ON:
             handle_button_05(book_data)
 
-        if states[6] == 1:
+        if states[6] == BTN_ON:
             handle_button_06(book_data)
 
-        if states[7] == 1:
+        if states[7] == BTN_ON:
             handle_button_07(book_data)
 
         print(states)
