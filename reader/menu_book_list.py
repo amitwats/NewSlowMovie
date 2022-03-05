@@ -28,7 +28,7 @@ def display_custom_text():
     blank_image = Image.new('RGBA', (display.width, display.height), 'white')
     img_draw = ImageDraw.Draw(blank_image)
     img_draw.rectangle((70, 50, 270, 200), outline='red', fill='blue')
-    img_draw.regular_polygon((50, 265, 15), 5, fill='blue')
+    img_draw.regular_polygon((50, 280, 15), 5, fill='blue')
     font = ImageFont.truetype("./fonts/arial.ttf", 60)
     # font=ImageFont.truetype(size=30)
 
