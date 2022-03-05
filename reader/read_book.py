@@ -103,10 +103,12 @@ def read_book(book_id):
 
         if states[0] == BTN_ON:
             book_data = next_page(book_data)  # book_data.prev_page()
+            print(f"Next Page : {book_data.last_read_page}")
             display_image_8bpp(display, book_data.get_last_page_path())
 
         if states[1] == BTN_ON:
             book_data = prev_page(book_data)  # book_data.next_page()
+            display_image_8bpp(display, book_data.get_last_page_path())
 
         if states[2] == BTN_ON:
             handle_button_02(book_data)
