@@ -27,8 +27,6 @@ for btn in gpio_buttons:
     GPIO.setup(btn, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
-
-
 def handle_button_02(book_data):
     pass
 
@@ -81,24 +79,19 @@ def display_image_8bpp(display, img_path):
     display.draw_full(constants.DisplayModes.GC16)
 
 
-
-
-
 def read_book(book_id):
     print('Reading book "{}"...'.format(book_id))
     book_data = get_book_data(1)
+    has_changed = True
 
     while True:
         states = [GPIO.input(btn) for btn in gpio_buttons]
-
         if states[0] == BTN_ON:
-            book_data.move_next_page()
+            has_changed = book_data.move_next_page()
             print(f"Next Page : {book_data.last_read_page}")
-            display_image_8bpp(display, book_data.get_last_page_path())
 
         if states[1] == BTN_ON:
-            book_data.move_prev_page()
-            display_image_8bpp(display, book_data.get_last_page_path())
+            has_changed = book_data.move_prev_page()
 
         if states[2] == BTN_ON:
             handle_button_02(book_data)
@@ -117,6 +110,10 @@ def read_book(book_id):
 
         if states[7] == BTN_ON:
             handle_button_07(book_data)
+
+        if has_changed:
+            display_image_8bpp(display, book_data.get_last_page_path())
+            has_changed = False
 
         print(states)
         time.sleep(0.1)
