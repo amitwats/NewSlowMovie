@@ -18,3 +18,11 @@ class BookMetaData:
     def __str__(self):
         return f"{self.prefix} ({self.folder}) - {self.page_count} pages - " \
                f"last read page: {self.last_read_page} and extension {self.extension}"
+
+    def move_next_page(self):
+        if self.last_read_page < self.page_count:
+            self.last_read_page += 1
+
+    def move_prev_page(self):
+        if self.last_read_page > 1:
+            self.last_read_page -= 1

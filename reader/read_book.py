@@ -27,16 +27,6 @@ for btn in gpio_buttons:
     GPIO.setup(btn, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
-def next_page(book_state):
-    if book_state.last_read_page < book_state.page_count:
-        book_state.last_read_page += 1
-    return book_state
-
-
-def prev_page(book_state):
-    if book_state.last_read_page > 1:
-        book_state.last_read_page -= 1
-    return book_state
 
 
 def handle_button_02(book_data):
@@ -102,12 +92,12 @@ def read_book(book_id):
         states = [GPIO.input(btn) for btn in gpio_buttons]
 
         if states[0] == BTN_ON:
-            book_data = next_page(book_data)  # book_data.prev_page()
+            book_data.move_next_page()
             print(f"Next Page : {book_data.last_read_page}")
             display_image_8bpp(display, book_data.get_last_page_path())
 
         if states[1] == BTN_ON:
-            book_data = prev_page(book_data)  # book_data.next_page()
+            book_data.move_prev_page
             display_image_8bpp(display, book_data.get_last_page_path())
 
         if states[2] == BTN_ON:
