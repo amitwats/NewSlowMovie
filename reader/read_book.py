@@ -28,7 +28,7 @@ for btn in gpio_buttons:
 
 
 def next_page(book_state):
-    if book_state.last_read_page < book_state.book.num_pages:
+    if book_state.last_read_page < book_state.page_count:
         book_state.last_read_page += 1
     return book_state
 
