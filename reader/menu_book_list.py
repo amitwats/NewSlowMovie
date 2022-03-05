@@ -32,7 +32,7 @@ def display_custom_text():
     font = ImageFont.truetype("./fonts/arial.ttf", 60)
     # font=ImageFont.truetype(size=30)
 
-    img_draw.text((70, 250), 'Hello World', fill='green', font=font)
+    img_draw.text((70, 265), 'Hello World', fill='green', font=font)
     # blank_image.save('drawn_image.jpg')
     blank_image =ImageOps.mirror(blank_image)
 
