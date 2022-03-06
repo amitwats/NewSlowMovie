@@ -197,7 +197,7 @@ def read_book(book_id):
                 book_data = get_book_data(handle_value)
                 menu_book_list = None
                 # book_data = get_book_data(handle_value)
-                # current_mode = "read"
+                current_mode = "read"
                 display_image_8bpp(display, book_data.get_last_page_path())
 
         print(f"Mode {current_mode} and {states}")
