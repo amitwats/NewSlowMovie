@@ -120,6 +120,7 @@ def clear_pointer_space(blank_image):
     img_draw.regular_polygon((0,0,30),5,fill='blue')
     display.frame_buf.paste(blank_image, paste_coords)
     display.draw_partial(constants.DisplayModes.GC16)
+    return blank_image
 
 
 if __name__ == '__main__':
