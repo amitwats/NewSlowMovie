@@ -127,7 +127,7 @@ if __name__ == '__main__':
     # display_custom_text()
     menu_book_list.display_book_list()
     print("Clearing selection space")
-    menu_book_list.clear_pointer_space()
+    # menu_book_list.clear_pointer_space()
     print("Drawing icon 0")
     menu_book_list.draw_selection_icon(0)
     time.sleep(2)
