@@ -133,6 +133,7 @@ def put_selection_icon(img_draw, x, y):
 
 def draw_selection_icon(blank_image, selection_index):
     paste_coords = [0, 0]
+    clear_pointer_space(blank_image)
     img_draw = ImageDraw.Draw(blank_image)
     text_x, text_y, text_height = get_position_of_text(selection_index,
                                                        ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE))
