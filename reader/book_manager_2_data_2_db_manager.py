@@ -28,16 +28,29 @@ def add_book(prefix, folder, page_count, last_read_page, extension):
     conn.close()
 
 
+def _book_meta_from_row(row):
+    return BookMetaData(row[0], row[1], row[2], row[3], row[4], row[5])
+
+
 def get_book_data(book_id):
     conn = sqlite3.connect(BOOK_DB_FILE_NAME)
     c = conn.cursor()
-    c.execute("SELECT prefix, folder, page_count, last_read_page, extension FROM books WHERE id=?", (book_id,))
+    c.execute("SELECT id, prefix, folder, page_count, last_read_page, extension FROM books WHERE id=?", (book_id,))
     data = c.fetchall()
-    book_data = BookMetaData(book_id, data[0][0], data[0][1], data[0][2], data[0][3], data[0][4])
+    book_data = _book_meta_from_row(data[0])
     # book_id, prefix, folder, page_count, last_read_page
     conn.close()
     return book_data
 
+
+def get_books_list():
+    conn = sqlite3.connect(BOOK_DB_FILE_NAME)
+    c = conn.cursor()
+    c.execute("SELECT id, prefix, folder, page_count, last_read_page, extension FROM books")
+    data = c.fetchall()
+    ret_data = [_book_meta_from_row(row) for row in data]
+    conn.close()
+    return ret_data
 
 # if __name__ == "__main__":
 #     x = get_book_data(2)
