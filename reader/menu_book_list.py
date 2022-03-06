@@ -116,12 +116,12 @@ class MenuBookList:
     def select_next(self):
         if self.selection_index < self.selection_index_max:
             self.selection_index += 1
-            self.draw_selection_icon(self.selection_index)
+            self.draw_selection_icon()
 
     def select_previous(self):
         if self.selection_index > 0:
             self.selection_index -= 1
-            self.draw_selection_icon(self.selection_index)
+            self.draw_selection_icon()
 
 
 if __name__ == '__main__':
