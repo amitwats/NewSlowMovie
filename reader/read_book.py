@@ -151,6 +151,8 @@ def handle_mode_menu_book_list(states):
         pass
 
     if states[7] == BTN_ON:
+        global current_mode
+        current_mode = "read"
         return True
 
     return False
