@@ -120,7 +120,7 @@ def handle_mode_read(states, book_data):
     if states[7] == BTN_ON:
         global current_mode
         current_mode = "menu_book_list"
-
+        print("Changing the mode to menu_book_list")
         # handle_button_07(book_data)
 
     if has_changed:
@@ -166,7 +166,7 @@ def read_book(book_id):
         elif current_mode == "menu_book_list":
             handle_mode_menu_book_list(states)
 
-        print(states)
+        print(f"Mode {current_mode} and {states}")
         time.sleep(0.1)
 
 
