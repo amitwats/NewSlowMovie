@@ -61,7 +61,7 @@ def get_position_of_text(text_position, font):
     start_x_book_list = 70
     start_y_book_list = 100
     para_height_normal = total_text_height_normal + para_spacing_normal
-    return start_x_book_list, start_y_book_list + para_height_normal * (text_position + 1)
+    return start_x_book_list, start_y_book_list + para_height_normal * (text_position + 1), para_height_normal
 
 
 def display_book_list(blank_image):
@@ -85,7 +85,8 @@ def display_book_list(blank_image):
 
     for index, book in enumerate(book_list):
         print(book)
-        img_draw.text(get_position_of_text(index, font_normal), book.folder,
+        x_pos, y_pos, _ = get_position_of_text(index, font_normal)
+        img_draw.text((x_pos, y_pos), book.folder,
                       font=font_normal, fill='black', )
 
     blank_image = ImageOps.mirror(blank_image)
@@ -124,19 +125,21 @@ def clear_pointer_space(blank_image):
     display.draw_partial(constants.DisplayModes.GC16)
     return blank_image
 
-def put_selection_icon(img_draw, x, y):
 
+def put_selection_icon(img_draw, x, y):
     img_draw.regular_polygon((POINTER_SPACE_X_END, y, 15), 5, fill='blue')
     return img_draw
+
 
 def draw_selection_icon(blank_image, selection_index):
     paste_coords = [0, 0]
     img_draw = ImageDraw.Draw(blank_image)
-    text_x, text_y = get_position_of_text(selection_index, ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE))
-    put_selection_icon(img_draw, text_x, text_y)
+    text_x, text_y, text_height = get_position_of_text(selection_index, ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE))
+    put_selection_icon(img_draw, text_x, text_y+text_height)
     display.frame_buf.paste(blank_image, paste_coords)
     display.draw_partial(constants.DisplayModes.GC16)
     return blank_image
+
 
 if __name__ == '__main__':
     # display_custom_text()
@@ -145,6 +148,6 @@ if __name__ == '__main__':
     # display_custom_text()
     blank_image = display_book_list(blank_image)
     blank_image = clear_pointer_space(blank_image)
-    blank_image=draw_selection_icon(blank_image,0)
+    blank_image = draw_selection_icon(blank_image, 0)
     # blank_image= move_icon(blank_image)
     exit()
