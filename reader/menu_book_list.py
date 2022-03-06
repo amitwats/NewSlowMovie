@@ -108,7 +108,7 @@ def clear_pointer_space(blank_image):
     # img_draw.rectangle((70, 50, 270, 200), outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
     clear_rect = (POINTER_SPACE_X_START, POINTER_SPACE_Y_START, POINTER_SPACE_X_END, POINTER_SPACE_Y_END)
     img_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill='black')
-
+    img_draw.regular_polygon((0,0,30),5,fill='blue')
     display.frame_buf.paste(blank_image, paste_coords)
     display.draw_partial(constants.DisplayModes.GC16)
 
@@ -117,6 +117,6 @@ if __name__ == '__main__':
     # display_custom_text()
     display_custom_text()
     blank_image = display_book_list()
-    move_icon(blank_image)
+    # move_icon(blank_image)
     blank_image = clear_pointer_space(blank_image)
     exit()
