@@ -127,7 +127,7 @@ def clear_pointer_space(blank_image):
 
 
 def put_selection_icon(img_draw, x, y):
-    img_draw.regular_polygon((POINTER_SPACE_X_END, y, 15), 5, fill='blue')
+    img_draw.regular_polygon((POINTER_SPACE_X_END, y, 7), 5, fill='blue')
     return img_draw
 
 
@@ -135,7 +135,7 @@ def draw_selection_icon(blank_image, selection_index):
     paste_coords = [0, 0]
     img_draw = ImageDraw.Draw(blank_image)
     text_x, text_y, text_height = get_position_of_text(selection_index, ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE))
-    put_selection_icon(img_draw, text_x, text_y+text_height)
+    put_selection_icon(img_draw, text_x, text_y+text_height/2)
     display.frame_buf.paste(blank_image, paste_coords)
     display.draw_partial(constants.DisplayModes.GC16)
     return blank_image
