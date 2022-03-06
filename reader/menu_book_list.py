@@ -69,7 +69,7 @@ def display_book_list():
 
     for index, book in enumerate(book_list):
         print(book)
-        img_draw.text((start_x_book_list, start_y_book_list + para_height_normal*index), book.folder, font=font_normal,fill='black',)
+        img_draw.text((start_x_book_list, start_y_book_list + para_height_normal*(index+1)), book.folder, font=font_normal,fill='black',)
      # blank_image = ImageOps.mirror(blank_image)
 
     blank_image = ImageOps.mirror(blank_image)
