@@ -103,7 +103,7 @@ class MenuBookList:
 
     def put_selection_icon(self, x, y):
         radius_icon = 9
-        self.img_draw.regular_polygon((self.POINTER_SPACE_X_END + radius_icon, y, radius_icon),
+        self.image_draw.regular_polygon((self.POINTER_SPACE_X_END + radius_icon, y, radius_icon),
                                       5, rotation=90, fill='blue')
 
     def get_position_of_text(self, text_position, font):
