@@ -40,7 +40,8 @@ class MenuBookList:
         self.list_books = list_books
 
         self.selection_index = 0
-        self.selection_index_max = 0
+        self.selection_index_max = len(list_books) - 1
+        # self.selection_index_max = 0
         self.POINTER_SPACE_X_START = display.width - 20
         self.POINTER_SPACE_X_END = display.width - 50
         self.POINTER_SPACE_Y_START = 0
@@ -56,18 +57,12 @@ class MenuBookList:
         self.image_draw.text((start_x_heading, start_y_heading), 'Book List', font=font_H1, fill='black', )
 
         font_normal = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
-        # ascent_normal, descent_normal = font_normal.getmetrics()
-        # total_text_height_normal = ascent_normal + descent_normal
-        # para_spacing_normal = 15
-        # start_x_book_list = 70
-        # start_y_book_list = 100
-        # para_height_normal = total_text_height_normal + para_spacing_normal
 
         for index, book in enumerate(self.list_books):
             print(book)
             x_pos, y_pos, _ = self.get_position_of_text(index, font_normal)
             self.image_draw.text((x_pos, y_pos), book.folder,
-                          font=font_normal, fill='black', )
+                                 font=font_normal, fill='black', )
 
         self.image_obj = ImageOps.mirror(self.image_obj)
 
@@ -77,28 +72,23 @@ class MenuBookList:
         paste_coords = [0, 0]
         display.frame_buf.paste(self.image_obj, paste_coords)
         display.draw_full(constants.DisplayModes.GC16)
-        return self.image_obj
         # display.draw_partial(constants.DisplayModes.DU)
 
     def clear_pointer_space(self):
         paste_coords = [0, 0]
         img_draw = ImageDraw.Draw(self.image_obj)
-        # img_draw.regular_polygon((i, 280, 15), 5, fill='blue')
-        # img_draw.rectangle((70, 50, 270, 200), outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
         clear_rect = (self.POINTER_SPACE_X_START, self.POINTER_SPACE_Y_START,
                       self.POINTER_SPACE_X_END, self.POINTER_SPACE_Y_END)
         # img_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
-        img_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill=(200,200,200,120))
+        img_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill=(200, 200, 200, 120))
 
-        # img_draw.regular_polygon((0, 0, 30), 5, fill='blue')
-        # display.frame_buf.paste(self.image_obj, paste_coords)
         display.frame_buf.paste(self.image_obj, paste_coords)
         display.draw_partial(constants.DisplayModes.GC16)
 
-    def draw_selection_icon(self, selection_index):
+    def draw_selection_icon(self):
         paste_coords = [0, 0]
         self.clear_pointer_space()
-        text_x, text_y, text_height = self.get_position_of_text(selection_index,
+        text_x, text_y, text_height = self.get_position_of_text(self.selection_index,
                                                                 ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE))
         self.put_selection_icon(text_x, text_y + text_height * 0.4)
         display.frame_buf.paste(self.image_obj, paste_coords)
@@ -107,8 +97,8 @@ class MenuBookList:
     def put_selection_icon(self, x, y):
         radius_icon = 9
         img_draw = ImageDraw.Draw(self.image_obj)
-        img_draw.regular_polygon((self.POINTER_SPACE_X_END + radius_icon+5 , y-2 , radius_icon),
-                                      5, rotation=90, fill='blue')
+        img_draw.regular_polygon((self.POINTER_SPACE_X_END + radius_icon + 5, y - 2, radius_icon),
+                                 5, rotation=90, fill='blue')
 
     def get_position_of_text(self, text_position, font):
         ascent_normal, descent_normal = font.getmetrics()
@@ -118,6 +108,20 @@ class MenuBookList:
         start_y_book_list = 100
         para_height_normal = total_text_height_normal + para_spacing_normal
         return start_x_book_list, start_y_book_list + para_height_normal * (text_position + 1), para_height_normal
+
+    def change_selection(self):
+        if self.selection_index < self.selection_index_max:
+            self.selection_index += 1
+
+    def select_next(self):
+        if self.selection_index < self.selection_index_max:
+            self.selection_index += 1
+            self.draw_selection_icon(self.selection_index)
+
+    def select_previous(self):
+        if self.selection_index > 0:
+            self.selection_index -= 1
+            self.draw_selection_icon(self.selection_index)
 
 
 if __name__ == '__main__':
@@ -131,9 +135,18 @@ if __name__ == '__main__':
     print("Clearing selection space")
     # menu_book_list.clear_pointer_space()
     print("Drawing icon 0")
-    menu_book_list.draw_selection_icon(0)
+    # menu_book_list.draw_selection_icon(0)
+    menu_book_list.draw_selection_icon()
     time.sleep(2)
     print("Drawing icon 1")
-    menu_book_list.draw_selection_icon(1)
+    menu_book_list.select_next()
+    time.sleep(2)
+    menu_book_list.select_next()
+    time.sleep(2)
+    menu_book_list.select_previous()
+    time.sleep(2)
+    menu_book_list.select_next()
+    time.sleep(2)
+
     # blank_image= move_icon(blank_image)
     exit()
