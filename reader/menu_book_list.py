@@ -28,12 +28,16 @@ FONT_NORMAL_SIZE = 25
 display = MyDisplay(vcom=DEFAULT_VCOM, rotate="CCW", spi_hz=24000000, flip=False)
 
 
-
 class MenuBookList:
 
-    def __init__(self, display_obj, image_obj):
+    def __init__(self, display_obj, image_obj, image_draw_obj):
         self.display = display_obj
         self.image_obj = image_obj
+        if not image_draw_obj:
+            self.image_draw = ImageDraw.Draw(self.image_obj)
+        else:
+            self.image_draw = image_draw_obj
+
         self.selection_index = 0
         self.selection_index_max = 0
         self.POINTER_SPACE_X_START = display.width - 20
@@ -44,13 +48,12 @@ class MenuBookList:
     def display_book_list(self):
         # clearing image to white
         display.frame_buf.paste(0xFF, box=(0, 0, display.width, display.height))
-        img_draw = ImageDraw.Draw(self.image_obj)
         book_list = get_books_list()
         start_x_heading = 70
         start_y_heading = 50
         font_H1 = ImageFont.truetype(FONT_STANDARD, FONT_H1_SIZE)
 
-        img_draw.text((start_x_heading, start_y_heading), 'Book List', font=font_H1, fill='black', )
+        self.image_draw.text((start_x_heading, start_y_heading), 'Book List', font=font_H1, fill='black', )
 
         font_normal = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
         # ascent_normal, descent_normal = font_normal.getmetrics()
@@ -63,7 +66,7 @@ class MenuBookList:
         for index, book in enumerate(book_list):
             print(book)
             x_pos, y_pos, _ = self.get_position_of_text(index, font_normal)
-            img_draw.text((x_pos, y_pos), book.folder,
+            self.image_draw.text((x_pos, y_pos), book.folder,
                           font=font_normal, fill='black', )
 
         self.image_obj = ImageOps.mirror(self.image_obj)
@@ -79,12 +82,12 @@ class MenuBookList:
 
     def clear_pointer_space(self):
         paste_coords = [0, 0]
-        img_draw = ImageDraw.Draw(self.image_obj)
+        # img_draw = ImageDraw.Draw(self.image_obj)
         # img_draw.regular_polygon((i, 280, 15), 5, fill='blue')
         # img_draw.rectangle((70, 50, 270, 200), outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
         clear_rect = (self.POINTER_SPACE_X_START, self.POINTER_SPACE_Y_START,
                       self.POINTER_SPACE_X_END, self.POINTER_SPACE_Y_END)
-        img_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
+        self.image_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
         # img_draw.regular_polygon((0, 0, 30), 5, fill='blue')
         display.frame_buf.paste(self.image_obj, paste_coords)
         display.draw_partial(constants.DisplayModes.GC16)
