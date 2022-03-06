@@ -91,11 +91,10 @@ def handle_mode_read(states, book_data):
     has_changed = False
 
     if states[0] == BTN_ON:
-        has_changed = book_data.move_next_page()
-        print(f"Next Page : {book_data.last_read_page}")
+        has_changed = book_data.move_prev_page()
 
     if states[1] == BTN_ON:
-        has_changed = book_data.move_prev_page()
+        has_changed = book_data.move_next_page()
 
     if states[2] == BTN_ON:
         # handle_button_02(book_data)
