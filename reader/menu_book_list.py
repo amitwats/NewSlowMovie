@@ -82,16 +82,17 @@ class MenuBookList:
 
     def clear_pointer_space(self):
         paste_coords = [0, 0]
-        # img_draw = ImageDraw.Draw(self.image_obj)
+        img_draw = ImageDraw.Draw(self.image_obj)
         # img_draw.regular_polygon((i, 280, 15), 5, fill='blue')
         # img_draw.rectangle((70, 50, 270, 200), outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
         clear_rect = (self.POINTER_SPACE_X_START, self.POINTER_SPACE_Y_START,
                       self.POINTER_SPACE_X_END, self.POINTER_SPACE_Y_END)
         # self.image_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
-        self.image_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill='black')
+        img_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill='black')
 
         # img_draw.regular_polygon((0, 0, 30), 5, fill='blue')
-        display.frame_buf.paste(self.image_obj, paste_coords)
+        # display.frame_buf.paste(self.image_obj, paste_coords)
+        display.frame_buf.paste(img_draw, paste_coords)
         display.draw_partial(constants.DisplayModes.GC16)
 
     def draw_selection_icon(self, selection_index):
