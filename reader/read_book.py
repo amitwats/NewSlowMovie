@@ -134,13 +134,12 @@ def handle_mode_read(states, book_data):
 
 def handle_mode_menu_book_list(states, menu_book_list):
     if states[0] == BTN_ON:
-        menu_book_list.select_next()
-        return "CONTINUE", None
-        print("Menu Book List Mode: Button 1")
+        menu_book_list.select_previous()
+        return "BOOK_SELECTED", 1
 
     if states[1] == BTN_ON:
-        menu_book_list.select_previous()
-        return "CONTINUE", None
+        menu_book_list.select_next()
+        return "BOOK_SELECTED", 1
 
     if states[2] == BTN_ON:
         pass
