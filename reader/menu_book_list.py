@@ -30,13 +30,10 @@ display = MyDisplay(vcom=DEFAULT_VCOM, rotate="CCW", spi_hz=24000000, flip=False
 
 class MenuBookList:
 
-    def __init__(self, list_books, display_obj, image_obj, image_draw_obj=None):
+    def __init__(self, list_books, display_obj, image_obj=None):
         self.display = display_obj
-        self.image_obj = image_obj
-        # if not image_draw_obj:
-        #     self.image_draw = ImageDraw.Draw(self.image_obj)
-        # else:
-        #     self.image_draw = image_draw_obj
+        self.image_obj=image_obj if image_obj else \
+            Image.new('RGB', (display.width, display.height), color=BACKGROUND_COLOR)
         self.list_books = list_books
 
         self.selection_index = 0
@@ -131,7 +128,8 @@ if __name__ == '__main__':
     image = Image.new('RGBA', (display.width, display.height), BACKGROUND_COLOR)
     book_list = get_books_list()
 
-    menu_book_list = MenuBookList(book_list, display, image)
+    # menu_book_list = MenuBookList(book_list, display, image)
+    menu_book_list = MenuBookList(book_list, display)
     # display_custom_text()
     menu_book_list.display_book_list()
     print("Clearing selection space")
