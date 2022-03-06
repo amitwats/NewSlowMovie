@@ -63,7 +63,7 @@ class MenuBookList:
         # start_y_book_list = 100
         # para_height_normal = total_text_height_normal + para_spacing_normal
 
-        for index, book in enumerate(self.book_list):
+        for index, book in enumerate(self.list_books):
             print(book)
             x_pos, y_pos, _ = self.get_position_of_text(index, font_normal)
             self.image_draw.text((x_pos, y_pos), book.folder,
