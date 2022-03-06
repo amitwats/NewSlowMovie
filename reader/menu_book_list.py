@@ -103,7 +103,7 @@ import sys
 if __name__ == '__main__':
 
     # display_custom_text()
-    display_book_list
+    display_book_list()
 
     exit()
 
