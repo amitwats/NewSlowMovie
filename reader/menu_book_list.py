@@ -82,15 +82,16 @@ def display_book_list():
     paste_coords = [0, 0]
     display.frame_buf.paste(blank_image, paste_coords)
     display.draw_full(constants.DisplayModes.GC16)
+    return blank_image
     # display.draw_partial(constants.DisplayModes.DU)
 
 
-def move_icon():
+def move_icon(blank_image):
     display.frame_buf.paste(0xFF, box=(0, 0, display.width, display.height))
-    blank_image = Image.new('RGBA', (display.width, display.height), 'white')
-    img_draw = ImageDraw.Draw(blank_image)
-    for i in range(0, display.width, 20):
-        blank_image = Image.new('RGBA', (display.width, display.height), 'white')
+    # blank_image = Image.new('RGBA', (display.width, display.height), 'white')
+    # img_draw = ImageDraw.Draw(blank_image)
+    for i in range(0, display.width, 50):
+        # blank_image = Image.new('RGBA', (display.width, display.height), 'white')
         img_draw = ImageDraw.Draw(blank_image)
         # img_draw.line((i, 0, i, display.height), fill=0)
         img_draw.regular_polygon((i, 280, 15), 5, fill='blue')
@@ -103,7 +104,7 @@ def move_icon():
 if __name__ == '__main__':
     # display_custom_text()
     display_custom_text()
-    display_book_list()
-    move_icon()
+    blank_image=display_book_list()
+    move_icon(blank_image)
 
     exit()
