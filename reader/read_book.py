@@ -121,11 +121,15 @@ def handle_mode_read(states, book_data):
         global current_mode
         current_mode = "menu_book_list"
         print("Changing the mode to menu_book_list")
+        return "CHANGE_MODE", "menu_book_list"
+
         # handle_button_07(book_data)
 
     if has_changed:
         display_image_8bpp(display, book_data.get_last_page_path())
         # has_changed = False
+
+    return "CONTINUE", None
 
 
 def handle_mode_menu_book_list(states):
@@ -153,9 +157,9 @@ def handle_mode_menu_book_list(states):
     if states[7] == BTN_ON:
         global current_mode
         current_mode = "read"
-        return True
+        return True, book_id
 
-    return False
+    return "CONTINUE", None
 
 
 def create_menu_book_list():
@@ -174,14 +178,20 @@ def read_book(book_id):
     while True:
         states = [GPIO.input(btn_no) for btn_no in gpio_buttons]
         if current_mode == "read":
-            menu_book_list=None
-            handle_mode_read(states, book_data)
+
+            menu_book_list = None
+            handle_type, handle_value = handle_mode_read(states, book_data)
+            if handle_type == "CHANGE_MODE":
+                current_mode = handle_value
         elif current_mode == "menu_book_list":
             if not menu_book_list:
                 menu_book_list = create_menu_book_list()
-            exit_menu_book_list = handle_mode_menu_book_list(states)
-            if exit_menu_book_list:
-                menu_book_list=None
+            handle_type, handle_value = handle_mode_menu_book_list(states)
+            if handle_type == "BOOK_SELECTED":
+                menu_book_list = None
+                book_data = get_book_data(handle_value)
+                current_mode = "read"
+                display_image_8bpp(display, book_data.get_last_page_path())
 
         print(f"Mode {current_mode} and {states}")
         time.sleep(0.1)
