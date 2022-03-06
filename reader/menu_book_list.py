@@ -51,6 +51,15 @@ def display_custom_text():
     display.draw_full(constants.DisplayModes.GC16)
     # display.draw_partial(constants.DisplayModes.DU)
 
+def get_position_of_text(text_position, font):
+    ascent_normal, descent_normal = font.getmetrics()
+    total_text_height_normal = ascent_normal + descent_normal
+    para_spacing_normal = 15
+    start_x_book_list = 70
+    start_y_book_list = 100
+    para_height_normal = total_text_height_normal + para_spacing_normal
+    return start_x_book_list, start_y_book_list + para_height_normal * (text_position + 1)
+
 
 def display_book_list():
     # clearing image to white
@@ -65,16 +74,16 @@ def display_book_list():
     img_draw.text((start_x_heading, start_y_heading), 'Book List', font=font_H1, fill='black', )
 
     font_normal = ImageFont.truetype(FONT_STANDARD, 25)
-    ascent_normal, descent_normal = font_normal.getmetrics()
-    total_text_height_normal = ascent_normal + descent_normal
-    para_spacing_normal = 15
-    start_x_book_list = 70
-    start_y_book_list = 100
-    para_height_normal = total_text_height_normal + para_spacing_normal
+    # ascent_normal, descent_normal = font_normal.getmetrics()
+    # total_text_height_normal = ascent_normal + descent_normal
+    # para_spacing_normal = 15
+    # start_x_book_list = 70
+    # start_y_book_list = 100
+    # para_height_normal = total_text_height_normal + para_spacing_normal
 
     for index, book in enumerate(book_list):
         print(book)
-        img_draw.text((start_x_book_list, start_y_book_list + para_height_normal * (index + 1)), book.folder,
+        img_draw.text(get_position_of_text(index,font_normal), book.folder,
                       font=font_normal, fill='black', )
 
     blank_image = ImageOps.mirror(blank_image)
@@ -107,7 +116,7 @@ def clear_pointer_space(blank_image):
     # img_draw.regular_polygon((i, 280, 15), 5, fill='blue')
     # img_draw.rectangle((70, 50, 270, 200), outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
     clear_rect = (POINTER_SPACE_X_START, POINTER_SPACE_Y_START, POINTER_SPACE_X_END, POINTER_SPACE_Y_END)
-    img_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill='black')
+    img_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
     img_draw.regular_polygon((0,0,30),5,fill='blue')
     display.frame_buf.paste(blank_image, paste_coords)
     display.draw_partial(constants.DisplayModes.GC16)
@@ -117,6 +126,6 @@ if __name__ == '__main__':
     # display_custom_text()
     display_custom_text()
     blank_image = display_book_list()
-    # move_icon(blank_image)
     blank_image = clear_pointer_space(blank_image)
+    move_icon(blank_image)
     exit()
