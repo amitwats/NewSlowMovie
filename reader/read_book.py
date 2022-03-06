@@ -29,7 +29,7 @@ for btn in gpio_buttons:
     GPIO.setup(btn, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 valid_modes = ["read", "menu_book_list"]
-current_mode = "read"
+current_mode = "menu_book_list"
 
 
 def handle_button_02(book_data):
