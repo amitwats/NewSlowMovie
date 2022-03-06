@@ -129,7 +129,7 @@ def clear_pointer_space(blank_image):
 
 def put_selection_icon(img_draw, x, y):
     radius_icon=9
-    img_draw.regular_polygon((POINTER_SPACE_X_END-radius_icon, y, radius_icon), 5, rotation=90, fill='blue')
+    img_draw.regular_polygon((POINTER_SPACE_X_END-radius_icon*2, y, radius_icon), 5, rotation=90, fill='blue')
     return img_draw
 
 
