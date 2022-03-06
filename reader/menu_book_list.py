@@ -127,7 +127,7 @@ def clear_pointer_space(blank_image):
 
 
 def put_selection_icon(img_draw, x, y):
-    img_draw.regular_polygon((POINTER_SPACE_X_END, y, 6), 5, fill='blue')
+    img_draw.regular_polygon((POINTER_SPACE_X_END, y, 9), 5, fill='blue')
     return img_draw
 
 
