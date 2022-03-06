@@ -33,10 +33,10 @@ class MenuBookList:
     def __init__(self, list_books, display_obj, image_obj, image_draw_obj=None):
         self.display = display_obj
         self.image_obj = image_obj
-        if not image_draw_obj:
-            self.image_draw = ImageDraw.Draw(self.image_obj)
-        else:
-            self.image_draw = image_draw_obj
+        # if not image_draw_obj:
+        #     self.image_draw = ImageDraw.Draw(self.image_obj)
+        # else:
+        #     self.image_draw = image_draw_obj
         self.list_books = list_books
 
         self.selection_index = 0
@@ -52,16 +52,18 @@ class MenuBookList:
         display.frame_buf.paste(0xFF, box=(0, 0, display.width, display.height))
         start_x_heading = 70
         start_y_heading = 50
+        image_draw = ImageDraw.Draw(self.image_obj)
+
         font_H1 = ImageFont.truetype(FONT_STANDARD, FONT_H1_SIZE)
 
-        self.image_draw.text((start_x_heading, start_y_heading), 'Book List', font=font_H1, fill='black', )
+        image_draw.text((start_x_heading, start_y_heading), 'Book List', font=font_H1, fill='black', )
 
         font_normal = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
 
         for index, book in enumerate(self.list_books):
             print(book)
             x_pos, y_pos, _ = self.get_position_of_text(index, font_normal)
-            self.image_draw.text((x_pos, y_pos), book.folder,
+            image_draw.text((x_pos, y_pos), book.folder,
                                  font=font_normal, fill='black', )
 
         self.image_obj = ImageOps.mirror(self.image_obj)
