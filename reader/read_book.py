@@ -88,7 +88,7 @@ def display_image_8bpp(display, img_path):
 
 
 def handle_mode_read(states, book_data):
-    has_changed = True
+    has_changed = False
 
     if states[0] == BTN_ON:
         has_changed = book_data.move_next_page()
