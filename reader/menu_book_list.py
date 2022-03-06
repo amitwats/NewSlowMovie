@@ -26,7 +26,7 @@ FONT_NORMAL_SIZE = 25
 # says the max is 24 MHz (24000000), but my device seems to still work as high as
 # 80 MHz (80000000)
 display = MyDisplay(vcom=DEFAULT_VCOM, rotate="CCW", spi_hz=24000000, flip=False)
-POINTER_SPACE_X_START, POINTER_SPACE_X_END, POINTER_SPACE_Y_START, POINTER_SPACE_Y_END = display.width - 0, display.width - 50, 0, display.height
+POINTER_SPACE_X_START, POINTER_SPACE_X_END, POINTER_SPACE_Y_START, POINTER_SPACE_Y_END = display.width - 20, display.width - 40, 0, display.height
 
 
 def display_custom_text():
@@ -120,7 +120,7 @@ def clear_pointer_space(blank_image):
     # img_draw.rectangle((70, 50, 270, 200), outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
     clear_rect = (POINTER_SPACE_X_START, POINTER_SPACE_Y_START, POINTER_SPACE_X_END, POINTER_SPACE_Y_END)
     img_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
-    img_draw.regular_polygon((0, 0, 30), 5, fill='blue')
+    # img_draw.regular_polygon((0, 0, 30), 5, fill='blue')
     display.frame_buf.paste(blank_image, paste_coords)
     display.draw_partial(constants.DisplayModes.GC16)
     return blank_image
