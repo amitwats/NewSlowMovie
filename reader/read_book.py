@@ -147,7 +147,7 @@ def handle_mode_menu_book_list(states, menu_book_list):
         pass
 
     if states[4] == BTN_ON:
-        return "BOOK_SELECTED", 1
+        return "BOOK_SELECTED", menu_book_list.get_current_selection().book_id
 
     if states[5] == BTN_ON:
         pass
