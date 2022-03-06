@@ -11,10 +11,12 @@ from PIL import Image, ImageOps
 import sys
 
 from my_display import MyDisplay
-from book_manager_2_data_2_db_manager import get_book_data
+from book_manager_2_data_2_db_manager import get_book_data, get_books_list
 
 import time
 import RPi.GPIO as GPIO
+
+from menu_book_list import MenuBookList
 
 BTN_ON = 0
 BTN_OFF = 1
@@ -25,6 +27,9 @@ GPIO.setmode(GPIO.BCM)
 # set GPIO buttons as pull down
 for btn in gpio_buttons:
     GPIO.setup(btn, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+valid_modes = ["read", "menu_book_list"]
+current_mode = "read"
 
 
 def handle_button_02(book_data):
@@ -48,6 +53,9 @@ def handle_button_06(book_data):
 
 
 def handle_button_07(book_data):
+    book_list = get_books_list()
+    menu_book_list = MenuBookList(book_list, display)
+
     pass
 
 
@@ -79,41 +87,83 @@ def display_image_8bpp(display, img_path):
     display.draw_full(constants.DisplayModes.GC16)
 
 
+def handle_mode_read(states, book_data):
+    has_changed = True
+
+    if states[0] == BTN_ON:
+        has_changed = book_data.move_next_page()
+        print(f"Next Page : {book_data.last_read_page}")
+
+    if states[1] == BTN_ON:
+        has_changed = book_data.move_prev_page()
+
+    if states[2] == BTN_ON:
+        # handle_button_02(book_data)
+        pass
+
+    if states[3] == BTN_ON:
+        # handle_button_03(book_data)
+        pass
+
+    if states[4] == BTN_ON:
+        # handle_button_04(book_data)
+        pass
+
+    if states[5] == BTN_ON:
+        # handle_button_05(book_data)
+        pass
+
+    if states[6] == BTN_ON:
+        # handle_button_06(book_data)
+        pass
+
+    if states[7] == BTN_ON:
+        global current_mode
+        current_mode = "menu_book_list"
+
+        # handle_button_07(book_data)
+
+    if has_changed:
+        display_image_8bpp(display, book_data.get_last_page_path())
+        # has_changed = False
+
+
+def handle_mode_menu_book_list(states):
+    if states[0] == BTN_ON:
+        pass
+
+    if states[1] == BTN_ON:
+        pass
+
+    if states[2] == BTN_ON:
+        pass
+
+    if states[3] == BTN_ON:
+        pass
+
+    if states[4] == BTN_ON:
+        pass
+
+    if states[5] == BTN_ON:
+        pass
+
+    if states[6] == BTN_ON:
+        pass
+
+    if states[7] == BTN_ON:
+        pass
+
+
 def read_book(book_id):
     print('Reading book "{}"...'.format(book_id))
     book_data = get_book_data(1)
-    has_changed = True
 
     while True:
         states = [GPIO.input(btn) for btn in gpio_buttons]
-        if states[0] == BTN_ON:
-            has_changed = book_data.move_next_page()
-            print(f"Next Page : {book_data.last_read_page}")
-
-        if states[1] == BTN_ON:
-            has_changed = book_data.move_prev_page()
-
-        if states[2] == BTN_ON:
-            handle_button_02(book_data)
-
-        if states[3] == BTN_ON:
-            handle_button_03(book_data)
-
-        if states[4] == BTN_ON:
-            handle_button_04(book_data)
-
-        if states[5] == BTN_ON:
-            handle_button_05(book_data)
-
-        if states[6] == BTN_ON:
-            handle_button_06(book_data)
-
-        if states[7] == BTN_ON:
-            handle_button_07(book_data)
-
-        if has_changed:
-            display_image_8bpp(display, book_data.get_last_page_path())
-            has_changed = False
+        if current_mode == "read":
+            handle_mode_read(states, book_data)
+        elif current_mode == "menu_book_list":
+            handle_mode_menu_book_list(states)
 
         print(states)
         time.sleep(0.1)
