@@ -56,6 +56,8 @@ def display_book_list():
     start_x_heading = 70
     start_y_heading = 50
     font_H1 = ImageFont.truetype("./fonts/arial.ttf", 60)
+    img_draw.rectangle((70, 50, 270, 200), outline='red', fill='blue')
+
     img_draw.text((start_x_heading, start_y_heading), 'Book List', font=font_H1)
 
     # font_normal = ImageFont.truetype("./fonts/arial.ttf", 25)
