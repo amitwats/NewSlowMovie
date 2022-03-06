@@ -150,5 +150,7 @@ if __name__ == '__main__':
     blank_image = display_book_list(blank_image)
     blank_image = clear_pointer_space(blank_image)
     blank_image = draw_selection_icon(blank_image, 0)
+    time.sleep(2)
+    blank_image = draw_selection_icon(blank_image, 1)
     # blank_image= move_icon(blank_image)
     exit()
