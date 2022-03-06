@@ -26,7 +26,7 @@ FONT_NORMAL_SIZE = 25
 # says the max is 24 MHz (24000000), but my device seems to still work as high as
 # 80 MHz (80000000)
 display = MyDisplay(vcom=DEFAULT_VCOM, rotate="CCW", spi_hz=24000000, flip=False)
-POINTER_SPACE_X_START, POINTER_SPACE_X_END, POINTER_SPACE_Y_START, POINTER_SPACE_Y_END = display.width - 5, display.width - 50, 0, display.height
+POINTER_SPACE_X_START, POINTER_SPACE_X_END, POINTER_SPACE_Y_START, POINTER_SPACE_Y_END = display.width - 20, display.width - 50, 0, display.height
 
 
 def display_custom_text():
