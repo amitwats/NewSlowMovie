@@ -181,6 +181,7 @@ def read_book(book_id):
             menu_book_list = None
             handle_type, handle_value = handle_mode_read(states, book_data)
             if handle_type == "CHANGE_MODE":
+                print("Changing the mode to {}".format(handle_value))
                 handle_values_list=handle_value.split(",")
                 current_mode = handle_values_list[0]
                 book_data = get_book_data(int(handle_values_list[1]))
