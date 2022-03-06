@@ -135,6 +135,7 @@ def handle_mode_read(states, book_data):
 def handle_mode_menu_book_list(states, menu_book_list):
     if states[0] == BTN_ON:
         menu_book_list.select_previous()
+        return "CHANGE_MODE", f"read,{menu_book_list.get_current_selection().book_id}"
 
     if states[1] == BTN_ON:
         menu_book_list.select_next()
@@ -180,7 +181,9 @@ def read_book(book_id):
             menu_book_list = None
             handle_type, handle_value = handle_mode_read(states, book_data)
             if handle_type == "CHANGE_MODE":
-                current_mode = handle_value
+                handle_values_list=handle_value.split(",")
+                current_mode = handle_values_list[0]
+                book_data = get_book_data(int(handle_values_list[1]))
         elif current_mode == "menu_book_list":
             if not menu_book_list:
                 menu_book_list = create_menu_book_list()

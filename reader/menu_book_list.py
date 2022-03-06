@@ -44,6 +44,9 @@ class MenuBookList:
         self.POINTER_SPACE_Y_START = 0
         self.POINTER_SPACE_Y_END = display.height
 
+    def get_current_selection(self):
+        return self.list_books[self.selection_index]
+
     def display_book_list(self):
         # clearing image to white
         display.frame_buf.paste(0xFF, box=(0, 0, display.width, display.height))
