@@ -58,20 +58,20 @@ def display_book_list():
     font_H1 = ImageFont.truetype("./fonts/arial.ttf", 60)
     img_draw.rectangle((70, 50, 270, 200), outline='red', fill='blue')
 
-    img_draw.text((start_x_heading, start_y_heading), 'Book List', font=font_H1)
+    img_draw.text((start_x_heading, start_y_heading), 'Book List', font=font_H1, fill='black',)
 
-    # font_normal = ImageFont.truetype("./fonts/arial.ttf", 25)
-    # ascent_normal, descent_normal = font_normal.getmetrics()
-    # total_text_height_normal = ascent_normal + descent_normal
-    # para_spacing_normal = 15
-    # start_x_book_list = 70
-    # start_y_book_list = 100
-    # para_height_normal = total_text_height_normal + para_spacing_normal
-    #
-    # for index, book in enumerate(book_list):
-    #     print(book)
-    #     img_draw.text((start_x_book_list, start_y_book_list + para_height_normal), book.folder, font=font_normal)
-    #  blank_image = ImageOps.mirror(blank_image)
+    font_normal = ImageFont.truetype("./fonts/arial.ttf", 25)
+    ascent_normal, descent_normal = font_normal.getmetrics()
+    total_text_height_normal = ascent_normal + descent_normal
+    para_spacing_normal = 15
+    start_x_book_list = 70
+    start_y_book_list = 100
+    para_height_normal = total_text_height_normal + para_spacing_normal
+
+    for index, book in enumerate(book_list):
+        print(book)
+        img_draw.text((start_x_book_list, start_y_book_list + para_height_normal), book.folder, font=font_normal,fill='black',)
+     # blank_image = ImageOps.mirror(blank_image)
 
     blank_image = ImageOps.mirror(blank_image)
 
