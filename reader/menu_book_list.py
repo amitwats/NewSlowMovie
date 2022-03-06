@@ -12,7 +12,7 @@ from IT8951 import constants
 from PIL import Image, ImageOps
 
 from my_display import MyDisplay
-from reader.book_manager_2_data_2_db_manager import get_books_list
+from book_manager_2_data_2_db_manager import get_books_list
 
 print('Initializing EPD...')
 
