@@ -87,7 +87,9 @@ class MenuBookList:
         # img_draw.rectangle((70, 50, 270, 200), outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
         clear_rect = (self.POINTER_SPACE_X_START, self.POINTER_SPACE_Y_START,
                       self.POINTER_SPACE_X_END, self.POINTER_SPACE_Y_END)
-        self.image_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
+        # self.image_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill=BACKGROUND_COLOR)
+        self.image_draw.rectangle(clear_rect, outline=BACKGROUND_COLOR, fill='black')
+
         # img_draw.regular_polygon((0, 0, 30), 5, fill='blue')
         display.frame_buf.paste(self.image_obj, paste_coords)
         display.draw_partial(constants.DisplayModes.GC16)
@@ -125,9 +127,9 @@ if __name__ == '__main__':
     print("Clearing selection space")
     menu_book_list.clear_pointer_space()
     print("Drawing icon 0")
-    menu_book_list.draw_selection_icon(0)
+    # menu_book_list.draw_selection_icon(0)
     time.sleep(2)
-    print("Drawing icon 0")
-    menu_book_list.draw_selection_icon(1)
+    print("Drawing icon 1")
+    # menu_book_list.draw_selection_icon(1)
     # blank_image= move_icon(blank_image)
     exit()
