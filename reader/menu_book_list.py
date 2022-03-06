@@ -30,7 +30,7 @@ display = MyDisplay(vcom=DEFAULT_VCOM, rotate="CCW", spi_hz=24000000, flip=False
 
 class MenuBookList:
 
-    def __init__(self, display_obj, image_obj, image_draw_obj):
+    def __init__(self, display_obj, image_obj, image_draw_obj=None):
         self.display = display_obj
         self.image_obj = image_obj
         if not image_draw_obj:
