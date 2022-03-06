@@ -15,6 +15,9 @@ from book_manager_2_data_2_db_manager import get_books_list
 
 print('Initializing EPD...')
 
+# FONT_STANDARD="./fonts/arial.ttf"
+FONT_STANDARD="./fonts/typewriter.ttf"
+
 # here, spi_hz controls the rate of data transfer to the device, so a higher
 # value means faster display refreshes. the documentation for the IT8951 device
 # says the max is 24 MHz (24000000), but my device seems to still work as high as
@@ -55,11 +58,11 @@ def display_book_list():
     book_list = get_books_list()
     start_x_heading = 70
     start_y_heading = 50
-    font_H1 = ImageFont.truetype("./fonts/arial.ttf", 60)
+    font_H1 = ImageFont.truetype(FONT_STANDARD, 60)
 
     img_draw.text((start_x_heading, start_y_heading), 'Book List', font=font_H1, fill='black',)
 
-    font_normal = ImageFont.truetype("./fonts/arial.ttf", 25)
+    font_normal = ImageFont.truetype(FONT_STANDARD, 25)
     ascent_normal, descent_normal = font_normal.getmetrics()
     total_text_height_normal = ascent_normal + descent_normal
     para_spacing_normal = 15
@@ -70,7 +73,6 @@ def display_book_list():
     for index, book in enumerate(book_list):
         print(book)
         img_draw.text((start_x_book_list, start_y_book_list + para_height_normal*(index+1)), book.folder, font=font_normal,fill='black',)
-     # blank_image = ImageOps.mirror(blank_image)
 
     blank_image = ImageOps.mirror(blank_image)
 
