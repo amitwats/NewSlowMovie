@@ -92,7 +92,7 @@ class MenuBookList:
 
         # img_draw.regular_polygon((0, 0, 30), 5, fill='blue')
         # display.frame_buf.paste(self.image_obj, paste_coords)
-        display.frame_buf.paste(img_draw, paste_coords)
+        display.frame_buf.paste(self.image_obj, paste_coords)
         display.draw_partial(constants.DisplayModes.GC16)
 
     def draw_selection_icon(self, selection_index):
