@@ -30,13 +30,14 @@ display = MyDisplay(vcom=DEFAULT_VCOM, rotate="CCW", spi_hz=24000000, flip=False
 
 class MenuBookList:
 
-    def __init__(self, display_obj, image_obj, image_draw_obj=None):
+    def __init__(self, list_books, display_obj, image_obj, image_draw_obj=None):
         self.display = display_obj
         self.image_obj = image_obj
         if not image_draw_obj:
             self.image_draw = ImageDraw.Draw(self.image_obj)
         else:
             self.image_draw = image_draw_obj
+        self.list_books = list_books
 
         self.selection_index = 0
         self.selection_index_max = 0
@@ -48,7 +49,6 @@ class MenuBookList:
     def display_book_list(self):
         # clearing image to white
         display.frame_buf.paste(0xFF, box=(0, 0, display.width, display.height))
-        book_list = get_books_list()
         start_x_heading = 70
         start_y_heading = 50
         font_H1 = ImageFont.truetype(FONT_STANDARD, FONT_H1_SIZE)
@@ -63,7 +63,7 @@ class MenuBookList:
         # start_y_book_list = 100
         # para_height_normal = total_text_height_normal + para_spacing_normal
 
-        for index, book in enumerate(book_list):
+        for index, book in enumerate(self.book_list):
             print(book)
             x_pos, y_pos, _ = self.get_position_of_text(index, font_normal)
             self.image_draw.text((x_pos, y_pos), book.folder,
@@ -123,7 +123,9 @@ class MenuBookList:
 if __name__ == '__main__':
     # display_custom_text()
     image = Image.new('RGBA', (display.width, display.height), BACKGROUND_COLOR)
-    menu_book_list = MenuBookList(display, image)
+    book_list = get_books_list()
+
+    menu_book_list = MenuBookList(book_list, display, image)
     # display_custom_text()
     menu_book_list.display_book_list()
     print("Clearing selection space")
