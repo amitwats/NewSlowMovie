@@ -151,20 +151,35 @@ def handle_mode_menu_book_list(states):
         pass
 
     if states[7] == BTN_ON:
-        pass
+        return True
+
+    return False
+
+
+def create_menu_book_list():
+    book_list = get_books_list()
+    menu_book_list = MenuBookList(book_list, display)
+    menu_book_list.display_book_list()
+    return menu_book_list
 
 
 def read_book(book_id):
     print('Reading book "{}"...'.format(book_id))
     book_data = get_book_data(1)
     global current_mode
+    menu_book_list = None
 
     while True:
-        states = [GPIO.input(btn) for btn in gpio_buttons]
+        states = [GPIO.input(btn_no) for btn_no in gpio_buttons]
         if current_mode == "read":
+            menu_book_list=None
             handle_mode_read(states, book_data)
         elif current_mode == "menu_book_list":
-            handle_mode_menu_book_list(states)
+            if not menu_book_list:
+                menu_book_list = create_menu_book_list()
+            exit_menu_book_list = handle_mode_menu_book_list(states)
+            if exit_menu_book_list:
+                menu_book_list=None
 
         print(f"Mode {current_mode} and {states}")
         time.sleep(0.1)
