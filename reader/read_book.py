@@ -132,7 +132,7 @@ def handle_mode_read(states, book_data):
     return "CONTINUE", None
 
 
-def handle_mode_menu_book_list(states):
+def handle_mode_menu_book_list(states, menu_book_list):
     if states[0] == BTN_ON:
         print("Menu Book List Mode: Button 1")
 
@@ -157,7 +157,7 @@ def handle_mode_menu_book_list(states):
     if states[7] == BTN_ON:
         global current_mode
         current_mode = "read"
-        return True, book_id
+        return True, None
 
     return "CONTINUE", None
 
@@ -186,7 +186,7 @@ def read_book(book_id):
         elif current_mode == "menu_book_list":
             if not menu_book_list:
                 menu_book_list = create_menu_book_list()
-            handle_type, handle_value = handle_mode_menu_book_list(states)
+            handle_type, handle_value = handle_mode_menu_book_list(states, menu_book_list)
             if handle_type == "BOOK_SELECTED":
                 menu_book_list = None
                 book_data = get_book_data(handle_value)
