@@ -130,10 +130,10 @@ def handle_mode_read(states, book_data):
 
 def handle_mode_menu_book_list(states):
     if states[0] == BTN_ON:
-        pass
+        print("Menu Book List Mode: Button 1")
 
     if states[1] == BTN_ON:
-        pass
+        print("Menu Book List Mode: Button 2")
 
     if states[2] == BTN_ON:
         pass
@@ -157,6 +157,7 @@ def handle_mode_menu_book_list(states):
 def read_book(book_id):
     print('Reading book "{}"...'.format(book_id))
     book_data = get_book_data(1)
+    global current_mode
 
     while True:
         states = [GPIO.input(btn) for btn in gpio_buttons]
