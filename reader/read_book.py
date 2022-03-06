@@ -181,18 +181,22 @@ def read_book(book_id):
             menu_book_list = None
             handle_type, handle_value = handle_mode_read(states, book_data)
             if handle_type == "CHANGE_MODE":
-                print("Changing the mode to {}".format(handle_value))
-                handle_values_list=handle_value.split(",")
-                current_mode = handle_values_list[0]
-                book_data = get_book_data(int(handle_values_list[1]))
+                current_mode = handle_value
+                # print("Changing the mode to {}".format(handle_value))
+                # handle_values_list=handle_value.split(",")
+                # current_mode = handle_values_list[0]
+                # book_data = get_book_data(int(handle_values_list[1]))
         elif current_mode == "menu_book_list":
             if not menu_book_list:
                 menu_book_list = create_menu_book_list()
             handle_type, handle_value = handle_mode_menu_book_list(states, menu_book_list)
             if handle_type == "BOOK_SELECTED":
+                handle_values_list=handle_value.split(",")
+                current_mode = handle_values_list[0]
+                book_data = get_book_data(int(handle_values_list[1]))
                 menu_book_list = None
-                book_data = get_book_data(handle_value)
-                current_mode = "read"
+                # book_data = get_book_data(handle_value)
+                # current_mode = "read"
                 display_image_8bpp(display, book_data.get_last_page_path())
 
         print(f"Mode {current_mode} and {states}")
