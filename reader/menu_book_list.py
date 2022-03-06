@@ -94,6 +94,8 @@ def move_icon():
         img_draw = ImageDraw.Draw(blank_image)
         # img_draw.line((i, 0, i, display.height), fill=0)
         img_draw.regular_polygon((i, 280, 15), 5, fill='blue')
+        paste_coords = [0, 0]
+        display.frame_buf.paste(blank_image, paste_coords)
         display.draw_partial(constants.DisplayModes.GC16)
 
 
