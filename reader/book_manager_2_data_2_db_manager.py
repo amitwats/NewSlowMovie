@@ -28,6 +28,17 @@ def add_book(prefix, folder, page_count, last_read_page, extension):
     conn.close()
 
 
+
+
+def put_book_data(book_data: BookMetaData):
+    conn = sqlite3.connect(BOOK_DB_FILE_NAME)
+    c = conn.cursor()
+    c.execute("UPDATE books SET prefix=?, folder=?, page_count=?, last_read_page=?, extension=? WHERE id=?",
+              (book_data.prefix, book_data.folder, book_data.page_count, book_data.last_read_page, book_data.extension, book_data.book_id))
+    conn.commit()
+    conn.close()
+
+
 def _book_meta_from_row(row):
     return BookMetaData(row[0], row[1], row[2], row[3], row[4], row[5])
 

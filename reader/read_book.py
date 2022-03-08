@@ -11,7 +11,7 @@ from PIL import Image, ImageOps
 import sys
 
 from my_display import MyDisplay
-from book_manager_2_data_2_db_manager import get_book_data, get_books_list
+from book_manager_2_data_2_db_manager import get_book_data, get_books_list, put_book_data
 
 import time
 import RPi.GPIO as GPIO
@@ -28,8 +28,6 @@ GPIO.setmode(GPIO.BCM)
 for btn in gpio_buttons:
     GPIO.setup(btn, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-valid_modes = ["read", "menu_book_list"]
-current_mode = "menu_book_list"
 
 
 def handle_button_02(book_data):
@@ -117,16 +115,16 @@ def handle_mode_read(states, book_data):
         pass
 
     if states[7] == BTN_ON:
-        global current_mode
-        current_mode = "menu_book_list"
+        # global current_mode
+        # current_mode = "menu_book_list"
         print("Changing the mode to menu_book_list")
         return "CHANGE_MODE", "menu_book_list"
 
         # handle_button_07(book_data)
 
     if has_changed:
+        put_book_data(book_data)
         display_image_8bpp(display, book_data.get_last_page_path())
-        # has_changed = False
 
     return "CONTINUE", None
 
@@ -169,8 +167,11 @@ def create_menu_book_list():
 
 def read_book(book_id):
     print('Reading book "{}"...'.format(book_id))
+
+    valid_modes = ["read", "menu_book_list"]
     book_data = get_book_data(1)
-    global current_mode
+    # global current_mode
+    current_mode = "menu_book_list"
     menu_book_list = None
 
     while True:
