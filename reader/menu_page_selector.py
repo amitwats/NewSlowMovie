@@ -227,11 +227,11 @@ class MenuSelector:
 
     def draw_focused_elements(self,image_draw):
         # image_draw = ImageDraw.Draw(self.image_obj)
-        top_arrow = image_draw.regular_polygon((self.start_x+self.width/2, self.start_y, 15), 3, rotation=0, fill='black')
+        image_draw.regular_polygon((self.start_x+self.width/2, self.start_y+30, 15), 3, rotation=0, fill='black')
         #     img_draw.regular_polygon((self.POINTER_SPACE_X_END + radius_icon + 5, y - 2, radius_icon),
         #                              5, rotation=90, fill='blue')
 
-        bottom_arrow = image_draw.regular_polygon((self.start_x+self.width/2, self.start_y+self.height, 15), 3, rotation=180, fill='black')
+        image_draw.regular_polygon((self.start_x+self.width/2, self.start_y+self.height-30, 15), 3, rotation=180, fill='black')
         # selection_rect = Image.open(os.path.join(constants.IMAGE_PATH, 'selection_rect.png'))
 
 
