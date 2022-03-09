@@ -53,6 +53,7 @@ class MenuPageSelector:
         self.digit_selector = []
         digit_selector_width = self.RECT_BOX_WIDTH / self.char_count
         digit_selector_height = self.RECT_BOX_HEIGHT
+        self.digit_selector_index = 0
 
         for digit_selector_index in range(self.char_count):
             focused = digit_selector_index == 1
@@ -64,6 +65,8 @@ class MenuPageSelector:
                              digit_selector_x_start, digit_selector_y_start,
                              image_obj=self.image_obj, selected_char="0", focused=focused,
                              font_name=FONT_STANDARD, font_size=120))
+        self.digit_selector_index = len(self.digit_selector)-1
+
 
         self.display_start()
         # self.selection_index_max = 0
@@ -71,6 +74,10 @@ class MenuPageSelector:
         # self.POINTER_SPACE_X_END = display.width - 50
         # self.POINTER_SPACE_Y_START = 0
         # self.POINTER_SPACE_Y_END = display.height
+    def _set_digit_selector_index(self, index):
+        self.digit_selector_index = index
+        for index, sel in enumerate(self.digit_selector):
+            sel.focused = index == self.digit_selector_index
 
     def display_start(self):
         self.display.frame_buf.paste(0xFF, box=(0, 0, self.display.width, self.display.height))
@@ -84,6 +91,21 @@ class MenuPageSelector:
         paste_coords = [0, 0]
         self.display.frame_buf.paste(self.image_obj, paste_coords)
         self.display.draw_partial(constants.DisplayModes.GC16)
+
+    def move_focus_to_next_element(self):
+        self.digit_selector_index += 1
+        self.digit_selector_index %= len(self.digit_selector)
+        self._set_digit_selector_index(self.digit_selector_index)
+        self.display_start()
+
+
+    def move_focus_to_prev_element(self):
+        self.digit_selector_index -= 1
+        self.digit_selector_index %= len(self.digit_selector)
+        self._set_digit_selector_index(self.digit_selector_index)
+        self.display_start()
+
+
 
     # def get_current_selection(self):
     #     return self.list_books[self.selection_index]
@@ -258,6 +280,9 @@ if __name__ == '__main__':
     page_selector = MenuPageSelector(book_data, display)
     page_selector.draw_selection_icon()
     time.sleep(2)
+    page_selector.move_focus_to_next_element()
+    time.sleep(2)
+    page_selector.move_focus_to_prev_element()
 
     # blank_image= move_icon(blank_image)
     exit()
