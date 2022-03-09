@@ -67,12 +67,13 @@ class MenuPageSelector:
         digit_selector_width = self.RECT_BOX_WIDTH / self.char_count
         digit_selector_height = self.RECT_BOX_HEIGHT
         for digit_selector_index in range(self.char_count):
+            focused=    digit_selector_index == 0
             digit_selector_x_start = self.RECT_BOX_X_START + digit_selector_index * digit_selector_width
             digit_selector_y_start = self.RECT_BOX_Y_START
 
             digit_selector.append(MenuSelector("0123456789", self.display, digit_selector_width, digit_selector_height,
                                                digit_selector_x_start, digit_selector_y_start,
-                                               image_obj=self.image_obj, selected_char="0", focused=False,
+                                               image_obj=self.image_obj, selected_char="0", focused=focused,
                                                font_name=FONT_STANDARD, font_size=120))
 
         self.image_obj = ImageOps.mirror(self.image_obj)
@@ -183,7 +184,7 @@ class MenuSelector:
         ascent_normal, descent_normal = self.font.getmetrics()
         total_text_height_normal = ascent_normal + descent_normal
 
-        self.y_padding = (self.height - total_text_height_normal)/2
+        self.y_padding = (self.height - total_text_height_normal) / 2
         self.draw_selection_icon()
 
     def max_selection_index(self):
@@ -215,12 +216,23 @@ class MenuSelector:
 
         image_draw.text((self.start_x + self.x_padding, self.start_y + self.y_padding),
                         self.get_selected_char(), fill='black', font=self.font, align='center')
+        if self.focused:
+            self.draw_focused_elements(image_draw)
         self.image_obj = ImageOps.mirror(self.image_obj)
         paste_coords = [self.start_x, self.start_y]
         self.display.frame_buf.paste(self.image_obj, paste_coords)
         self.display.draw_partial(constants.DisplayModes.GC16)
 
         pass
+
+    def draw_focused_elements(self,image_draw):
+        # image_draw = ImageDraw.Draw(self.image_obj)
+        top_arrow = image_draw.regular_polygon((self.start_x+self.width/2, self.start_y, 15), 3, rotation=0, fill='black')
+        #     img_draw.regular_polygon((self.POINTER_SPACE_X_END + radius_icon + 5, y - 2, radius_icon),
+        #                              5, rotation=90, fill='blue')
+
+        bottom_arrow = image_draw.regular_polygon((self.start_x+self.width/2, self.start_y+self.height, 15), 3, rotation=180, fill='black')
+        # selection_rect = Image.open(os.path.join(constants.IMAGE_PATH, 'selection_rect.png'))
 
 
 if __name__ == '__main__':
