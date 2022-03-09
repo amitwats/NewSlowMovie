@@ -283,6 +283,10 @@ if __name__ == '__main__':
     page_selector.move_focus_to_next_element()
     time.sleep(2)
     page_selector.move_focus_to_prev_element()
+    time.sleep(2)
+    page_selector.move_focus_to_prev_element()
+    time.sleep(2)
+    page_selector.move_focus_to_prev_element()
 
     # blank_image= move_icon(blank_image)
     exit()
