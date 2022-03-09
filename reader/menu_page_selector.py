@@ -105,7 +105,13 @@ class MenuPageSelector:
         self._set_digit_selector_index(self.digit_selector_index)
         self.display_start()
 
+    def current_selector_up(self):
+        self.digit_selector[self.digit_selector_index].select_next()
+        self.display_start()
 
+    def current_selector_down(self):
+        self.digit_selector[self.digit_selector_index].select_prev()
+        self.display_start()
 
     # def get_current_selection(self):
     #     return self.list_books[self.selection_index]
@@ -287,6 +293,11 @@ if __name__ == '__main__':
     page_selector.move_focus_to_prev_selector()
     time.sleep(2)
     page_selector.move_focus_to_next_selector()
+    time.sleep(2)
+    page_selector.current_selector_up()
+    time.sleep(2)
+    page_selector.current_selector_down()
+
 
     # blank_image= move_icon(blank_image)
     exit()
