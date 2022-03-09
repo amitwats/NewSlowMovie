@@ -239,7 +239,7 @@ class MenuSelector:
     def get_selected_char(self):
         return self.allowed_chars[self.selected_char_index]
 
-    def draw_selection_icon(self, image_draw):
+    def draw_selection_icon(self, image_draw=None):
         # self.display.frame_buf.paste(0xFF, box=(0, 0, self.width, self.height))
         if not image_draw:
             image_draw = ImageDraw.Draw(self.image_obj)
