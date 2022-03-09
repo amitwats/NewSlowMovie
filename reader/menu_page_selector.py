@@ -179,6 +179,7 @@ class MenuSelector:
         self.start_y = int(start_y)
         self.focused = focused
         self.x_padding = 15
+        self.y_padding = 50
         self.font = ImageFont.truetype(font_name, font_size)
         self.draw_selection_icon()
 
@@ -211,7 +212,7 @@ class MenuSelector:
         image_draw.rectangle((self.start_x, self.start_y, self.start_x + self.width, self.start_y + self.height),
                              outline='black', fill='white')
 
-        image_draw.text((self.start_x + self.x_padding, self.start_y + total_text_height_normal * 0.4),
+        image_draw.text((self.start_x + self.x_padding, self.start_y + self.y_padding),
                         self.get_selected_char(), fill='black', font=self.font, align='center')
         self.image_obj = ImageOps.mirror(self.image_obj)
         paste_coords = [self.start_x, self.start_y]
