@@ -67,7 +67,7 @@ class MenuPageSelector:
         digit_selector_width = self.RECT_BOX_WIDTH / self.char_count
         digit_selector_height = self.RECT_BOX_HEIGHT
         for digit_selector_index in range(self.char_count):
-            focused=    digit_selector_index == 0
+            focused=    digit_selector_index == 1
             digit_selector_x_start = self.RECT_BOX_X_START + digit_selector_index * digit_selector_width
             digit_selector_y_start = self.RECT_BOX_Y_START
 
