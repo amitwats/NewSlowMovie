@@ -67,7 +67,7 @@ class MenuPageSelector:
 
         digit_selector=MenuSelector("0123456789", self.display, self.RECT_BOX_WIDTH/self.char_count, self.RECT_BOX_HEIGHT,
                                     self.RECT_BOX_X_START, self.RECT_BOX_Y_START,
-                                    image_obj=None, selected_char="0", focused=False,
+                                    image_obj=self.image_obj, selected_char="0", focused=False,
                                     font_name=FONT_STANDARD, font_size=120)
 
         self.image_obj = ImageOps.mirror(self.image_obj)
