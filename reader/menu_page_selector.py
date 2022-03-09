@@ -278,7 +278,7 @@ if __name__ == '__main__':
     # menu_book_list = MenuBookList(book_list, display, image)
     book_data = get_book_data(1)
     page_selector = MenuPageSelector(book_data, display)
-    page_selector.draw_selection_icon()
+    # page_selector.draw_selection_icon()
     time.sleep(2)
     page_selector.move_focus_to_next_element()
     time.sleep(2)
