@@ -110,7 +110,7 @@ class MenuPageSelector:
         self.display_start()
 
     def current_selector_down(self):
-        self.digit_selector[self.digit_selector_index].select_prev()
+        self.digit_selector[self.digit_selector_index].select_previous()
         self.display_start()
 
     # def get_current_selection(self):
