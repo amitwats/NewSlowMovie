@@ -179,8 +179,11 @@ class MenuSelector:
         self.start_y = int(start_y)
         self.focused = focused
         self.x_padding = 15
-        self.y_padding = 150
         self.font = ImageFont.truetype(font_name, font_size)
+        ascent_normal, descent_normal = self.font.getmetrics()
+        total_text_height_normal = ascent_normal + descent_normal
+
+        self.y_padding = (self.height - total_text_height_normal)/2
         self.draw_selection_icon()
 
     def max_selection_index(self):
@@ -205,8 +208,6 @@ class MenuSelector:
 
     def draw_selection_icon(self):
         self.display.frame_buf.paste(0xFF, box=(0, 0, self.width, self.height))
-        ascent_normal, descent_normal = self.font.getmetrics()
-        total_text_height_normal = ascent_normal + descent_normal
 
         image_draw = ImageDraw.Draw(self.image_obj)
         image_draw.rectangle((self.start_x, self.start_y, self.start_x + self.width, self.start_y + self.height),
