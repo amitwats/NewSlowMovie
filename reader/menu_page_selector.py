@@ -210,6 +210,8 @@ class MenuSelector:
 
 
         image_draw = ImageDraw.Draw(self.image_obj)
+        image_draw.rectangle((self.start_x, self.start_y, self.start_x + self.width, self.start_y + self.height),
+                             outline='black', fill='white')
 
         image_draw.text((self.start_x, self.start_y + total_text_height_normal * 0.4),
                         self.get_selected_char(),fill='black', font=self.font, align='center')
