@@ -63,12 +63,17 @@ class MenuPageSelector:
         image_draw = ImageDraw.Draw(self.image_obj)
         image_draw.rectangle([self.RECT_BOX_X_START, self.RECT_BOX_Y_START, self.RECT_BOX_X_END, self.RECT_BOX_Y_END],
                              outline='black', fill='white')
+        digit_selector=[]
+        digit_selector_width = self.RECT_BOX_WIDTH / self.char_count
+        digit_selector_height = self.RECT_BOX_HEIGHT
+        for digit_selector_index in range(self.char_count):
+            digit_selector_x_start = self.RECT_BOX_X_START + digit_selector_index * digit_selector_width
+            digit_selector_y_start = self.RECT_BOX_Y_START
 
-
-        digit_selector=MenuSelector("0123456789", self.display, self.RECT_BOX_WIDTH/self.char_count, self.RECT_BOX_HEIGHT,
-                                    self.RECT_BOX_X_START, self.RECT_BOX_Y_START,
-                                    image_obj=self.image_obj, selected_char="0", focused=False,
-                                    font_name=FONT_STANDARD, font_size=120)
+            digit_selector.append(MenuSelector("0123456789", self.display, digit_selector_width, digit_selector_height,
+                                        digit_selector_x_start, digit_selector_y_start,
+                                        image_obj=self.image_obj, selected_char="0", focused=False,
+                                        font_name=FONT_STANDARD, font_size=120))
 
         self.image_obj = ImageOps.mirror(self.image_obj)
         paste_coords = [0, 0]
