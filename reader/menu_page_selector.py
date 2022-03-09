@@ -170,8 +170,8 @@ class MenuSelector:
             self.selected_char_index = 0
         self.width = int(width)
         self.height = int(height)
-        self.start_x = start_x
-        self.start_y = start_y
+        self.start_x = int(start_x)
+        self.start_y = int(start_y)
         self.focused = focused
         self.font = ImageFont.truetype(font_name, font_size)
         self.draw_selection_icon()
