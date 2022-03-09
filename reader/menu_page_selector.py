@@ -50,6 +50,21 @@ class MenuPageSelector:
 
         self.char_count = 4
 
+        self.digit_selector = []
+        digit_selector_width = self.RECT_BOX_WIDTH / self.char_count
+        digit_selector_height = self.RECT_BOX_HEIGHT
+
+        for digit_selector_index in range(self.char_count):
+            focused = digit_selector_index == 1
+            digit_selector_x_start = self.RECT_BOX_X_START + digit_selector_index * digit_selector_width
+            digit_selector_y_start = self.RECT_BOX_Y_START
+
+            self.digit_selector.append(
+                MenuSelector("0123456789", self.display, digit_selector_width, digit_selector_height,
+                             digit_selector_x_start, digit_selector_y_start,
+                             image_obj=self.image_obj, selected_char="0", focused=focused,
+                             font_name=FONT_STANDARD, font_size=120))
+
         self.display_start()
         # self.selection_index_max = 0
         # self.POINTER_SPACE_X_START = display.width - 20
@@ -63,19 +78,8 @@ class MenuPageSelector:
         image_draw = ImageDraw.Draw(self.image_obj)
         image_draw.rectangle([self.RECT_BOX_X_START, self.RECT_BOX_Y_START, self.RECT_BOX_X_END, self.RECT_BOX_Y_END],
                              outline='black', fill='white')
-        digit_selector = []
-        digit_selector_width = self.RECT_BOX_WIDTH / self.char_count
-        digit_selector_height = self.RECT_BOX_HEIGHT
-        for digit_selector_index in range(self.char_count):
-            focused=    digit_selector_index == 1
-            digit_selector_x_start = self.RECT_BOX_X_START + digit_selector_index * digit_selector_width
-            digit_selector_y_start = self.RECT_BOX_Y_START
-
-            digit_selector.append(MenuSelector("0123456789", self.display, digit_selector_width, digit_selector_height,
-                                               digit_selector_x_start, digit_selector_y_start,
-                                               image_obj=self.image_obj, selected_char="0", focused=focused,
-                                               font_name=FONT_STANDARD, font_size=120))
-
+        for dig_sel in self.digit_selector:
+            dig_sel.draw_selection_icon()
         self.image_obj = ImageOps.mirror(self.image_obj)
         paste_coords = [0, 0]
         self.display.frame_buf.paste(self.image_obj, paste_coords)
@@ -185,7 +189,7 @@ class MenuSelector:
         total_text_height_normal = ascent_normal + descent_normal
 
         self.y_padding = (self.height - total_text_height_normal) / 2
-        self.draw_selection_icon()
+        # self.draw_selection_icon()
 
     def max_selection_index(self):
         return len(self.allowed_chars) - 1
@@ -207,10 +211,10 @@ class MenuSelector:
     def get_selected_char(self):
         return self.allowed_chars[self.selected_char_index]
 
-    def draw_selection_icon(self):
+    def draw_selection_icon(self, image_draw):
         # self.display.frame_buf.paste(0xFF, box=(0, 0, self.width, self.height))
-
-        image_draw = ImageDraw.Draw(self.image_obj)
+        if not image_draw:
+            image_draw = ImageDraw.Draw(self.image_obj)
         image_draw.rectangle((self.start_x, self.start_y, self.start_x + self.width, self.start_y + self.height),
                              outline='black', fill='white')
 
@@ -228,17 +232,17 @@ class MenuSelector:
 
         pass
 
-    def draw_focused_elements(self,image_draw):
+    def draw_focused_elements(self, image_draw):
         # image_draw = ImageDraw.Draw(self.image_obj)
 
-        fill_color= 'black' if self.focused else 'white'
+        fill_color = 'black' if self.focused else 'white'
 
-        image_draw.regular_polygon((self.start_x+self.width/2, self.start_y+30, 15),
+        image_draw.regular_polygon((self.start_x + self.width / 2, self.start_y + 30, 15),
                                    3, rotation=0, fill=fill_color)
         #     img_draw.regular_polygon((self.POINTER_SPACE_X_END + radius_icon + 5, y - 2, radius_icon),
         #                              5, rotation=90, fill='blue')
 
-        image_draw.regular_polygon((self.start_x+self.width/2, self.start_y+self.height-30, 15),
+        image_draw.regular_polygon((self.start_x + self.width / 2, self.start_y + self.height - 30, 15),
                                    3, rotation=180, fill=fill_color)
         # selection_rect = Image.open(os.path.join(constants.IMAGE_PATH, 'selection_rect.png'))
 
@@ -252,6 +256,7 @@ if __name__ == '__main__':
     # menu_book_list = MenuBookList(book_list, display, image)
     book_data = get_book_data(1)
     page_selector = MenuPageSelector(book_data, display)
+    page_selector.draw_selection_icon()
     time.sleep(2)
 
     # blank_image= move_icon(blank_image)
