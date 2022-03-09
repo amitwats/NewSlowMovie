@@ -179,7 +179,7 @@ class MenuSelector:
         self.start_y = int(start_y)
         self.focused = focused
         self.x_padding = 15
-        self.y_padding = 50
+        self.y_padding = 150
         self.font = ImageFont.truetype(font_name, font_size)
         self.draw_selection_icon()
 
