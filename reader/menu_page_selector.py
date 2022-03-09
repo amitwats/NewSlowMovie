@@ -216,10 +216,13 @@ class MenuSelector:
 
         image_draw.text((self.start_x + self.x_padding, self.start_y + self.y_padding),
                         self.get_selected_char(), fill='black', font=self.font, align='center')
-        if self.focused:
-            self.draw_focused_elements(image_draw)
+        self.draw_focused_elements(image_draw)
+
+        # if self.focused:
+        #     self.draw_focused_elements(image_draw)
         self.image_obj = ImageOps.mirror(self.image_obj)
-        paste_coords = [self.start_x, self.start_y]
+        # paste_coords = [self.start_x, self.start_y]
+        paste_coords = [0, 0]
         self.display.frame_buf.paste(self.image_obj, paste_coords)
         self.display.draw_partial(constants.DisplayModes.GC16)
 
@@ -227,11 +230,16 @@ class MenuSelector:
 
     def draw_focused_elements(self,image_draw):
         # image_draw = ImageDraw.Draw(self.image_obj)
-        image_draw.regular_polygon((self.start_x+self.width/2, self.start_y+30, 15), 3, rotation=0, fill='black')
+
+        fill_color= 'black' if self.focused else 'white'
+
+        image_draw.regular_polygon((self.start_x+self.width/2, self.start_y+30, 15),
+                                   3, rotation=0, fill=fill_color)
         #     img_draw.regular_polygon((self.POINTER_SPACE_X_END + radius_icon + 5, y - 2, radius_icon),
         #                              5, rotation=90, fill='blue')
 
-        image_draw.regular_polygon((self.start_x+self.width/2, self.start_y+self.height-30, 15), 3, rotation=180, fill='black')
+        image_draw.regular_polygon((self.start_x+self.width/2, self.start_y+self.height-30, 15),
+                                   3, rotation=180, fill=fill_color)
         # selection_rect = Image.open(os.path.join(constants.IMAGE_PATH, 'selection_rect.png'))
 
 
