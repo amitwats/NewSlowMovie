@@ -223,8 +223,8 @@ class MenuSelector:
         self.image_obj = ImageOps.mirror(self.image_obj)
         # paste_coords = [self.start_x, self.start_y]
         paste_coords = [0, 0]
-        self.display.frame_buf.paste(self.image_obj, paste_coords)
-        self.display.draw_partial(constants.DisplayModes.GC16)
+        # self.display.frame_buf.paste(self.image_obj, paste_coords)
+        # self.display.draw_partial(constants.DisplayModes.GC16)
 
         pass
 
