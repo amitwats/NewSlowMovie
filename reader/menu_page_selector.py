@@ -179,7 +179,7 @@ class MenuSelector:
         self.start_x = int(start_x)
         self.start_y = int(start_y)
         self.focused = focused
-        self.x_padding = 15
+        self.x_padding = 30
         self.font = ImageFont.truetype(font_name, font_size)
         ascent_normal, descent_normal = self.font.getmetrics()
         total_text_height_normal = ascent_normal + descent_normal
