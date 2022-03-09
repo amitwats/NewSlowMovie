@@ -168,8 +168,8 @@ class MenuSelector:
             self.selected_char_index = self.allowed_chars.index(selected_char)
         except Exception:
             self.selected_char_index = 0
-        self.width = width
-        self.height = height
+        self.width = int(width)
+        self.height = int(height)
         self.start_x = start_x
         self.start_y = start_y
         self.focused = focused
