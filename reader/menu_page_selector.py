@@ -48,7 +48,7 @@ class MenuPageSelector:
         self.RECT_BOX_X_END = self.RECT_BOX_X_START + self.RECT_BOX_WIDTH
         self.RECT_BOX_Y_END = self.RECT_BOX_Y_START + self.RECT_BOX_HEIGHT
 
-        self.char_count=4
+        self.char_count = 4
 
         self.display_start()
         # self.selection_index_max = 0
@@ -63,7 +63,7 @@ class MenuPageSelector:
         image_draw = ImageDraw.Draw(self.image_obj)
         image_draw.rectangle([self.RECT_BOX_X_START, self.RECT_BOX_Y_START, self.RECT_BOX_X_END, self.RECT_BOX_Y_END],
                              outline='black', fill='white')
-        digit_selector=[]
+        digit_selector = []
         digit_selector_width = self.RECT_BOX_WIDTH / self.char_count
         digit_selector_height = self.RECT_BOX_HEIGHT
         for digit_selector_index in range(self.char_count):
@@ -71,9 +71,9 @@ class MenuPageSelector:
             digit_selector_y_start = self.RECT_BOX_Y_START
 
             digit_selector.append(MenuSelector("0123456789", self.display, digit_selector_width, digit_selector_height,
-                                        digit_selector_x_start, digit_selector_y_start,
-                                        image_obj=self.image_obj, selected_char="0", focused=False,
-                                        font_name=FONT_STANDARD, font_size=120))
+                                               digit_selector_x_start, digit_selector_y_start,
+                                               image_obj=self.image_obj, selected_char="0", focused=False,
+                                               font_name=FONT_STANDARD, font_size=120))
 
         self.image_obj = ImageOps.mirror(self.image_obj)
         paste_coords = [0, 0]
@@ -164,7 +164,7 @@ class MenuPageSelector:
 
 class MenuSelector:
     def __init__(self, allowed_chars, display_obj, width, height, start_x, start_y,
-                 image_obj=None, selected_char=None, focused=False,font_name=FONT_STANDARD, font_size=120):
+                 image_obj=None, selected_char=None, focused=False, font_name=FONT_STANDARD, font_size=120):
         self.display = display_obj
         self.image_obj = image_obj if image_obj else \
             Image.new('RGB', (self.display.width, self.display.height), color=BACKGROUND_COLOR)
@@ -178,9 +178,9 @@ class MenuSelector:
         self.start_x = int(start_x)
         self.start_y = int(start_y)
         self.focused = focused
+        self.x_padding = 15
         self.font = ImageFont.truetype(font_name, font_size)
         self.draw_selection_icon()
-
 
     def max_selection_index(self):
         return len(self.allowed_chars) - 1
@@ -207,14 +207,12 @@ class MenuSelector:
         ascent_normal, descent_normal = self.font.getmetrics()
         total_text_height_normal = ascent_normal + descent_normal
 
-
-
         image_draw = ImageDraw.Draw(self.image_obj)
         image_draw.rectangle((self.start_x, self.start_y, self.start_x + self.width, self.start_y + self.height),
                              outline='black', fill='white')
 
-        image_draw.text((self.start_x, self.start_y + total_text_height_normal * 0.4),
-                        self.get_selected_char(),fill='black', font=self.font, align='center')
+        image_draw.text((self.start_x + self.x_padding, self.start_y + total_text_height_normal * 0.4),
+                        self.get_selected_char(), fill='black', font=self.font, align='center')
         self.image_obj = ImageOps.mirror(self.image_obj)
         paste_coords = [self.start_x, self.start_y]
         self.display.frame_buf.paste(self.image_obj, paste_coords)
