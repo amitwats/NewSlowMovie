@@ -212,7 +212,7 @@ class MenuSelector:
         image_draw = ImageDraw.Draw(self.image_obj)
 
         image_draw.text((self.start_x, self.start_y + total_text_height_normal * 0.4),
-                        self.get_selected_char(),fill='black', font=self.font)
+                        self.get_selected_char(),fill='black', font=self.font, align='center')
         self.image_obj = ImageOps.mirror(self.image_obj)
         paste_coords = [self.start_x, self.start_y]
         self.display.frame_buf.paste(self.image_obj, paste_coords)
