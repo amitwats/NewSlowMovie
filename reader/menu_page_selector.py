@@ -45,8 +45,10 @@ class MenuPageSelector:
 
         self.RECT_BOX_X_START = (display_obj.width - self.RECT_BOX_WIDTH) / 2
         self.RECT_BOX_Y_START = (display_obj.height - self.RECT_BOX_HEIGHT) / 2
-        self.RECT_BOX_X_END = self.RECT_BOX_X_START+self.RECT_BOX_WIDTH
-        self.RECT_BOX_Y_END = self.RECT_BOX_Y_START+self.RECT_BOX_HEIGHT
+        self.RECT_BOX_X_END = self.RECT_BOX_X_START + self.RECT_BOX_WIDTH
+        self.RECT_BOX_Y_END = self.RECT_BOX_Y_START + self.RECT_BOX_HEIGHT
+
+        self.char_count=4
 
         self.display_start()
         # self.selection_index_max = 0
@@ -61,6 +63,13 @@ class MenuPageSelector:
         image_draw = ImageDraw.Draw(self.image_obj)
         image_draw.rectangle([self.RECT_BOX_X_START, self.RECT_BOX_Y_START, self.RECT_BOX_X_END, self.RECT_BOX_Y_END],
                              outline='black', fill='white')
+
+
+        digit_selector=MenuSelector("0123456789", self.display, self.RECT_BOX_WIDTH/self.char_count, self.RECT_BOX_HEIGHT,
+                                    self.RECT_BOX_X_START, self.RECT_BOX_Y_START,
+                                    image_obj=None, selected_char=None, focused=False,
+                                    font_name=FONT_STANDARD, font_size=120)
+
         self.image_obj = ImageOps.mirror(self.image_obj)
         paste_coords = [0, 0]
         self.display.frame_buf.paste(self.image_obj, paste_coords)
@@ -147,6 +156,66 @@ class MenuPageSelector:
     #         self.selection_index -= 1
     #         self.draw_selection_icon()
 
+
+class MenuSelector:
+    def __init__(self, allowed_chars, display_obj, width, height, start_x, start_y,
+                 image_obj=None, selected_char=None, focused=False,font_name=FONT_STANDARD, font_size=120):
+        self.display = display_obj
+        self.image_obj = image_obj if image_obj else \
+            Image.new('RGB', (self.display.width, self.display.height), color=BACKGROUND_COLOR)
+        self.allowed_chars = allowed_chars
+        try:
+            self.selected_char_index = self.allowed_chars.index(selected_char)
+        except ValueError:
+            self.selected_char_index = 0
+        self.width = width
+        self.height = height
+        self.start_x = start_x
+        self.start_y = start_y
+        self.focused = focused
+        self.font = ImageFont.truetype(font_name, font_size)
+        self.draw_selection_icon()
+
+
+    def max_selection_index(self):
+        return len(self.allowed_chars) - 1
+
+    def select_next(self):
+        if self.selected_char_index < self.max_selection_index():
+            self.selected_char_index += 1
+        else:
+            self.selected_char_index = 0
+        self.draw_selection_icon()
+
+    def select_previous(self):
+        if self.selected_char_index > 0:
+            self.selected_char_index -= 1
+        else:
+            self.selected_char_index = self.max_selection_index()
+        self.draw_selection_icon()
+
+    def get_selected_char(self):
+        return self.allowed_chars[self.selected_char_index]
+
+    def draw_selection_icon(self):
+        self.display.frame_buf.paste(0xFF, box=(0, 0, self.width, self.height))
+        ascent_normal, descent_normal = self.font.getmetrics()
+        total_text_height_normal = ascent_normal + descent_normal
+
+
+
+        image_draw = ImageDraw.Draw(self.image_obj)
+
+        image_draw.text((self.start_x, self.start_y + total_text_height_normal * 0.4),
+                        self.get_selected_char(),fill='black', font=self.font)
+        self.image_obj = ImageOps.mirror(self.image_obj)
+        paste_coords = [self.start_x, self.start_y]
+        self.display.frame_buf.paste(self.image_obj, paste_coords)
+        self.display.draw_partial(constants.DisplayModes.GC16)
+
+        pass
+
+
 if __name__ == '__main__':
     # display_custom_text()
     display = MyDisplay(vcom=DEFAULT_VCOM, rotate="CCW", spi_hz=24000000, flip=False)
@@ -154,8 +223,8 @@ if __name__ == '__main__':
     image = Image.new('RGBA', (display.width, display.height), BACKGROUND_COLOR)
 
     # menu_book_list = MenuBookList(book_list, display, image)
-    book_data=get_book_data(1)
-    page_selector =  MenuPageSelector(book_data, display)
+    book_data = get_book_data(1)
+    page_selector = MenuPageSelector(book_data, display)
     time.sleep(2)
 
     # blank_image= move_icon(blank_image)
