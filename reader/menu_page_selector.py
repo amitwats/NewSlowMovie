@@ -92,14 +92,14 @@ class MenuPageSelector:
         self.display.frame_buf.paste(self.image_obj, paste_coords)
         self.display.draw_partial(constants.DisplayModes.GC16)
 
-    def move_focus_to_next_element(self):
+    def move_focus_to_next_selector(self):
         self.digit_selector_index += 1
         self.digit_selector_index %= len(self.digit_selector)
         self._set_digit_selector_index(self.digit_selector_index)
         self.display_start()
 
 
-    def move_focus_to_prev_element(self):
+    def move_focus_to_prev_selector(self):
         self.digit_selector_index -= 1
         self.digit_selector_index %= len(self.digit_selector)
         self._set_digit_selector_index(self.digit_selector_index)
@@ -280,13 +280,13 @@ if __name__ == '__main__':
     page_selector = MenuPageSelector(book_data, display)
     # page_selector.draw_selection_icon()
     time.sleep(2)
-    page_selector.move_focus_to_next_element()
+    page_selector.move_focus_to_next_selector()
     time.sleep(2)
-    page_selector.move_focus_to_prev_element()
+    page_selector.move_focus_to_prev_selector()
     time.sleep(2)
-    page_selector.move_focus_to_prev_element()
+    page_selector.move_focus_to_prev_selector()
     time.sleep(2)
-    page_selector.move_focus_to_prev_element()
+    page_selector.move_focus_to_next_selector()
 
     # blank_image= move_icon(blank_image)
     exit()
