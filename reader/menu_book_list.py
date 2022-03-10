@@ -74,6 +74,7 @@ class MenuBookList:
         paste_coords = [0, 0]
         display.frame_buf.paste(self.image_obj, paste_coords)
         display.draw_full(constants.DisplayModes.GC16)
+        self.draw_selection_icon()
         # display.draw_partial(constants.DisplayModes.DU)
 
     def clear_pointer_space(self):
