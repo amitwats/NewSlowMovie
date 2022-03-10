@@ -52,7 +52,7 @@ class MenuPageSelector:
         self.OK_CANCEL_HEIGHT = 200
         self.char_count = 4
 
-        self.display_message_text = "Enter page number"
+        self.display_message_text = ""
 
         self.digit_selector = []
         digit_selector_width = self.RECT_BOX_WIDTH / self.char_count
