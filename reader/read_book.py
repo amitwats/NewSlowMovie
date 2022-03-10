@@ -107,7 +107,7 @@ def handle_mode_read(states, book_data, has_changed=False):
         pass
 
     if states[5] == BTN_ON:
-        # handle_button_05(book_data)
+        return "CHANGE_MODE", "page_selector"
         pass
 
     if states[6] == BTN_ON:
@@ -211,11 +211,14 @@ def read_book(book_id):
     # global current_mode
     current_mode = "menu_book_list"
     menu_book_list = None
+    page_sel=None
 
     while True:
         states = [GPIO.input(btn_no) for btn_no in gpio_buttons]
         if current_mode == "read":
             menu_book_list = None
+            page_sel = None
+
             handle_type, handle_value = handle_mode_read(states, book_data)
             if handle_type == "CHANGE_MODE":
                 current_mode = handle_value
@@ -237,7 +240,8 @@ def read_book(book_id):
                 current_mode = "read"
                 display_image_8bpp(display, book_data.get_last_page_path())
         elif current_mode == "page_selector":
-            page_sel = MenuPageSelector(book_data, display)
+            if not page_sel:
+                page_sel = MenuPageSelector(book_data, display)
             handle_type, handle_value = handle_mode_page_selector(states, page_sel)
             if handle_type == "CHANGE_MODE":
                 current_mode = handle_value
