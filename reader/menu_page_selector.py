@@ -83,7 +83,7 @@ class MenuPageSelector:
         # self.RECT_BOX_Y_START = (display_obj.height - self.RECT_BOX_HEIGHT) / 2
         # self.RECT_BOX_X_END = self.RECT_BOX_X_START + self.RECT_BOX_WIDTH
         # self.RECT_BOX_Y_END = self.RECT_BOX_Y_START + self.RECT_BOX_HEIGHT
-        width = 100
+        width = 300
         height = 200
         return MenuSelector(["Ok", "Back"], self.display, width, height,
                             self.RECT_BOX_X_END - width, self.RECT_BOX_Y_END,
