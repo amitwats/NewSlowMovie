@@ -74,7 +74,7 @@ class MenuPageSelector:
 
         self.digit_selector_index = len(self.digit_selector) - 2
         self.digit_selector[self.digit_selector_index].focused = True
-
+        self.set_initial_selection_to(book_data.last_read_page)
         self.display_start()
         # self.selection_index_max = 0
         # self.POINTER_SPACE_X_START = display.width - 20
@@ -86,6 +86,14 @@ class MenuPageSelector:
         font = ImageFont.truetype(FONT_STANDARD, FONT_LARGE_SIZE)
         image_draw.text((self.RECT_BOX_X_START, self.RECT_BOX_Y_END + 100), self.display_message_text, font=font,
                         fill=(200, 20, 0))
+
+    def set_initial_selection_to(self,number:int):
+        string_selection= str(number).zfill(self.char_count)
+        for index, sel in enumerate(self.digit_selector[:self.char_count]):
+            sel.set_selected_char(string_selection[index])
+        #     sel.selected_char = string_selection[sel.digit_selector_index]
+        # self.digit_selector_index = number
+        # self.digit_selector[self.digit_selector_index].focused = True
 
     def display_message(self, display_message_text):
         self.display_message_text = display_message_text
@@ -304,6 +312,10 @@ class MenuSelector:
             self.selected_char_index -= 1
         else:
             self.selected_char_index = self.max_selection_index()
+        self.draw_selection_icon()
+
+    def set_selected_char(self, char):
+        self.selected_char_index = self.allowed_chars.index(char)
         self.draw_selection_icon()
 
     def get_selected_char(self):
