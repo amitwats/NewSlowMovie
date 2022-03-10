@@ -20,6 +20,7 @@ FONT_STANDARD = "./fonts/typewriter.ttf"
 BACKGROUND_COLOR = 'white'
 FONT_H1_SIZE = 60
 FONT_NORMAL_SIZE = 25
+FONT_LARGE_SIZE = 36
 
 # here, spi_hz controls the rate of data transfer to the device, so a higher
 # value means faster display refreshes. the documentation for the IT8951 device
@@ -80,7 +81,7 @@ class MenuPageSelector:
             sel.focused = index == self.digit_selector_index
 
     def write_book_details(self, image_draw):
-        font = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
+        font = ImageFont.truetype(FONT_STANDARD, FONT_LARGE_SIZE)
         # font = ImageFont.truetype(FONT_STANDARD, FONT_H1_SIZE)
         draw_x=self.RECT_BOX_X_START
         draw_y=self.RECT_BOX_Y_START - 200
