@@ -79,6 +79,9 @@ class MenuPageSelector:
         # self.POINTER_SPACE_Y_START = 0
         # self.POINTER_SPACE_Y_END = display.height
 
+    def get_selected_value(self):
+        return [sel.get_selected_char() for sel in self.digit_selector][:-2]
+
     def get_selector_ok_cancel(self):
         # self.RECT_BOX_X_START = (display_obj.width - self.RECT_BOX_WIDTH) / 2
         # self.RECT_BOX_Y_START = (display_obj.height - self.RECT_BOX_HEIGHT) / 2
@@ -345,5 +348,6 @@ if __name__ == '__main__':
     time.sleep(1)
     page_selector.current_selector_down()
 
+    print(page_selector.get_selected_value())
     # blank_image= move_icon(blank_image)
     exit()
