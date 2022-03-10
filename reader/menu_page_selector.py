@@ -375,6 +375,7 @@ if __name__ == '__main__':
     # page_selector.current_selector_down()
     page_selector.move_focus_to_next_selector()
     page_selector.current_selector_up()
+    page_selector.move_focus_to_next_selector()
 
     print(page_selector.get_selected_page_number())
     print(page_selector.is_value_valid())
