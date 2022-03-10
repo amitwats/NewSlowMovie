@@ -93,6 +93,7 @@ class MenuPageSelector:
 
         image_draw = ImageDraw.Draw(self.image_obj)
 
+        self.write_book_details(image_draw)
         image_draw.rectangle([self.RECT_BOX_X_START, self.RECT_BOX_Y_START, self.RECT_BOX_X_END, self.RECT_BOX_Y_END],
                              outline='black', fill='white')
         for dig_sel in self.digit_selector:
