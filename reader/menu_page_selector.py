@@ -81,13 +81,17 @@ class MenuPageSelector:
 
     def write_book_details(self, image_draw):
         font = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
+        draw_x=self.RECT_BOX_X_START
+        draw_y=self.RECT_BOX_Y_START - 100
+        image_draw.rectangle([draw_x, draw_y, self.RECT_BOX_X_END, self.RECT_BOX_Y_START],
+                             outline=None, fill='white')
 
 
-        text_to_display = f"{self.book_data.get_name()}\n" \
+        text_to_display = f"Name: {self.book_data.get_name()}\n" \
                           f"Page Count: {self.book_data.page_count}\n" \
-                          f"Current Page:{self.book_data.last_read_page}"
+                          f"Current Page: {self.book_data.last_read_page}"
 
-        image_draw.text((self.RECT_BOX_X_START, self.RECT_BOX_Y_START - 100),
+        image_draw.text((self.RECT_BOX_X_START, ),
                         text_to_display, fill='black', font=font, align='left')
 
     def display_start(self):
