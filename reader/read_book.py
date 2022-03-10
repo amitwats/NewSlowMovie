@@ -17,7 +17,7 @@ import time
 import RPi.GPIO as GPIO
 
 from menu_book_list import MenuBookList
-from reader.menu_page_selector import MenuPageSelector
+from menu_page_selector import MenuPageSelector
 
 BTN_ON = 0
 BTN_OFF = 1
