@@ -91,7 +91,7 @@ class MenuPageSelector:
                           f"Page Count: {self.book_data.page_count}\n" \
                           f"Current Page: {self.book_data.last_read_page}"
 
-        image_draw.text((self.RECT_BOX_X_START, ),
+        image_draw.text((draw_x, draw_y ),
                         text_to_display, fill='black', font=font, align='left')
 
     def display_start(self):
