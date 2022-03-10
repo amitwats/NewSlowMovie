@@ -52,7 +52,7 @@ class MenuPageSelector:
         self.OK_CANCEL_HEIGHT = 200
         self.char_count = 4
 
-        self.display_message = ""
+        self.display_message_text = "Enter page number"
 
         self.digit_selector = []
         digit_selector_width = self.RECT_BOX_WIDTH / self.char_count
@@ -83,7 +83,7 @@ class MenuPageSelector:
 
     def show_display_message(self, image_draw, display_message):
         font = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
-        image_draw.text((self.RECT_BOX_X_START, self.RECT_BOX_Y_END + 100), display_message, font=font,
+        image_draw.text((self.RECT_BOX_X_START, self.RECT_BOX_Y_END + 100), self.display_message_text, font=font,
                         fill=(200, 20, 0))
 
     def display_message(self, display_message):
@@ -153,7 +153,7 @@ class MenuPageSelector:
                               self.RECT_BOX_Y_END + self.OK_CANCEL_HEIGHT],
                              outline=None, fill='white')
         self.write_book_details(image_draw)
-        self.show_display_message(image_draw, "Enter Page Number")
+        self.show_display_message(image_draw)
         for dig_sel in self.digit_selector:
             dig_sel.draw_selection_icon(image_draw)
         self.image_obj = ImageOps.mirror(self.image_obj)
