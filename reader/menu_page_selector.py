@@ -85,9 +85,9 @@ class MenuPageSelector:
         # self.RECT_BOX_Y_END = self.RECT_BOX_Y_START + self.RECT_BOX_HEIGHT
         width = 300
         height = 200
-        return MenuSelector(["Ok", "Back"], self.display, width, height,
+        return MenuSelector([" Ok", "Back"], self.display, width, height,
                             self.RECT_BOX_X_END - width, self.RECT_BOX_Y_END,
-                            image_obj=self.image_obj, selected_char="Ok", focused=False,
+                            image_obj=self.image_obj, selected_char=" Ok", focused=False,
                             font_name=FONT_STANDARD, font_size=120)
 
     def _set_digit_selector_index(self, index):
@@ -111,7 +111,7 @@ class MenuPageSelector:
                         text_to_display, fill='black', font=font, align='left')
 
     def display_start(self):
-        # self.display.frame_buf.paste(0xFF, box=(0, 0, self.display.width, self.display.height))
+        self.display.frame_buf.paste(0xFF, box=(0, 0, self.display.width, self.display.height))
 
         image_draw = ImageDraw.Draw(self.image_obj)
 
