@@ -86,6 +86,10 @@ class MenuPageSelector:
         image_draw.text((self.RECT_BOX_X_START, self.RECT_BOX_Y_END + 100), display_message, font=font,
                         fill=(200, 20, 0))
 
+    def display_message(self, display_message):
+        self.display_message = display_message
+        self.display_start()
+
     def get_selected_value(self):
         return [sel.get_selected_char() for sel in self.digit_selector]
 
@@ -389,6 +393,6 @@ if __name__ == '__main__':
     print(page_selector.is_value_valid())
     print(page_selector.is_ok_selected())
     print(page_selector.is_back_selected())
-
+    page_selector.display_message("Cant say")
     # blank_image= move_icon(blank_image)
     exit()
