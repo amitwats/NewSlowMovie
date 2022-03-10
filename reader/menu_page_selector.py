@@ -88,10 +88,10 @@ class MenuPageSelector:
                           f"Current Page:{self.book_data.last_read_page}"
 
         image_draw.text((self.RECT_BOX_X_START, self.RECT_BOX_Y_START - 100),
-                        text_to_display, fill='black', font=font, align='center')
+                        text_to_display, fill='black', font=font, align='left')
 
     def display_start(self):
-        self.display.frame_buf.paste(0xFF, box=(0, 0, self.display.width, self.display.height))
+        # self.display.frame_buf.paste(0xFF, box=(0, 0, self.display.width, self.display.height))
 
         image_draw = ImageDraw.Draw(self.image_obj)
 
