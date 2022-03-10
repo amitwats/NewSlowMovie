@@ -115,7 +115,7 @@ class MenuPageSelector:
         image_draw = ImageDraw.Draw(self.image_obj)
 
         self.write_book_details(image_draw)
-        image_draw.rectangle([self.RECT_BOX_X_START, self.RECT_BOX_Y_START, self.RECT_BOX_X_END, self.RECT_BOX_Y_END+self.OK_CANCEL_HEIGHT],
+        image_draw.rectangle([self.RECT_BOX_X_START-1, self.RECT_BOX_Y_START, self.RECT_BOX_X_END, self.RECT_BOX_Y_END+self.OK_CANCEL_HEIGHT],
                              outline=None, fill='white')
         for dig_sel in self.digit_selector:
             dig_sel.draw_selection_icon(image_draw)
