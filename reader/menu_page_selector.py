@@ -364,7 +364,7 @@ if __name__ == '__main__':
     # time.sleep(1)
     # page_selector.move_focus_to_next_selector()
     # time.sleep(1)
-    # page_selector.current_selector_down()
+    page_selector.current_selector_down()
 
     print(page_selector.get_selected_page_number())
     print(page_selector.is_value_valid())
