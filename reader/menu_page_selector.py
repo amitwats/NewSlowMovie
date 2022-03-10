@@ -81,7 +81,7 @@ class MenuPageSelector:
         # self.POINTER_SPACE_Y_START = 0
         # self.POINTER_SPACE_Y_END = display.height
 
-    def show_display_message(self, image_draw, display_message):
+    def show_display_message(self, image_draw):
         font = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
         image_draw.text((self.RECT_BOX_X_START, self.RECT_BOX_Y_END + 100), self.display_message_text, font=font,
                         fill=(200, 20, 0))
