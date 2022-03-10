@@ -84,8 +84,10 @@ class MenuPageSelector:
         # self.RECT_BOX_Y_START = (display_obj.height - self.RECT_BOX_HEIGHT) / 2
         # self.RECT_BOX_X_END = self.RECT_BOX_X_START + self.RECT_BOX_WIDTH
         # self.RECT_BOX_Y_END = self.RECT_BOX_Y_START + self.RECT_BOX_HEIGHT
+
+        padding=30
         return MenuSelector([" Ok", "Back"], self.display, self.OK_CANCEL_WIDTH, self.OK_CANCEL_HEIGHT,
-                            self.RECT_BOX_X_END - self.OK_CANCEL_WIDTH, self.RECT_BOX_Y_END,
+                            self.RECT_BOX_X_END - self.OK_CANCEL_WIDTH-padding, self.RECT_BOX_Y_END,
                             image_obj=self.image_obj, selected_char=" Ok", focused=False,
                             font_name=FONT_STANDARD, font_size=120)
 
