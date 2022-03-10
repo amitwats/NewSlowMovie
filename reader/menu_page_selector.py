@@ -60,19 +60,20 @@ class MenuPageSelector:
         self.digit_selector_index = 0
 
         for digit_selector_index in range(self.char_count):
-            focused = digit_selector_index == 1
             digit_selector_x_start = self.RECT_BOX_X_START + digit_selector_index * digit_selector_width
             digit_selector_y_start = self.RECT_BOX_Y_START
 
             self.digit_selector.append(
                 MenuSelector("0123456789", self.display, digit_selector_width, digit_selector_height,
                              digit_selector_x_start, digit_selector_y_start,
-                             image_obj=self.image_obj, selected_char="0", focused=focused,
+                             image_obj=self.image_obj, selected_char="0", focused=False,
                              font_name=FONT_STANDARD, font_size=120))
 
         self.digit_selector.append(self.get_selector_ok_cancel())
 
-        self.digit_selector_index = len(self.digit_selector) - 1
+
+        self.digit_selector_index = len(self.digit_selector) - 2
+        self.digit_selector[self.digit_selector_index].set_focused(True)
 
         self.display_start()
         # self.selection_index_max = 0
