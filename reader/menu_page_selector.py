@@ -80,13 +80,15 @@ class MenuPageSelector:
             sel.focused = index == self.digit_selector_index
 
     def write_book_details(self, image_draw):
+        font = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
+
 
         text_to_display = f"{self.book_data.get_name()}\n" \
                           f"Page Count: {self.book_data.page_count}\n" \
                           f"Current Page:{self.book_data.last_read_page}"
 
         image_draw.text((self.RECT_BOX_X_START, self.RECT_BOX_Y_START - 100),
-                        text_to_display, fill='black', font=self.font, align='center')
+                        text_to_display, fill='black', font=font, align='center')
 
     def display_start(self):
         self.display.frame_buf.paste(0xFF, box=(0, 0, self.display.width, self.display.height))
