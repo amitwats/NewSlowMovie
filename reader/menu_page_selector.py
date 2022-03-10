@@ -48,7 +48,8 @@ class MenuPageSelector:
         self.RECT_BOX_Y_START = (display_obj.height - self.RECT_BOX_HEIGHT) / 2
         self.RECT_BOX_X_END = self.RECT_BOX_X_START + self.RECT_BOX_WIDTH
         self.RECT_BOX_Y_END = self.RECT_BOX_Y_START + self.RECT_BOX_HEIGHT
-
+        self.OK_CANCEL_WIDTH=300
+        self.OK_CANCEL_HEIGHT=200
         self.char_count = 4
 
         self.digit_selector = []
@@ -83,10 +84,8 @@ class MenuPageSelector:
         # self.RECT_BOX_Y_START = (display_obj.height - self.RECT_BOX_HEIGHT) / 2
         # self.RECT_BOX_X_END = self.RECT_BOX_X_START + self.RECT_BOX_WIDTH
         # self.RECT_BOX_Y_END = self.RECT_BOX_Y_START + self.RECT_BOX_HEIGHT
-        width = 300
-        height = 200
-        return MenuSelector([" Ok", "Back"], self.display, width, height,
-                            self.RECT_BOX_X_END - width, self.RECT_BOX_Y_END,
+        return MenuSelector([" Ok", "Back"], self.display, self.OK_CANCEL_WIDTH, self.OK_CANCEL_HEIGHT,
+                            self.RECT_BOX_X_END - self.OK_CANCEL_WIDTH, self.RECT_BOX_Y_END,
                             image_obj=self.image_obj, selected_char=" Ok", focused=False,
                             font_name=FONT_STANDARD, font_size=120)
 
@@ -100,7 +99,7 @@ class MenuPageSelector:
         # font = ImageFont.truetype(FONT_STANDARD, FONT_H1_SIZE)
         draw_x = self.RECT_BOX_X_START
         draw_y = self.RECT_BOX_Y_START - 200
-        image_draw.rectangle([draw_x, draw_y, self.RECT_BOX_X_END, self.RECT_BOX_Y_START],
+        image_draw.rectangle([draw_x, draw_y, self.RECT_BOX_X_END, self.RECT_BOX_Y_START+set.OK_CANCEL_HEIGHT],
                              outline=None, fill='white')
 
         text_to_display = f"Name: {self.book_data.get_name()}\n\n" \
