@@ -145,11 +145,11 @@ class MenuPageSelector:
 
         image_draw = ImageDraw.Draw(self.image_obj)
 
-        self.write_book_details(image_draw)
-        self.show_display_message(image_draw, "Enter Page Number")
         image_draw.rectangle([self.RECT_BOX_X_START - 1, self.RECT_BOX_Y_START, self.RECT_BOX_X_END,
                               self.RECT_BOX_Y_END + self.OK_CANCEL_HEIGHT],
                              outline=None, fill='white')
+        self.write_book_details(image_draw)
+        self.show_display_message(image_draw, "Enter Page Number")
         for dig_sel in self.digit_selector:
             dig_sel.draw_selection_icon(image_draw)
         self.image_obj = ImageOps.mirror(self.image_obj)
