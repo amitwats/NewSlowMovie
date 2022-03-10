@@ -82,6 +82,14 @@ class MenuPageSelector:
     def get_selected_value(self):
         return [sel.get_selected_char() for sel in self.digit_selector]
 
+    def is_ok_selected(self):
+        sel= self.digit_selector[len(self.digit_selector) - 1]
+        return sel.get_selected_char()==" Ok"
+
+    def is_back_selected(self):
+        sel= self.digit_selector[len(self.digit_selector) - 1]
+        return sel.get_selected_char()=="Back"
+
     def get_selected_page_number(self):
         values = self.get_selected_value()
         value = 0
@@ -368,6 +376,8 @@ if __name__ == '__main__':
 
     print(page_selector.get_selected_page_number())
     print(page_selector.is_value_valid())
+    print(page_selector.is_ok_selected())
+    print(page_selector.is_back_selected())
 
     # blank_image= move_icon(blank_image)
     exit()
