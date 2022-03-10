@@ -91,7 +91,7 @@ class MenuPageSelector:
 
     def is_value_valid(self):
         values = self.get_selected_value()
-        return self.get_selected_page_number() <= self.book_data.page_count
+        return 0< self.get_selected_page_number() <= self.book_data.page_count
 
     def get_selector_ok_cancel(self):
         # self.RECT_BOX_X_START = (display_obj.width - self.RECT_BOX_WIDTH) / 2
