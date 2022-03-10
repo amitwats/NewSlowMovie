@@ -82,7 +82,7 @@ class MenuPageSelector:
         # self.POINTER_SPACE_Y_END = display.height
 
     def show_display_message(self, image_draw):
-        font = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
+        font = ImageFont.truetype(FONT_STANDARD, FONT_LARGE_SIZE)
         image_draw.text((self.RECT_BOX_X_START, self.RECT_BOX_Y_END + 100), self.display_message_text, font=font,
                         fill=(200, 20, 0))
 
@@ -394,6 +394,6 @@ if __name__ == '__main__':
     print(page_selector.is_value_valid())
     print(page_selector.is_ok_selected())
     print(page_selector.is_back_selected())
-    page_selector.display_message("Cant say")
+    page_selector.display_message("Incorrect value")
     # blank_image= move_icon(blank_image)
     exit()
