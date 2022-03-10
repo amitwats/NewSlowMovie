@@ -80,8 +80,8 @@ class MenuPageSelector:
             sel.focused = index == self.digit_selector_index
 
     def write_book_details(self, image_draw):
-        # font = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
-        font = ImageFont.truetype(FONT_STANDARD, FONT_H1_SIZE)
+        font = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
+        # font = ImageFont.truetype(FONT_STANDARD, FONT_H1_SIZE)
         draw_x=self.RECT_BOX_X_START
         draw_y=self.RECT_BOX_Y_START - 200
         image_draw.rectangle([draw_x, draw_y, self.RECT_BOX_X_END, self.RECT_BOX_Y_START],
