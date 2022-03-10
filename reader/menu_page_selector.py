@@ -66,6 +66,9 @@ class MenuPageSelector:
                              digit_selector_x_start, digit_selector_y_start,
                              image_obj=self.image_obj, selected_char="0", focused=focused,
                              font_name=FONT_STANDARD, font_size=120))
+
+        self.digit_selector.append(self.get_selector_ok_cancel())
+
         self.digit_selector_index = len(self.digit_selector) - 1
 
         self.display_start()
@@ -75,6 +78,18 @@ class MenuPageSelector:
         # self.POINTER_SPACE_Y_START = 0
         # self.POINTER_SPACE_Y_END = display.height
 
+    def get_selector_ok_cancel(self):
+        # self.RECT_BOX_X_START = (display_obj.width - self.RECT_BOX_WIDTH) / 2
+        # self.RECT_BOX_Y_START = (display_obj.height - self.RECT_BOX_HEIGHT) / 2
+        # self.RECT_BOX_X_END = self.RECT_BOX_X_START + self.RECT_BOX_WIDTH
+        # self.RECT_BOX_Y_END = self.RECT_BOX_Y_START + self.RECT_BOX_HEIGHT
+        width = 100
+        height = 200
+        return MenuSelector(["Ok", "Back"], self.display, width, height,
+                            self.RECT_BOX_X_END - width, self.RECT_BOX_Y_END,
+                            image_obj=self.image_obj, selected_char="Ok", focused=False,
+                            font_name=FONT_STANDARD, font_size=120)
+
     def _set_digit_selector_index(self, index):
         self.digit_selector_index = index
         for index, sel in enumerate(self.digit_selector):
@@ -83,17 +98,16 @@ class MenuPageSelector:
     def write_book_details(self, image_draw):
         font = ImageFont.truetype(FONT_STANDARD, FONT_LARGE_SIZE)
         # font = ImageFont.truetype(FONT_STANDARD, FONT_H1_SIZE)
-        draw_x=self.RECT_BOX_X_START
-        draw_y=self.RECT_BOX_Y_START - 200
+        draw_x = self.RECT_BOX_X_START
+        draw_y = self.RECT_BOX_Y_START - 200
         image_draw.rectangle([draw_x, draw_y, self.RECT_BOX_X_END, self.RECT_BOX_Y_START],
                              outline=None, fill='white')
-
 
         text_to_display = f"Name: {self.book_data.get_name()}\n\n" \
                           f"Page Count: {self.book_data.page_count}\n\n" \
                           f"Current Page: {self.book_data.last_read_page}"
 
-        image_draw.text((draw_x, draw_y ),
+        image_draw.text((draw_x, draw_y),
                         text_to_display, fill='black', font=font, align='left')
 
     def display_start(self):
