@@ -89,8 +89,8 @@ class MenuPageSelector:
                              outline=None, fill='white')
 
 
-        text_to_display = f"Name: {self.book_data.get_name()}\n" \
-                          f"Page Count: {self.book_data.page_count}\n" \
+        text_to_display = f"Name: {self.book_data.get_name()}\n\n" \
+                          f"Page Count: {self.book_data.page_count}\n\n" \
                           f"Current Page: {self.book_data.last_read_page}"
 
         image_draw.text((draw_x, draw_y ),
