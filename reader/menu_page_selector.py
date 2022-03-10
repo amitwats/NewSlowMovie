@@ -99,7 +99,7 @@ class MenuPageSelector:
         # font = ImageFont.truetype(FONT_STANDARD, FONT_H1_SIZE)
         draw_x = self.RECT_BOX_X_START
         draw_y = self.RECT_BOX_Y_START - 200
-        image_draw.rectangle([draw_x, draw_y, self.RECT_BOX_X_END, self.RECT_BOX_Y_START+self.OK_CANCEL_HEIGHT],
+        image_draw.rectangle([draw_x, draw_y, self.RECT_BOX_X_END, self.RECT_BOX_Y_START],
                              outline=None, fill='white')
 
         text_to_display = f"Name: {self.book_data.get_name()}\n\n" \
@@ -115,8 +115,8 @@ class MenuPageSelector:
         image_draw = ImageDraw.Draw(self.image_obj)
 
         self.write_book_details(image_draw)
-        image_draw.rectangle([self.RECT_BOX_X_START, self.RECT_BOX_Y_START, self.RECT_BOX_X_END, self.RECT_BOX_Y_END],
-                             outline='black', fill='white')
+        image_draw.rectangle([self.RECT_BOX_X_START, self.RECT_BOX_Y_START, self.RECT_BOX_X_END, self.RECT_BOX_Y_END+self.OK_CANCEL_HEIGHT],
+                             outline=None, fill='white')
         for dig_sel in self.digit_selector:
             dig_sel.draw_selection_icon(image_draw)
         self.image_obj = ImageOps.mirror(self.image_obj)
