@@ -80,9 +80,10 @@ class MenuPageSelector:
             sel.focused = index == self.digit_selector_index
 
     def write_book_details(self, image_draw):
-        font = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
+        # font = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
+        font = ImageFont.truetype(FONT_STANDARD, FONT_H1_SIZE)
         draw_x=self.RECT_BOX_X_START
-        draw_y=self.RECT_BOX_Y_START - 100
+        draw_y=self.RECT_BOX_Y_START - 200
         image_draw.rectangle([draw_x, draw_y, self.RECT_BOX_X_END, self.RECT_BOX_Y_START],
                              outline=None, fill='white')
 
@@ -303,6 +304,7 @@ if __name__ == '__main__':
     # page_selector.draw_selection_icon()
     time.sleep(2)
     page_selector.move_focus_to_next_selector()
+    page_selector.move_focus_to_next_selector()
     time.sleep(2)
     # page_selector.move_focus_to_prev_selector()
     # time.sleep(2)
@@ -315,6 +317,8 @@ if __name__ == '__main__':
     page_selector.current_selector_up()
     time.sleep(2)
     page_selector.move_focus_to_next_selector()
+    time.sleep(1)
+    page_selector.current_selector_down()
     time.sleep(1)
     page_selector.current_selector_down()
     time.sleep(1)
