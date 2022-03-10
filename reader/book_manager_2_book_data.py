@@ -19,6 +19,9 @@ class BookMetaData:
         return f"{self.prefix} ({self.folder}) - {self.page_count} pages - " \
                f"last read page: {self.last_read_page} and extension {self.extension}"
 
+    def get_name(self):
+        return f"{self.folder}"
+
     def move_next_page(self):
         print(f"NextPage: Current Last Page is {self.last_read_page}")
         if self.last_read_page < self.page_count:

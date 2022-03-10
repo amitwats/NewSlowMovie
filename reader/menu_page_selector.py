@@ -65,8 +65,7 @@ class MenuPageSelector:
                              digit_selector_x_start, digit_selector_y_start,
                              image_obj=self.image_obj, selected_char="0", focused=focused,
                              font_name=FONT_STANDARD, font_size=120))
-        self.digit_selector_index = len(self.digit_selector)-1
-
+        self.digit_selector_index = len(self.digit_selector) - 1
 
         self.display_start()
         # self.selection_index_max = 0
@@ -74,15 +73,26 @@ class MenuPageSelector:
         # self.POINTER_SPACE_X_END = display.width - 50
         # self.POINTER_SPACE_Y_START = 0
         # self.POINTER_SPACE_Y_END = display.height
+
     def _set_digit_selector_index(self, index):
         self.digit_selector_index = index
         for index, sel in enumerate(self.digit_selector):
             sel.focused = index == self.digit_selector_index
 
+    def write_book_details(self, image_draw):
+
+        text_to_display = f"{self.book_data.get_name()}\n" \
+                          f"Page Count: {self.book_data.page_count}\n" \
+                          f"Current Page:{self.book_data.last_read_page}"
+
+        image_draw.text((self.RECT_BOX_X_START, self.RECT_BOX_Y_START - 100),
+                        text_to_display, fill='black', font=self.font, align='center')
+
     def display_start(self):
         self.display.frame_buf.paste(0xFF, box=(0, 0, self.display.width, self.display.height))
 
         image_draw = ImageDraw.Draw(self.image_obj)
+
         image_draw.rectangle([self.RECT_BOX_X_START, self.RECT_BOX_Y_START, self.RECT_BOX_X_END, self.RECT_BOX_Y_END],
                              outline='black', fill='white')
         for dig_sel in self.digit_selector:
@@ -97,7 +107,6 @@ class MenuPageSelector:
         self.digit_selector_index %= len(self.digit_selector)
         self._set_digit_selector_index(self.digit_selector_index)
         self.display_start()
-
 
     def move_focus_to_prev_selector(self):
         self.digit_selector_index -= 1
@@ -287,7 +296,7 @@ if __name__ == '__main__':
     # page_selector.draw_selection_icon()
     time.sleep(2)
     page_selector.move_focus_to_next_selector()
-    # time.sleep(2)
+    time.sleep(2)
     # page_selector.move_focus_to_prev_selector()
     # time.sleep(2)
     # page_selector.move_focus_to_prev_selector()
@@ -295,15 +304,14 @@ if __name__ == '__main__':
     # page_selector.move_focus_to_next_selector()
     # time.sleep(2)
     page_selector.current_selector_up()
-    # time.sleep(1)
+    time.sleep(1)
     page_selector.current_selector_up()
-    # time.sleep(2)
+    time.sleep(2)
     page_selector.move_focus_to_next_selector()
-    # time.sleep(1)
+    time.sleep(1)
     page_selector.current_selector_down()
-    # time.sleep(1)
+    time.sleep(1)
     page_selector.current_selector_down()
-
 
     # blank_image= move_icon(blank_image)
     exit()
