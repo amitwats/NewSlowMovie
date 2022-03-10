@@ -342,6 +342,7 @@ if __name__ == '__main__':
     time.sleep(1)
     page_selector.move_focus_to_next_selector()
     time.sleep(1)
+    page_selector.current_selector_down()
 
     # blank_image= move_icon(blank_image)
     exit()
