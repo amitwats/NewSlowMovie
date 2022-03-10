@@ -99,7 +99,7 @@ class MenuPageSelector:
         # font = ImageFont.truetype(FONT_STANDARD, FONT_H1_SIZE)
         draw_x = self.RECT_BOX_X_START
         draw_y = self.RECT_BOX_Y_START - 200
-        image_draw.rectangle([draw_x, draw_y, self.RECT_BOX_X_END, self.RECT_BOX_Y_START+set.OK_CANCEL_HEIGHT],
+        image_draw.rectangle([draw_x, draw_y, self.RECT_BOX_X_END, self.RECT_BOX_Y_START+self.OK_CANCEL_HEIGHT],
                              outline=None, fill='white')
 
         text_to_display = f"Name: {self.book_data.get_name()}\n\n" \
