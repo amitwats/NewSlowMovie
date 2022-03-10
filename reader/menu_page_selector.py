@@ -86,8 +86,9 @@ class MenuPageSelector:
         image_draw.text((self.RECT_BOX_X_START, self.RECT_BOX_Y_END + 100), self.display_message_text, font=font,
                         fill=(200, 20, 0))
 
-    def display_message(self, display_message):
-        self.display_message = display_message
+    def display_message(self, display_message_text):
+        self.display_message_text = display_message_text
+        # print("Trying to display message: " + display_message_text)
         self.display_start()
 
     def get_selected_value(self):
