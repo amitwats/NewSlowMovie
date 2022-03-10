@@ -73,7 +73,7 @@ class MenuPageSelector:
 
 
         self.digit_selector_index = len(self.digit_selector) - 2
-        self.digit_selector[self.digit_selector_index].set_focused(True)
+        self.digit_selector[self.digit_selector_index].focused = True
 
         self.display_start()
         # self.selection_index_max = 0
