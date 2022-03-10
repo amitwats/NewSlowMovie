@@ -83,8 +83,8 @@ class MenuPageSelector:
 
     def show_display_message(self, image_draw, display_message):
         font = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
-        image_draw.text((self.RECT_BOX_X_START, self.RECT_BOX_Y_START + 100), display_message, font=font,
-                        fill=(0, 0, 0))
+        image_draw.text((self.RECT_BOX_X_START, self.RECT_BOX_Y_END + 100), display_message, font=font,
+                        fill=(200, 20, 0))
 
     def get_selected_value(self):
         return [sel.get_selected_char() for sel in self.digit_selector]
