@@ -80,7 +80,7 @@ class MenuPageSelector:
         # self.POINTER_SPACE_Y_END = display.height
 
     def get_selected_value(self):
-        return [sel.get_selected_char() for sel in self.digit_selector][:-2]
+        return [sel.get_selected_char() for sel in self.digit_selector][:-1]
 
     def get_selector_ok_cancel(self):
         # self.RECT_BOX_X_START = (display_obj.width - self.RECT_BOX_WIDTH) / 2
