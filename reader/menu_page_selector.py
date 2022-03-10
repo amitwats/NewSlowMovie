@@ -110,7 +110,7 @@ class MenuPageSelector:
         return value
 
     def is_value_valid(self):
-        values = self.get_selected_value()
+        # values = self.get_selected_value()
         return 0 < self.get_selected_page_number() <= self.book_data.page_count
 
     def get_selector_ok_cancel(self):
