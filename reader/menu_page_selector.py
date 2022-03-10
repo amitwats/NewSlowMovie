@@ -394,6 +394,6 @@ if __name__ == '__main__':
     print(page_selector.is_value_valid())
     print(page_selector.is_ok_selected())
     print(page_selector.is_back_selected())
-    page_selector.display_message("Incorrect value")
+    page_selector.display_message("Incorrect\n value")
     # blank_image= move_icon(blank_image)
     exit()
