@@ -52,6 +52,8 @@ class MenuPageSelector:
         self.OK_CANCEL_HEIGHT = 200
         self.char_count = 4
 
+        self.display_message = ""
+
         self.digit_selector = []
         digit_selector_width = self.RECT_BOX_WIDTH / self.char_count
         digit_selector_height = self.RECT_BOX_HEIGHT
@@ -79,16 +81,21 @@ class MenuPageSelector:
         # self.POINTER_SPACE_Y_START = 0
         # self.POINTER_SPACE_Y_END = display.height
 
+    def show_display_message(self, image_draw, display_message):
+        font = ImageFont.truetype(FONT_STANDARD, FONT_NORMAL_SIZE)
+        image_draw.text((self.RECT_BOX_X_START, self.RECT_BOX_Y_START + 100), display_message, font=font,
+                        fill=(0, 0, 0))
+
     def get_selected_value(self):
         return [sel.get_selected_char() for sel in self.digit_selector]
 
     def is_ok_selected(self):
-        sel= self.digit_selector[len(self.digit_selector) - 1]
-        return sel.get_selected_char()==" Ok"
+        sel = self.digit_selector[len(self.digit_selector) - 1]
+        return sel.get_selected_char() == " Ok"
 
     def is_back_selected(self):
-        sel= self.digit_selector[len(self.digit_selector) - 1]
-        return sel.get_selected_char()=="Back"
+        sel = self.digit_selector[len(self.digit_selector) - 1]
+        return sel.get_selected_char() == "Back"
 
     def get_selected_page_number(self):
         values = self.get_selected_value()
@@ -99,7 +106,7 @@ class MenuPageSelector:
 
     def is_value_valid(self):
         values = self.get_selected_value()
-        return 0< self.get_selected_page_number() <= self.book_data.page_count
+        return 0 < self.get_selected_page_number() <= self.book_data.page_count
 
     def get_selector_ok_cancel(self):
         # self.RECT_BOX_X_START = (display_obj.width - self.RECT_BOX_WIDTH) / 2
@@ -139,6 +146,7 @@ class MenuPageSelector:
         image_draw = ImageDraw.Draw(self.image_obj)
 
         self.write_book_details(image_draw)
+        self.show_display_message(image_draw, "Enter Page Number")
         image_draw.rectangle([self.RECT_BOX_X_START - 1, self.RECT_BOX_Y_START, self.RECT_BOX_X_END,
                               self.RECT_BOX_Y_END + self.OK_CANCEL_HEIGHT],
                              outline=None, fill='white')
