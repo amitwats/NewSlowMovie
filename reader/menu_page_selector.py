@@ -336,6 +336,8 @@ if __name__ == '__main__':
     time.sleep(2)
     page_selector.move_focus_to_next_selector()
     page_selector.move_focus_to_next_selector()
+    page_selector.move_focus_to_next_selector()
+    page_selector.move_focus_to_next_selector()
 
     page_selector.current_selector_up()
     # page_selector.move_focus_to_next_selector()
