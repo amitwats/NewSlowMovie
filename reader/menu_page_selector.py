@@ -297,6 +297,10 @@ if __name__ == '__main__':
     page_selector.current_selector_up()
     time.sleep(1)
     page_selector.current_selector_up()
+    time.sleep(2)
+    page_selector.move_focus_to_next_selector()
+    time.sleep(1)
+    page_selector.current_selector_down()
     time.sleep(1)
     page_selector.current_selector_down()
 
