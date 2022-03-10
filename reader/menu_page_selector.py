@@ -48,8 +48,8 @@ class MenuPageSelector:
         self.RECT_BOX_Y_START = (display_obj.height - self.RECT_BOX_HEIGHT) / 2
         self.RECT_BOX_X_END = self.RECT_BOX_X_START + self.RECT_BOX_WIDTH
         self.RECT_BOX_Y_END = self.RECT_BOX_Y_START + self.RECT_BOX_HEIGHT
-        self.OK_CANCEL_WIDTH=300
-        self.OK_CANCEL_HEIGHT=200
+        self.OK_CANCEL_WIDTH = 300
+        self.OK_CANCEL_HEIGHT = 200
         self.char_count = 4
 
         self.digit_selector = []
@@ -80,7 +80,18 @@ class MenuPageSelector:
         # self.POINTER_SPACE_Y_END = display.height
 
     def get_selected_value(self):
-        return [sel.get_selected_char() for sel in self.digit_selector][:-1]
+        return [sel.get_selected_char() for sel in self.digit_selector]
+
+    def get_selected_page_number(self):
+        values = self.get_selected_value()
+        value = 0
+        for index, val in enumerate(reversed(values[:-1])):
+            value += int(val) * 10 ** index
+        return value
+
+    def is_value_valid(self):
+        values = self.get_selected_value()
+        return self.get_selected_page_number() <= self.book_data.page_count
 
     def get_selector_ok_cancel(self):
         # self.RECT_BOX_X_START = (display_obj.width - self.RECT_BOX_WIDTH) / 2
@@ -88,9 +99,9 @@ class MenuPageSelector:
         # self.RECT_BOX_X_END = self.RECT_BOX_X_START + self.RECT_BOX_WIDTH
         # self.RECT_BOX_Y_END = self.RECT_BOX_Y_START + self.RECT_BOX_HEIGHT
 
-        padding=30
+        padding = 30
         return MenuSelector([" Ok", "Back"], self.display, self.OK_CANCEL_WIDTH, self.OK_CANCEL_HEIGHT,
-                            self.RECT_BOX_X_END - self.OK_CANCEL_WIDTH-padding, self.RECT_BOX_Y_END,
+                            self.RECT_BOX_X_END - self.OK_CANCEL_WIDTH - padding, self.RECT_BOX_Y_END,
                             image_obj=self.image_obj, selected_char=" Ok", focused=False,
                             font_name=FONT_STANDARD, font_size=120)
 
@@ -120,7 +131,8 @@ class MenuPageSelector:
         image_draw = ImageDraw.Draw(self.image_obj)
 
         self.write_book_details(image_draw)
-        image_draw.rectangle([self.RECT_BOX_X_START-1, self.RECT_BOX_Y_START, self.RECT_BOX_X_END, self.RECT_BOX_Y_END+self.OK_CANCEL_HEIGHT],
+        image_draw.rectangle([self.RECT_BOX_X_START - 1, self.RECT_BOX_Y_START, self.RECT_BOX_X_END,
+                              self.RECT_BOX_Y_END + self.OK_CANCEL_HEIGHT],
                              outline=None, fill='white')
         for dig_sel in self.digit_selector:
             dig_sel.draw_selection_icon(image_draw)
@@ -348,6 +360,6 @@ if __name__ == '__main__':
     time.sleep(1)
     page_selector.current_selector_down()
 
-    print(page_selector.get_selected_value())
+    print(page_selector.get_selected_page_number())
     # blank_image= move_icon(blank_image)
     exit()
