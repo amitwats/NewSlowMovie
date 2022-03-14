@@ -10,3 +10,4 @@ setuptools~=57.0.0
 pdf2image~=1.16.0
 pysqlite3
 click
+python-poppler
