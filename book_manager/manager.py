@@ -50,7 +50,7 @@ def add_book_to_system(original_location):
 
     # print([os.path.join(BOOKS_DATA_FOLDER_NAME, name_of_file, file) for file in list_of_files])
     prefix = name_of_file
-    page_extension = rename_files_by_order(list_of_files, destination_folder, "II")
+    page_extension = rename_files_by_order(list_of_files, destination_folder, prefix)
 
     # os.path.join(BOOKS_DATA_FOLDER_NAME, name_of_file)
     add_book(prefix, destination_folder, page_count, 1, page_extension)
