@@ -1,7 +1,12 @@
 import sqlite3
-
-from .book_manager_2_book_data import BookMetaData
-from .constants import BOOK_DB_FILE_NAME
+try:
+    from .book_manager_2_book_data import BookMetaData
+except:
+    from book_manager_2_book_data import BookMetaData
+try:
+    from .constants import BOOK_DB_FILE_NAME
+except :
+    from constants import BOOK_DB_FILE_NAME
 
 
 def create_db():
