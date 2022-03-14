@@ -1,7 +1,7 @@
 import sqlite3
 
 from book_manager_2_book_data import BookMetaData
-from .constants import BOOK_DB_FILE_NAME
+from constants import BOOK_DB_FILE_NAME
 
 
 def create_db():
