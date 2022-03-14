@@ -1,7 +1,7 @@
 try:
-    from .constants import BOOK_DB_FILE_NAME
+    from .constants import BOOK_DB_FILE_NAME, BOOK_NAME_LENGTH_LIMIT
 except:
-    from constants import BOOK_DB_FILE_NAME
+    from constants import BOOK_DB_FILE_NAME,BOOK_NAME_LENGTH_LIMIT
 
 
 class BookMetaData:
