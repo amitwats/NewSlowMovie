@@ -5,3 +5,4 @@ SUPPORTED_IMAGE_FORMATS = [".bmp", ".gif", ".jpg", ".jpeg", ".png", ".tiff", ".w
                            ".pcx", ".pbm", ".pgm", ".ppm", ".pnm", ".psd", ]
 BOOK_DB_FILE_NAME = "books.db"
 BOOK_NAME_LENGTH_LIMIT = 5
+DEFAULT_UNCONVERTED_BOOK_LOCATION = "books_raw"

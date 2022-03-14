@@ -1,6 +1,6 @@
 from book_manager.extractors import cbz_extractor
 from book_manager.utils import get_random_name
-from constants import TEMP_FOLDER_NAME
+from reader.constants import TEMP_FOLDER_NAME
 
 
 def convert(source_location, target_location, prefix):

@@ -1,7 +1,7 @@
 import os
 import zipfile
 
-from constants import SUPPORTED_IMAGE_FORMATS
+from reader.constants import SUPPORTED_IMAGE_FORMATS
 
 
 def extract(source_file, destination_folder):

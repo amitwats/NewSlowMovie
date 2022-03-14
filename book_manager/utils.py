@@ -1,6 +1,6 @@
 import shutil
 
-from constants import BOOK_NAME_LENGTH_LIMIT
+from reader.constants import BOOK_NAME_LENGTH_LIMIT
 
 
 def get_random_name(length=11):
@@ -14,6 +14,10 @@ def copy_files_to_folder(list_of_files, source_folder, destination_folder):
     for file in list_of_files:
         shutil.copyfile(os.path.join(source_folder, file), os.path.join(destination_folder, file))
 
+def get_name_of_files_in_folder(folder_path):
+    import os
+    return [name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))]
+
 
 def get_name_of_file(file_path, strip_extension=True):
     import os
@@ -21,6 +25,9 @@ def get_name_of_file(file_path, strip_extension=True):
     if strip_extension:
         return os.path.splitext(base_name)[0]
 
+def count_files_in_folder(folder_path):
+    import os
+    return len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
 
 def get_extension_of_file(file_path):
     import os
