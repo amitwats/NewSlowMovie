@@ -187,7 +187,7 @@ def handle_mode_page_selector(states, page_sel):
             else:
                 page_sel.display_message("Incorrect\n value")
                 return "CONTINUE", None
-        elif page_sel.is_cancel_selected():
+        elif page_sel.is_back_selected():
             return "CHANGE_MODE", "read"
             # page_sel.book_data.set_current_page()
 

@@ -4,28 +4,8 @@ from reader.constants import TEMP_FOLDER_NAME
 
 from pdf2image import convert_from_path
 
-def convert(source_location, target_location, prefix):
-    convert_from_path(source_location, output_folder=target_location, fmt='jpg', output_file=prefix,grayscale=True)
-
-    # import os
-    # import shutil
-    #
-    #
-    # temp_dir = os.path.join(TEMP_FOLDER_NAME, get_random_name())
-    #
-    # if not os.path.exists(temp_dir):
-    #     os.makedirs(temp_dir)
-    # extension = os.path.splitext(source_location)[-1]
-    # print(f"Extension {extension}")
-    # if extension.lower() in ['.cbz', '.zip']:
-    #     cbz_extractor.extract(source_location, temp_dir)
-    #
-    #
-    #
-    # #cleanup
-    # shutil.rmtree(temp_dir)
-    #     # files = [f for f in os.listdir(target_location) if os.path.isfile(os.path.join(target_location, f))]
-    #     # files.sort()
+def convert(source_location, target_location):
+    convert_from_path(source_location, output_folder=target_location, fmt='jpg', grayscale=True)
     return get_name_of_files_in_folder(target_location)
 
 

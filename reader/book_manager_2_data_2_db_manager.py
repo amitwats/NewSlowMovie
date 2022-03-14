@@ -28,8 +28,6 @@ def add_book(prefix, folder, page_count, last_read_page, extension):
     conn.close()
 
 
-
-
 def put_book_data(book_data: BookMetaData):
     conn = sqlite3.connect(BOOK_DB_FILE_NAME)
     c = conn.cursor()
