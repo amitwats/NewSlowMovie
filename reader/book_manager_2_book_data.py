@@ -1,4 +1,7 @@
-from .constants import BOOK_NAME_LENGTH_LIMIT
+try:
+    from .constants import BOOK_DB_FILE_NAME
+except:
+    from constants import BOOK_DB_FILE_NAME
 
 
 class BookMetaData:
