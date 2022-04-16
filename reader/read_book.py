@@ -306,7 +306,7 @@ def read_book(book_id):
                 # current_mode = handle_values_list[0]
                 # book_data = get_book_data(int(handle_values_list[1]))
                 if handle_value=='Select Book':
-                    current_mode == "menu_book_list"
+                    current_mode = "menu_book_list"
                 elif handle_value=='Shutdown':
                     shutdown_system()
 
