@@ -63,7 +63,7 @@ class MenuBookList:
         for index, book in enumerate(self.list_books):
             print(book)
             x_pos, y_pos, _ = self.get_position_of_text(index, font_normal)
-            image_draw.text((x_pos, y_pos), book.folder,
+            image_draw.text((x_pos, y_pos), book.display_text(),
                                  font=font_normal, fill='black', )
 
         self.image_obj = ImageOps.mirror(self.image_obj)

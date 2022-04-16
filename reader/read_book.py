@@ -32,6 +32,15 @@ for btn in gpio_buttons:
 DEFAULT_STATE = [1, 1, 1, 1, 1, 1, 1, 1]
 
 
+class HomeMenuItem:
+    def __init__(self, name):
+        self.name = name
+        self.id=name
+
+    def display_text(self):
+        return self.name
+
+
 def handle_button_02(book_data):
     pass
 
@@ -115,10 +124,8 @@ def handle_mode_read(states, book_data, has_changed=False):
         pass
 
     if states[7] == BTN_ON:
-        # global current_mode
-        # current_mode = "menu_book_list"
         print("Changing the mode to menu_book_list")
-        return "CHANGE_MODE", "menu_book_list"
+        return "CHANGE_MODE", "menu_home"
 
         # handle_button_07(book_data)
 
@@ -158,11 +165,46 @@ def handle_mode_menu_book_list(states, menu_book_list):
     return "CONTINUE", None
 
 
+def handle_mode_home_menu(states, home_menu):
+    if states[0] == BTN_ON:
+        home_menu.select_previous()
+
+    if states[1] == BTN_ON:
+        home_menu.select_next()
+
+    if states[2] == BTN_ON:
+        pass
+
+    if states[3] == BTN_ON:
+        pass
+
+    if states[4] == BTN_ON:
+        return "ITEM_SELECTED", home_menu.get_current_selection().name
+
+    if states[5] == BTN_ON:
+        pass
+
+    if states[6] == BTN_ON:
+        pass
+
+    if states[7] == BTN_ON:
+        return "CONTINUE", None
+
+    return "CONTINUE", None
+
+
 def create_menu_book_list():
     book_list = get_books_list()
     menu_book_list = MenuBookList(book_list, display)
     menu_book_list.display_book_list()
     return menu_book_list
+
+
+def create_home_menu():
+    items = [HomeMenuItem('Select Book'), HomeMenuItem('Shutdown')]
+    home_menu = MenuBookList(items, display)
+    home_menu.display_book_list()
+    return home_menu
 
 
 def handle_mode_page_selector(states, page_sel):
@@ -203,15 +245,20 @@ def handle_mode_page_selector(states, page_sel):
     return "CONTINUE", None
 
 
+def shutdown_system():
+    pass
+
+
 def read_book(book_id):
     print('Reading book "{}"...'.format(book_id))
 
-    valid_modes = ["read", "menu_book_list", "page_selector"]
+    valid_modes = ["read", "menu_book_list", "page_selector", "menu_home"]
     book_data = get_book_data(1)
     # global current_mode
     current_mode = "menu_book_list"
     menu_book_list = None
-    page_sel=None
+    page_sel = None
+    menu_home=None
 
     while True:
         states = [GPIO.input(btn_no) for btn_no in gpio_buttons]
@@ -250,6 +297,18 @@ def read_book(book_id):
                 # handle_values_list=handle_value.split(",")
                 # current_mode = handle_values_list[0]
                 # book_data = get_book_data(int(handle_values_list[1]))
+        elif current_mode == "menu_home":
+            if not menu_home:
+                menu_home = create_home_menu()
+            handle_type, handle_value = handle_mode_home_menu(states, menu_home)
+            if handle_type == "ITEM_SELECTED":
+                # handle_values_list=handle_value.split(",")
+                # current_mode = handle_values_list[0]
+                # book_data = get_book_data(int(handle_values_list[1]))
+                if handle_value=='Select Book':
+                    current_mode == "menu_book_list"
+                elif handle_value=='Shutdown':
+                    shutdown_system()
 
         print(f"Mode {current_mode} and {states}")
         time.sleep(0.1)

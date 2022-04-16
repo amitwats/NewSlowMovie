@@ -40,3 +40,6 @@ class BookMetaData:
             return True
         print(f"PrevPage: New Last Page is {self.last_read_page}")
         return False
+
+    def display_text(self):
+        return self.folder
