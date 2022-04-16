@@ -247,7 +247,8 @@ def handle_mode_page_selector(states, page_sel):
 
 
 def shutdown_system():
-    pass
+    import os
+    os.system("sudo shutdown -h now")
 
 
 def read_book(book_id):
