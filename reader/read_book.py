@@ -124,7 +124,7 @@ def handle_mode_read(states, book_data, has_changed=False):
         pass
 
     if states[7] == BTN_ON:
-        print("Changing the mode to menu_book_list")
+        print("Changing the mode to menu_home")
         return "CHANGE_MODE", "menu_home"
 
         # handle_button_07(book_data)
@@ -166,6 +166,7 @@ def handle_mode_menu_book_list(states, menu_book_list):
 
 
 def handle_mode_home_menu(states, home_menu):
+    print("handling Hime menu")
     if states[0] == BTN_ON:
         home_menu.select_previous()
 
@@ -260,6 +261,7 @@ def read_book(book_id):
     page_sel = None
     menu_home=None
 
+    mode_changed=False
     while True:
         states = [GPIO.input(btn_no) for btn_no in gpio_buttons]
         if current_mode == "read":
@@ -269,6 +271,7 @@ def read_book(book_id):
             handle_type, handle_value = handle_mode_read(states, book_data)
             if handle_type == "CHANGE_MODE":
                 current_mode = handle_value
+                mode_changed=True
                 # print("Changing the mode to {}".format(handle_value))
                 # handle_values_list=handle_value.split(",")
                 # current_mode = handle_values_list[0]
@@ -300,6 +303,9 @@ def read_book(book_id):
         elif current_mode == "menu_home":
             if not menu_home:
                 menu_home = create_home_menu()
+            if mode_changed:
+                menu_home.display_book_list()
+                mode_changed=False
             handle_type, handle_value = handle_mode_home_menu(states, menu_home)
             if handle_type == "ITEM_SELECTED":
                 # handle_values_list=handle_value.split(",")
