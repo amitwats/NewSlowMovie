@@ -160,7 +160,7 @@ def handle_mode_menu_book_list(states, menu_book_list):
         pass
 
     if states[7] == BTN_ON:
-        return "CONTINUE", None
+        return "CHANGE_MODE", "menu_home"
 
     return "CONTINUE", None
 
@@ -289,6 +289,10 @@ def read_book(book_id):
                 # book_data = get_book_data(handle_value)
                 current_mode = "read"
                 display_image_8bpp(display, book_data.get_last_page_path())
+            elif handle_type == "CHANGE_MODE":
+                current_mode = handle_value
+                mode_changed=True
+
         elif current_mode == "page_selector":
             if not page_sel:
                 page_sel = MenuPageSelector(book_data, display)
