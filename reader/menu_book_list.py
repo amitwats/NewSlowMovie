@@ -49,6 +49,7 @@ class MenuBookList:
 
     def display_book_list(self):
         # clearing image to white
+        print("Entering Display Book List")
         display.frame_buf.paste(0xFF, box=(0, 0, display.width, display.height))
         start_x_heading = 70
         start_y_heading = 50
