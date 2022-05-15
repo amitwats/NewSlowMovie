@@ -1,0 +1,4 @@
+To add a book into a system
+****************************
+
+python3 book_manager/manager.py add [PATH OF FILE]
