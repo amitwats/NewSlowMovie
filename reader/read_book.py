@@ -264,6 +264,7 @@ def read_book(book_id):
 
     mode_changed=False
     while True:
+        print(f"Starting loop with mode {current_mode}")
         states = [GPIO.input(btn_no) for btn_no in gpio_buttons]
         if current_mode == "read":
             menu_book_list = None
@@ -278,9 +279,11 @@ def read_book(book_id):
                 # current_mode = handle_values_list[0]
                 # book_data = get_book_data(int(handle_values_list[1]))
         elif current_mode == "menu_book_list":
+            print(f"The Mode entered is menu_book_list" )
             if not menu_book_list:
                 menu_book_list = create_menu_book_list()
             handle_type, handle_value = handle_mode_menu_book_list(states, menu_book_list)
+            print(f"The handle is {handle_type} and {handle_value}")
             if handle_type == "BOOK_SELECTED":
                 # handle_values_list=handle_value.split(",")
                 # current_mode = handle_values_list[0]
@@ -324,7 +327,7 @@ def read_book(book_id):
                 elif handle_value=='Shutdown':
                     shutdown_system()
 
-        print(f"Mode {current_mode} and {states}")
+        print(f"Mode is {current_mode} and {states}")
         time.sleep(0.1)
 
 
