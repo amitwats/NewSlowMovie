@@ -1,4 +1,5 @@
 To add a book into a system
 ****************************
 
-python3 book_manager/manager.py add [PATH OF FILE]
+export PYTHONPATH=.
+python3 book_manager/manager.py add --location [PATH OF FILE]
